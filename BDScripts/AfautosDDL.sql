@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS TipDoc (
 
 CREATE TABLE IF NOT EXISTS Usuarios (
     idUsuar VARCHAR(15),
-    pass VARCHAR(20) UNIQUE NOT NULL /*TEMPORAL*/,
+    pass VARCHAR(20) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     telef VARCHAR(10) UNIQUE NOT NULL,
     priNom VARCHAR(15) NOT NULL,
@@ -190,7 +190,7 @@ CREATE TRIGGER maxDepart
             BEGIN
 				SELECT COUNT(*) INTO @count FROM Departamentos;
                 IF @count > 32 THEN
-					SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT =  "El numero de departamentos es suoerior al permitido";
+					SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT =  "El numero de departamentos es superior al permitido";
 				END IF;
 END;
 $$
