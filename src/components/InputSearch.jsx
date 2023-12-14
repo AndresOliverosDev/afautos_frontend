@@ -1,4 +1,4 @@
-import iSearch from '../assets/icons/search.svg'
+import IconHome from '../assets/icons/IconHome';
 import {useState,useEffect} from 'react';
   
 
@@ -44,7 +44,7 @@ const InputSearch = () => {
           onBlur={focusOff}
           />
           <button type="submit" className="relative p-2 m-1 bg-dContainer rounded-full dark:bg-none">
-            <img src={iSearch} alt="Buscar" />
+            <IconHome />
           </button>
           {query && (<ul className='absolute top-full h-48 w-40 bg-lContainer p-4 dark:bg-dContainer rounded-xl border-solid overflow-auto'>
                   {results.map((result,index) => (

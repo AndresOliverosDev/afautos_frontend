@@ -1,4 +1,3 @@
-DROP DATABASE afautos;
 CREATE DATABASE IF NOT EXISTS Afautos;
 
 USE Afautos;
@@ -49,7 +48,7 @@ CREATE TABLE IF NOT EXISTS Departamentos (
 
 CREATE TABLE IF NOT EXISTS Ciudades (
     idCiu SMALLINT AUTO_INCREMENT,
-    nomCiud VARCHAR(30) UNIQUE NOT NULL,
+    nomCiud VARCHAR(30) NOT NULL,
     idDep TINYINT,
 
     PRIMARY KEY(idCiu),
@@ -203,6 +202,8 @@ DELIMITER $$
 			FOR EACH ROW
 				BEGIN
 					SELECT COUNT(*) INTO @count FROM Ciudades;
-						IF @count >	
-$$
+						IF @count >	1104 THEN
+                            SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "El numero de departamentos es superior al permitido";
+                        END IF;
+    END;$$
 DELIMITER ;

@@ -1,44 +1,51 @@
-import iLogo from '../assets/icons/logo.svg';
-import iHome from '../assets/icons/home.svg';
-import iOrder from '../assets/icons/package.svg';
-import iClient from '../assets/icons/group.svg';
+/* Iconos */
+import IconHome from '../assets/icons/IconHome.jsx';
+import IconLogo from '../assets/icons/IconLogo.jsx';
+import IconUsers from '../assets/icons/IconUsers.jsx';
+import IconUser from '../assets/icons/IconUser.jsx';
+import IconOrder from '../assets/icons/IconOrder.jsx';
+import IconTruck from '../assets/icons/IconTruck.jsx';
+import IconBalance from '../assets/icons/IconBalance.jsx';
+import IconColapseOff from '../assets/icons/IconColapseOff.jsx';
+
 import TougleButton from '../components/TougleButton';
-import { useState,useEffect } from 'react';
+import {useState} from 'react';
 
 function SideBar() {
 
     const [visit,setVisit] = useState(null);
 
     const navSections  = [
-        {id:1,'name':'Inicio','icon':`${iHome}`},
-        {id:2,'name':'Pedidos','icon':`${iOrder}`},
-        {id:3,'name':'Clientes','icon':`${iClient}`},
-        {id:4,'name':'Informes','icon':`${iHome}`},
-        {id:5,'name':'Empleados','icon':`${iHome}`},
-        {id:6,'name':'Proveedores','icon':`${iHome}`}
+        {id:1,'name':'Inicio', icon:<IconHome />},
+        {id:2,'name':'Pedidos', icon:<IconOrder />},
+        {id:3,'name':'Clientes', icon:<IconUser />},
+        {id:4,'name':'Informes', icon:<IconBalance />},
+        {id:5,'name':'Empleados', icon:<IconUsers />},
+        {id:6,'name':'Proveedores', icon:<IconTruck />}
     ];
 
-    /* Tailwinds Designs of the links */
-    const linkNotVisit = "flex items-center justify-start w-full p-3 my-2 font-sans font-thin text-lTextMut transition-colors duration-200 dark:text-gray-200 hover:text-contrast cursor-pointer";
+    /* Clases de Tailwind para links */
+    const link = "flex items-center justify-start w-full p-3 my-2 font-sans font-thin text-lTextMut transition-colors duration-200 cursor-pointer fill-lTextNeu hover:text-lContrast hover:fill-lContrast dark:text-dTextNeu dark:hover:text-dContrast dark:fill-dTextNeu dark:hover:fill-dContrast";
+    const linkActive = "flex items-center justify-start w-full p-3 my-2 font-thin text-dTextPri fill-dTextPri transition-colors duration-200 rounded-xl bg-gradient-to-r from-dBackground to-dContainer dark:from-gray-700 dark:to-gray-800 dark:text-dTextImp dark:fill-dContrastSec";
 
     return (
 
     <div className="relative hidden h-screen shadow-lg lg:block w-auto">
         <div className="h-full bg-lContainer dark:bg-dContainer">
             <div className="flex items-center justify-center pt-6">
-                <img src={iLogo} alt="Logotipo de la empresa Afautos SAS" />
+                <IconLogo />
             </div>
 
-            <nav className="mt-6">
+            <nav className="mt-6 p-3">
                 {navSections.map((value) => (
                     <a key={value.id} className={visit === value.id 
                     ?
-                    "flex items-center justify-start w-full p-4 my-2 font-thin text-lTextPri transition-colors duration-200 border-r-4 border-contrast bg-gradient-to-r from-white to-contrast dark:from-gray-700 dark:to-gray-800 dark:text-dTextImp"
-                    : linkNotVisit
+                    linkActive
+                    : link
                     }
                      onClick={()=>setVisit(value.id)}>
-                        <span className="text-left">
-                            <img src={value.icon} alt={`Enlace para ir a ${value.name}`}/>
+                        <span className="">
+                        {value.icon}
                         </span>
                         <span className="mx-4 text-sm font-normal">
                             {value.name}
@@ -47,12 +54,12 @@ function SideBar() {
                     
                 ))
                 }
-                    <a className={` mt-6 ${linkNotVisit}`}>
+                    <a className={` mt-6 ${link}`}>
                         <span className="text-left">
-                            <img src={iHome} alt='Enlace para ir a cerrar sesion'/>
+                        <IconColapseOff />
                         </span>
-                        <span className=" mx-4 text-sm font-normal">
-                            Cerrar Sesion
+                        <span className=" mx-4 text-xs font-normal">
+                            Ocultar
                         </span>
                     </a>
                 

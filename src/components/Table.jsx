@@ -14,17 +14,17 @@ const Table = () => {
 
     return(
 
-        <div class="flex justify-center h-full overflow-auto p-5">
-	        <div class="col-span-12">
-                <div class="overflow-auto lg:overflow-visible ">
-                    <table class="table text-gray-400 border-separate space-y-6 text-sm">
-                        <thead class="bg-gray-800 text-gray-500">
+        <div className="flex justify-center h-full overflow-auto p-5">
+	        <div className="col-span-12">
+                <div className="overflow-auto lg:overflow-visible ">
+                    <table className="table text-gray-400 border-separate space-y-6 text-sm">
+                        <thead className="bg-gray-800 text-gray-500">
                             <tr>
-                                <th class="p-3">Cliente</th>
-                                <th class="p-3 text-left">Id Pedido</th>
-                                <th class="p-3 text-left">Compra</th>
-                                <th class="p-3 text-left">Fecha</th>
-                                <th class="p-3 text-left">Estados</th>
+                                <th className="p-3">Cliente</th>
+                                <th className="p-3 text-left">Id Pedido</th>
+                                <th className="p-3 text-left">Compra</th>
+                                <th className="p-3 text-left">Fecha</th>
+                                <th className="p-3 text-left">Estados</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,33 +34,33 @@ const Table = () => {
                                     <td className='p-3'>
                                         <div className="flex align-items-center">
                                             <img className="rounded-full h-12 w-12  object-cover" src="https://images.unsplash.com/photo-1613588718956-c2e80305bf61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="unsplash image"/>
-                                            <div class="ml-3">
-                                                <div class="">{val.cliente}</div>
-                                                <div class="text-gray-500">mail@gmail.com</div>
+                                            <div className="ml-3">
+                                                <div className="">{val.cliente}</div>
+                                                <div className="text-gray-500">mail@gmail.com</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="p-3">
+                                    <td className="p-3">
                                         {val.idPed}
                                     </td>
-                                    <td class="p-3">
+                                    <td className="p-3">
                                         {val.compra}
                                     </td>
-                                    <td class="p-3 font-bold">
+                                    <td className="p-3 font-bold">
                                         {val.fecha}
                                     </td>
-                                    <td class="p-3 font-bold">
+                                    <td className="p-3 font-bold">
                                         {val.estado}
                                     </td>
-                                    <td class="p-3">
-                                        <a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
-                                            <i class="material-icons-outlined text-base">visibility</i>
+                                    <td className="p-3">
+                                        <a href="#" className="text-gray-400 hover:text-gray-100 mr-2">
+                                            <i className="material-icons-outlined text-base">visibility</i>
                                         </a>
-                                        <a href="#" class="text-gray-400 hover:text-gray-100 mx-2">
-                                            <i class="material-icons-outlined text-base">edit</i>
+                                        <a href="#" className="text-gray-400 hover:text-gray-100 mx-2">
+                                            <i className="material-icons-outlined text-base">edit</i>
                                         </a>
-                                        <a href="#" class="text-gray-400 hover:text-gray-100 ml-2">
-                                            <i class="material-icons-round text-base">delete_outline</i>
+                                        <a href="#" className="text-gray-400 hover:text-gray-100 ml-2">
+                                            <i className="material-icons-round text-base">delete_outline</i>
                                         </a>
                                 </td>
                                 </tr>

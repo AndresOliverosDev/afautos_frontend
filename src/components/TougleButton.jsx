@@ -2,10 +2,10 @@ import { useEffect,useState } from "react";
 
 const TougleButton = () => {
 
-    const [theme,setTheme] = useState('light');
+    const [theme,setTheme] = useState('dark');
     
     const handleChangeTheme = () => {
-        setTheme(theme == 'light' ? 'dark' : 'light');
+        setTheme(theme == 'dark' ? 'light' : 'dark');
     };
 
     useEffect(() => {
