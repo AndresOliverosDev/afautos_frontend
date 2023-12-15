@@ -8,6 +8,7 @@ import IconTruck from '../assets/icons/IconTruck.jsx';
 import IconBalance from '../assets/icons/IconBalance.jsx';
 import IconColapseOff from '../assets/icons/IconColapseOff.jsx';
 
+import {P, Psmall} from '../components/ui'
 import TougleButton from '../components/TougleButton';
 import {useState} from 'react';
 
@@ -43,24 +44,19 @@ function SideBar() {
                     linkActive
                     : link
                     }
-                     onClick={()=>setVisit(value.id)}>
-                        <span className="">
+                     onClick={()=>setVisit(value.id)}
+                     >
+
                         {value.icon}
-                        </span>
-                        <span className="mx-4 text-sm font-normal">
-                            {value.name}
-                        </span>
+                        <P text={value.name}/>
+
                     </a>
                     
                 ))
                 }
                     <a className={` mt-6 ${link}`}>
-                        <span className="text-left">
                         <IconColapseOff />
-                        </span>
-                        <span className=" mx-4 text-xs font-normal">
-                            Ocultar
-                        </span>
+                        <Psmall text='Ocultar' />
                     </a>
                 
             </nav>
