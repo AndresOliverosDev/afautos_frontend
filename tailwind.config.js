@@ -19,7 +19,7 @@ export default {
         'dContrast':'#ff8fa3',
         /*Objects colors Light*/
         'lContainer':'#FFF2F2',
-        'lBackground':'#FAD4D4',
+        'lBackground':'#FFF2F2',
         'lBorder':'#ffffff40',
         /*Text colors Light*/
         'lTextImp': '#0a0a0a',
