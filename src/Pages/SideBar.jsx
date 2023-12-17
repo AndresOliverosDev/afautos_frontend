@@ -1,14 +1,7 @@
 /* Iconos */
-import IconHome from '../assets/icons/IconHome.jsx';
-import IconLogo from '../assets/icons/IconLogo.jsx';
-import IconUsers from '../assets/icons/IconUsers.jsx';
-import IconUser from '../assets/icons/IconUser.jsx';
-import IconOrder from '../assets/icons/IconOrder.jsx';
-import IconTruck from '../assets/icons/IconTruck.jsx';
-import IconBalance from '../assets/icons/IconBalance.jsx';
-import IconColapseOff from '../assets/icons/IconColapseOff.jsx';
+import {IconArrowLeft,IconHome,IconLogo,IconUsers,IconUser,IconOrder,IconTruck,IconBalance} from '../assets/icons/indexIcons.js'
 
-import {P, Psmall} from '../components/ui'
+import {P, Psmall} from '../components/ui/indexUi.js'
 import TougleButton from '../components/TougleButton';
 import {useState} from 'react';
 
@@ -55,7 +48,7 @@ function SideBar() {
                 ))
                 }
                     <a className={` mt-6 ${link}`}>
-                        <IconColapseOff />
+                        <IconArrowLeft />
                         <Psmall text='Ocultar' />
                     </a>
                 
