@@ -12,6 +12,7 @@ export default {
         /*Objects colors Dark*/
         'dContainer':'#202328',
         'dBackground':'#16181C',
+        'dHover':'#16181c3d',
         'dBorder':'#ffffff40',
         /*Contrast*/
         'lContrast':'#F47C7C',
