@@ -60,7 +60,7 @@ const Table = () => {
             <tbody>
                 {
                     table.getRowModel().rows.map(row => (
-                        <tr className="mt-12 hover:bg-dBackground" key={row.id}>
+                        <tr className="mt-12 hover:bg-dBackground rounded-xl" key={row.id}>
                             {
                                 row.getVisibleCells().map(cell => (
                                     <td className={`p-2 ${row.id % 2 === 0 ? '':'bg-dHover'} `}>

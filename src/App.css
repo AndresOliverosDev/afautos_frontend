@@ -10,3 +10,7 @@
     grid-row: y1 / y2;
     grid-column: x1 / x2;
 }
+
+@media screen {
+    
+}
