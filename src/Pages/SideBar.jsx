@@ -1,65 +1,82 @@
-/* Iconos */
-import {IconArrowLeft,IconHome,IconLogo,IconUsers,IconUser,IconOrder,IconTruck,IconBalance} from '../assets/icons/indexIcons.js'
+/**Material Tailwind Components*/
+import {
+    Card,
+    Typography,
+    List,
+    ListItem,
+    ListItemPrefix,
+} from "@material-tailwind/react";
 
-import {P, Psmall} from '../components/ui/indexUi.js'
-import TougleButton from '../components/TougleButton';
-import {useState} from 'react';
+/** HeroIcons Dev Icons */
+import {
+    PresentationChartBarIcon,
+    ShoppingBagIcon,
+    Cog6ToothIcon,
+    PowerIcon,
+} from "@heroicons/react/24/solid";
+import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+
+/** React Hooks */
+import { useState } from "react";
+
+/** UI Components  */
+import { AccordionUI } from '../components/ui/indexUi'
 
 function SideBar() {
 
-    const [visit,setVisit] = useState(null);
+    /** Estate Accordion Dashboard*/
+    const [dashboardOpen, setDashboardOpen] = useState(false);
+    /** Estate Accordion Shop*/
+    const [shopOpen, setShopOpen] = useState(false);
 
-    const navSections  = [
-        {id:1,'name':'Inicio', icon:<IconHome />},
-        {id:2,'name':'Pedidos', icon:<IconOrder />},
-        {id:3,'name':'Clientes', icon:<IconUser />},
-        {id:4,'name':'Informes', icon:<IconBalance />},
-        {id:5,'name':'Empleados', icon:<IconUsers />},
-        {id:6,'name':'Proveedores', icon:<IconTruck />}
-    ];
+    /** Event Handle Function for Dashboard Accordion */
+    const toggleDashboard = () => {
+        setDashboardOpen(!dashboardOpen);
+        if (shopOpen) {
+            setShopOpen(false);
+        }
+    };
 
-    /* Clases de Tailwind para links */
-    const link = "flex items-center justify-start w-full p-3 my-2 font-sans font-thin text-lTextMut transition-colors duration-200 cursor-pointer fill-lTextNeu hover:text-lContrast hover:fill-lContrast dark:text-dTextNeu dark:hover:text-dContrast dark:fill-dTextNeu dark:hover:fill-dContrast";
-    const linkActive = "flex items-center justify-start w-full p-3 my-2 font-thin text-dTextPri fill-dTextPri transition-colors duration-200 rounded-xl bg-gradient-to-r from-dBackground to-dContainer dark:from-gray-700 dark:to-gray-800 dark:text-dTextImp dark:fill-dContrastSec";
+    /** Event Handle Function for Dashboard Accordion */
+    const toggleShop = () => {
+        setShopOpen(!shopOpen);
+        if (dashboardOpen) {
+            setDashboardOpen(false);
+        }
+    };
+
+    /** Array Accordion Items */
+    const dashboardItems = ['Informes', 'Análisis de Ventas'];
+    const shopItems = ['Productos', 'Pedidos', 'Clientes', 'Empleados']
 
     return (
 
-    <div className="relative hidden h-screen shadow-lg lg:block w-auto">
-        <div className="h-full bg-lContainer dark:bg-dContainer">
-            <div className="flex items-center justify-center pt-6">
-                <IconLogo />
-            </div>
+        <Card className="h-full w-full p-2 shadow-xl shadow-blue-gray-900/5 overflow-scroll"  >
+            <Typography className="text-center mb-2 p-4" variant="h5" color="blue-gray">
+                AFautos
+            </Typography>
 
-            <nav className="mt-6 p-3">
-                {navSections.map((value) => (
-                    <a key={value.id} className={visit === value.id 
-                    ?
-                    linkActive
-                    : link
-                    }
-                     onClick={()=>setVisit(value.id)}
-                     >
+            <List>
+                {/** Dashboard Accordion */}
+                <AccordionUI title='Dashboard' items={dashboardItems} iconTitle={<PresentationChartBarIcon />} handleClick={() => toggleDashboard()} stateOpen={dashboardOpen} />
+                {/** Shop Accordion */}
+                <AccordionUI title='Tienda' items={shopItems} iconTitle={<ShoppingBagIcon />} handleClick={() => toggleShop()} stateOpen={shopOpen} />
+                <hr className="my-2 border-blue-gray-50" />
 
-                        {value.icon}
-                        <P text={value.name}/>
-
-                    </a>
-                    
-                ))
-                }
-                    <a className={` mt-6 ${link}`}>
-                        <IconArrowLeft />
-                        <Psmall text='Ocultar' />
-                    </a>
-                
-            </nav>
-            <span className='flex justify-center mt-6'>
-                <TougleButton />
-            </span>
-
-
-        </div>
-    </div>
-    )
-};
+                <ListItem>
+                    <ListItemPrefix>
+                        <Cog6ToothIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Ajustes
+                </ListItem>
+                <ListItem>
+                    <ListItemPrefix>
+                        <PowerIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Cerrar Sesión
+                </ListItem>
+            </List>
+        </Card>
+    );
+}
 export default SideBar;

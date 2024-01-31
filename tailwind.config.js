@@ -1,11 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    ".src/**/**/*.{js,ts,jsx,tsx}"
-  ],
-  'darkMode':'class',
+
+/** Function of Styles Material Tailwind */
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -36,4 +35,4 @@ export default {
     },
   },
   plugins: [],
-}
+});
