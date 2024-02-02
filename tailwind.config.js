@@ -8,30 +8,30 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        /*Objects colors Dark*/
-        'dContainer':'#202328',
-        'dBackground':'#16181C',
-        'dHover':'#16181c3d',
-        'dBorder':'#ffffff40',
-        /*Contrast*/
-        'lContrast':'#F47C7C',
-        'dContrastSec':'#d22e2e',
-        'dContrast':'#ff8fa3',
-        /*Objects colors Light*/
-        'lContainer':'#FFF2F2',
-        'lBackground':'#FFF2F2',
-        'lBorder':'#ffffff40',
+        /*Background Dark*/
+        "bg-dark": "#1B1C1E",
+        "ctn-primary-dark": "#1e1b4b",
+        "ctn-secondary-dark": "#222",
+        /** Background Light */
+        "bg-light": "#E0E0E0",
+        "ctn-primary-light": "#f8f8f9",
+        "ctn-secondary-light": "#EFEFF0",
+        /** Dark Colors */
+        "color-primary-dark": "#005b96",
+        "color-hover-dark": "#6497b1",
+        "color-active-dark": "#b3cde0",
+        "color-disable-dark": "#03396c",
         /*Text colors Light*/
-        'lTextImp': '#0a0a0a',
-        'lTextPri':'#1D1C1C',
-        'lTextNeu':'#2c2c2c',
-        'lTextMut':'#454444',
+        "text-primary-light": "#0a0a0a",
+        lTextPri: "#1D1C1C",
+        lTextNeu: "#2c2c2c",
+        lTextMut: "#454444",
         /*Text colors Dark*/
-        'dTextImp': '#FAFAFA',
-        'dTextPri':'#E0E0E0',
-        'dTextNeu':'#9E9E9E',
-        'dTextMut':'#616161',
-      }
+        "text-primary-dark": "#FAFAFA",
+        dTextPri: "#E0E0E0",
+        dTextNeu: "#9E9E9E",
+        dTextMut: "#616161",
+      },
     },
   },
   plugins: [],

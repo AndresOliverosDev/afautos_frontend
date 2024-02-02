@@ -1,8 +1,6 @@
 import InputSearch from "../components/InputSearch";
 
 const Header = () => {
-    return (
-        <InputSearch />
-    )
+  return <InputSearch />;
 };
 export default Header;

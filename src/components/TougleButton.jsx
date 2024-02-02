@@ -1,27 +1,26 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 const TougleButton = () => {
+  const [theme, setTheme] = useState("dark");
 
-    const [theme,setTheme] = useState('dark');
-    
-    /*Funcion controladora de eventos para el cambio de tema*/
-    const handleChangeTheme = () => {
-        setTheme(theme == 'dark' ? 'light' : 'dark');
-    };
-    /* Cambio de tema de acuerdo al estado del tougle*/
-    useEffect(() => {
-        if (theme == 'dark') {
-            document.querySelector('html').classList.add('dark')
-        } else {
-                document.querySelector('html').classList.remove('dark')
-            }
-    }, [theme]);
+  /*Funcion controladora de eventos para el cambio de tema*/
+  const handleChangeTheme = () => {
+    setTheme(theme == "dark" ? "light" : "dark");
+  };
+  /* Cambio de tema de acuerdo al estado del tougle*/
+  useEffect(() => {
+    if (theme == "dark") {
+      document.querySelector("html").classList.add("dark");
+    } else {
+      document.querySelector("html").classList.remove("dark");
+    }
+  }, [theme]);
 
-    return (
-        <button
-        onClick={handleChangeTheme}
-        title="Boton de cambio de tema" 
-        className="
+  return (
+    <button
+      onClick={handleChangeTheme}
+      title="Boton de cambio de tema"
+      className="
             w-28 
             h-6 
             rounded-full 
@@ -37,9 +36,11 @@ const TougleButton = () => {
             focus:ring-lContrast
             dark:focus:ring-dContrastSec 
             focus:border-transparent
-        ">
-        <div id="toggle"
-            className="
+        "
+    >
+      <div
+        id="toggle"
+        className="
                 rounded-full 
                 text-xs
                 text-lTextPri
@@ -54,11 +55,12 @@ const TougleButton = () => {
                 transition-all 
                 duration-300 
                 ease-out
-            ">
-                {theme == 'dark' ? 'Oscuro' : 'Claro'}
-        </div>
-        </button>
-    )
+            "
+      >
+        {theme == "dark" ? "Oscuro" : "Claro"}
+      </div>
+    </button>
+  );
 };
 
 export default TougleButton;
