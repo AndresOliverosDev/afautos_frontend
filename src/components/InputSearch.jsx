@@ -40,25 +40,25 @@ const InputSearch = () => {
 
   return (
     <div className="relative flex items-center justify-center">
-      <div className="flex rounded-full bg-lContainer px-2 w-full max-w-[400px] dark:bg-dContainer">
+      <div className="bg-lContainer dark:bg-dContainer flex w-full max-w-[400px] rounded-full px-2">
         <input
           type="text"
-          className="w-full bg-[#0d1829] flex bg-transparent pl-2 text-[#cccccc] outline-0"
+          className="flex w-full bg-[#0d1829] bg-transparent pl-2 text-[#cccccc] outline-0"
           placeholder="Buscar"
           onChange={handleInputChange}
           onBlur={focusOff}
         />
         <button
           type="submit"
-          className="relative p-2 m-1 bg-dContainer rounded-full dark:bg-none"
+          className="bg-dContainer relative m-1 rounded-full p-2 dark:bg-none"
         >
           <IconHome />
         </button>
         {query && (
-          <ul className="absolute top-full h-48 w-40 bg-lContainer p-4 dark:bg-dContainer rounded-xl border-solid overflow-auto">
+          <ul className="bg-lContainer dark:bg-dContainer absolute top-full h-48 w-40 overflow-auto rounded-xl border-solid p-4">
             {results.map((result, index) => (
               <li
-                className="p-2 text-lNeu dark:text-dTextNeu hover:bg-lBackground dark:hover:bg-dBackground cursor-pointer rounded-2xl"
+                className="text-lNeu dark:text-dTextNeu hover:bg-lBackground dark:hover:bg-dBackground cursor-pointer rounded-2xl p-2"
                 key={index}
               >
                 {result}

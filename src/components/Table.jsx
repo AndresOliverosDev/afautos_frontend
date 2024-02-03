@@ -14,11 +14,11 @@ const Table = ({ columns, data }) => {
   });
 
   return (
-    <div className="flex justify-center h-full overflow-auto p-5 rounded-3xl dark:bg-cnt-primary-dark bg-ctn-primary-light">
+    <div className="dark:bg-cnt-primary-dark flex h-full justify-center overflow-auto rounded-3xl bg-ctn-primary-light p-5">
       <div className="col-span-12 w-full">
         <div className="overflow-auto lg:overflow-visible">
-          <table className="table text-dTextNeu space-y-6 w-full rounded-2xl">
-            <thead className="text-dTextNeu dark:bg-bg-dark rounded-2xl">
+          <table className="text-dTextNeu table w-full space-y-6 rounded-2xl">
+            <thead className="text-dTextNeu rounded-2xl dark:bg-bg-dark">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr className="" key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
@@ -39,7 +39,7 @@ const Table = ({ columns, data }) => {
             <tbody>
               {table.getRowModel().rows.map((row) => (
                 <tr
-                  className="mt-12 hover:bg-dBackground rounded-xl"
+                  className="hover:bg-dBackground mt-12 rounded-xl"
                   key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => (

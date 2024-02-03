@@ -29,7 +29,7 @@ const Orders = () => {
   ];
 
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-full">
       <Table columns={columns} data={data} />
     </div>
   );

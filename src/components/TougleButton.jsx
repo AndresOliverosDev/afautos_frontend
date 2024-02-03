@@ -21,40 +21,40 @@ const TougleButton = () => {
       onClick={handleChangeTheme}
       title="Boton de cambio de tema"
       className="
-            w-28 
-            h-6 
-            rounded-full 
-            p-1
-            bg-dBackground
-            dark:bg-gray-600 
-            relative 
-            transition-colors 
-            duration-500 
-            ease-in
-            focus:outline-none 
-            focus:ring-2 
-            focus:ring-lContrast
+            bg-dBackground 
+            focus:ring-lContrast 
             dark:focus:ring-dContrastSec 
-            focus:border-transparent
+            relative
+            h-6
+            w-28 
+            rounded-full 
+            p-1 
+            transition-colors 
+            duration-500
+            ease-in 
+            focus:border-transparent 
+            focus:outline-none
+            focus:ring-2 
+            dark:bg-gray-600
         "
     >
       <div
         id="toggle"
         className="
-                rounded-full 
-                text-xs
-                text-lTextPri
-                w-14 
-                h-4
+                text-lTextPri 
                 bg-lBackground
-                dark:lBackground 
-                relative 
-                ml-0
-                dark:ml-12
+                dark:lBackground
                 pointer-events-none 
+                relative
+                ml-0
+                h-4 
+                w-14 
+                rounded-full
+                text-xs
                 transition-all 
                 duration-300 
-                ease-out
+                ease-out 
+                dark:ml-12
             "
       >
         {theme == "dark" ? "Oscuro" : "Claro"}

@@ -76,11 +76,11 @@ const Table = () => {
   ];
 
   return (
-    <div className="flex justify-center h-full overflow-auto p-5">
+    <div className="flex h-full justify-center overflow-auto p-5">
       <div className="col-span-12 w-full">
         <div className="overflow-auto lg:overflow-visible">
-          <table className="table text-dTextNeu space-y-6 w-full">
-            <thead className="bg-gray-800 text-dTextNeu">
+          <table className="text-dTextNeu table w-full space-y-6">
+            <thead className="text-dTextNeu bg-gray-800">
               <tr>
                 <th className="p-3">
                   <P text="ID Pedido" styles="font-black" />

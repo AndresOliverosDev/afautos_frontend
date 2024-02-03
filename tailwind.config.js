@@ -4,6 +4,9 @@
 const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
+  // prettier.config.js
+  tailwindConfig: './styles/tailwind.config.js',
+  
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -23,7 +26,7 @@ module.exports = withMT({
         "color-disable-dark": "#03396c",
         /** Light Colors */
         "color-primary-light": "#9B81E1",
-        "color-hover-light": "#00000019",
+        "color-hover-light": "#000",
         "color-active-light": "#b3cde0",
         "color-disable-light": "#03396c",
       },

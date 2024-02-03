@@ -1,6 +1,6 @@
 const P = ({ props, text, styles }) => {
   return (
-    <p className={`mx-4 text-sm  text-left ${styles}`} {...props}>
+    <p className={`mx-4 text-left  text-sm ${styles}`} {...props}>
       {text}
     </p>
   );
