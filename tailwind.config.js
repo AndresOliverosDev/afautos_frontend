@@ -10,27 +10,22 @@ module.exports = withMT({
       colors: {
         /*Background Dark*/
         "bg-dark": "#1B1C1E",
-        "ctn-primary-dark": "#1e1b4b",
-        "ctn-secondary-dark": "#222",
+        "ctn-primary-dark": "#130046",
+        "ctn-secondary-dark": "#110030",
         /** Background Light */
         "bg-light": "#E0E0E0",
         "ctn-primary-light": "#f8f8f9",
-        "ctn-secondary-light": "#EFEFF0",
+        "ctn-secondary-light": "#0E0027",
         /** Dark Colors */
-        "color-primary-dark": "#005b96",
-        "color-hover-dark": "#6497b1",
+        "color-primary-dark": "#4F2D8E",
+        "color-hover-dark": "#FFFFFF19",
         "color-active-dark": "#b3cde0",
         "color-disable-dark": "#03396c",
-        /*Text colors Light*/
-        "text-primary-light": "#0a0a0a",
-        lTextPri: "#1D1C1C",
-        lTextNeu: "#2c2c2c",
-        lTextMut: "#454444",
-        /*Text colors Dark*/
-        "text-primary-dark": "#FAFAFA",
-        dTextPri: "#E0E0E0",
-        dTextNeu: "#9E9E9E",
-        dTextMut: "#616161",
+        /** Light Colors */
+        "color-primary-light": "#9B81E1",
+        "color-hover-light": "#00000019",
+        "color-active-light": "#b3cde0",
+        "color-disable-light": "#03396c",
       },
     },
   },

@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="grid grid-cols-6 min-h-screen">
+    <div className="grid grid-cols-5 min-h-screen">
       <SideBar />
     </div>
   );
