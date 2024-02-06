@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 
-const TougleButton = () => {
+/** React Icons */
+import { RiSunLine,RiMoonLine  } from "react-icons/ri";
+
+const ToggleButton = () => {
   const [theme, setTheme] = useState("dark");
 
-  /*Funcion controladora de eventos para el cambio de tema*/
+  /*Función controladora de eventos para el cambio de tema*/
   const handleChangeTheme = () => {
     setTheme(theme == "dark" ? "light" : "dark");
   };
-  /* Cambio de tema de acuerdo al estado del tougle*/
+  /* Cambio de tema de acuerdo al estado del toggle*/
   useEffect(() => {
     if (theme == "dark") {
       document.querySelector("html").classList.add("dark");
@@ -19,23 +22,22 @@ const TougleButton = () => {
   return (
     <button
       onClick={handleChangeTheme}
-      title="Boton de cambio de tema"
+      title="Botón de cambio de tema"
       className="
-            bg-dBackground 
+            bg-bg-light 
             focus:ring-lContrast 
             dark:focus:ring-dContrastSec 
             relative
             h-6
-            w-28 
+            w-12
             rounded-full 
-            p-1 
             transition-colors 
             duration-500
             ease-in 
             focus:border-transparent 
             focus:outline-none
             focus:ring-2 
-            dark:bg-gray-600
+            dark:bg-bg-dark
         "
     >
       <div
@@ -43,24 +45,27 @@ const TougleButton = () => {
         className="
                 text-lTextPri 
                 bg-lBackground
-                dark:lBackground
+                dark:bg-color-primary-dark
+                bg-color-primary-light
                 pointer-events-none 
                 relative
-                ml-0
-                h-4 
-                w-14 
+                flex
+                items-center
+                justify-center
+                h-6
+                w-6
                 rounded-full
                 text-xs
                 transition-all 
                 duration-300 
                 ease-out 
-                dark:ml-12
+                dark:ml-6
             "
       >
-        {theme == "dark" ? "Oscuro" : "Claro"}
+        {theme == "dark" ? <RiMoonLine className='text-blue-gray-50 w-4 h-4'/> : <RiSunLine className='text-yellow-700 w-4 h-4' />}
       </div>
     </button>
   );
 };
 
-export default TougleButton;
+export default ToggleButton;

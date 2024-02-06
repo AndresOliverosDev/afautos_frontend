@@ -5,7 +5,7 @@ import { RiEditLine, RiDeleteBinLine  } from "react-icons/ri";
 import data from "../../JSON/ordersData.json";
 
 /** Components */
-import { IconTableActions } from "../components/ui/indexUi";
+import { IconTableActions } from "../components/UI/indexUi";
 
 import Table from "../components/Table/Table";
 
@@ -44,7 +44,7 @@ const Orders = () => {
 
   return (
     <div className="overflow-auto h-full w-full">
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} nameTable={'Pedidos'} />
     </div>
   );
 };

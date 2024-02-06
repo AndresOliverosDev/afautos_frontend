@@ -1,5 +1,5 @@
 /** React Icons */
-import { RiArrowDownSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiSearch2Line } from "react-icons/ri";
 
 /** TanStack Table Components */
 import {
@@ -13,7 +13,7 @@ import {
 /** React Hooks */
 import { useState } from "react";
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, nameTable }) => {
 
     //** Filtered Table State */
     const [filtering, setFiltering] = useState('')
@@ -32,17 +32,30 @@ const Table = ({ columns, data }) => {
     });
 
     return (
-        <div className="h-full dark:bg-box-dark rounded-xl shadow-m">
-            <div className="bg-blue-500 h-11">
-                <input type="text"
-                    value={filtering}
-                    placeholder="perro sin sangre"
-                    onChange={e => setFiltering(e.target.value)} />
-                <button className="bg-gray-900 text-white px-3 py-1 rounded-xl my-2 mx-4"
+        <div className="h-auto w-full dark:bg-box-dark rounded-xl shadow-m">
+            <div className="flex items-center gap-4 justify-between h-12 text-sm">
+                <h1 className="text-xl text-gray-200 font-semibold ml-4">{nameTable}</h1>
+                <span className="flex items-center">
+                    <input type="text"
+                        name="search"
+                        value={filtering}
+                        placeholder="Buscar"
+                        onChange={e => setFiltering(e.target.value)}
+                        className="h-7 pl-3 rounded-full" />
+                    <label
+                        className="ml-2 text-gray-300 bg-purple-900 p-1 rounded-full cursor-pointer h-7 w-7"
+                        htmlFor="search">
+                        <RiSearch2Line className="w-5 h-5"/>
+                    </label>
+                    <button className="bg-purple-900 text-white h-7 px-4 py-1 rounded-xl mx-4 flex items-center gap-1"
                     onClick={() => setFiltering('En proceso')}>
-                    Pendiente
+                    Filtrar
+                    <RiArrowDownSLine />
                 </button>
+                </span>
+
             </div>
+            
             <table className="w-full text-left text-sm text-gray-500 ">
                 <thead className="dark:bg-ctn-primary-dark rounded-xl">
                     {
