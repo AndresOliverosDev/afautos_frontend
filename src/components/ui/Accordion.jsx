@@ -19,8 +19,8 @@ const Accordion = ({ state, title, items, handle, icon }) => {
       </button>
       {/** Accordion List Items */}
       <ul className={`${state ? "flex" : "hidden"} flex-col`}>
-        {items.map((item) => (
-          <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1 text-gray-800 hover:bg-color-hover-light dark:text-gray-500 hover:dark:bg-color-hover-dark">
+        {items.map((item, index) => (
+          <li key={index} className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1 text-gray-800 hover:bg-color-hover-light dark:text-gray-500 hover:dark:bg-color-hover-dark">
             {item}
             <RiArrowDropRightLine className="h-5 w-5" />
           </li>

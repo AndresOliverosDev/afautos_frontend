@@ -49,9 +49,9 @@ function SideBar() {
   ];
 
   return (
-    <div className="m-1 max-h-[99vh] rounded-xl bg-ctn-primary-light dark:bg-ctn-primary-dark">
+    <div className="rounded-xl bg-ctn-primary-light dark:bg-box-dark overflow-y-auto">
       {/** User */}
-      <div className="flex h-[30vh] flex-col items-center justify-center gap-2 rounded-xl p-8 dark:bg-ctn-secondary-dark">
+      <div className="max-h-44 flex flex-col items-center justify-center gap-1 rounded-xl p-8 dark:bg-ctn-secondary-dark">
         <img
           src="https://img.freepik.com/foto-gratis/cerrar-persona-que-sufre-ansiedad_23-2150859382.jpg?w=360&t=st=1706918423~exp=1706919023~hmac=619551ea5caaf47006f5381bcfd15e2c4f5bf9e4d22c1b09a23bf1b112b11e83"
           alt="Imagen usuario"
@@ -65,7 +65,7 @@ function SideBar() {
         </p>
       </div>
       {/** Nav */}
-      <nav className=" d mt-4 flex flex-col items-center gap-2 overflow-y-auto px-6 py-3">
+      <nav className="mt-4 flex flex-col items-center gap-2 px-6 py-3">
         <Accordion
           title={"Dashboard"}
           state={accordionDashboard}

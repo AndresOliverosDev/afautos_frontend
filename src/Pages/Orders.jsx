@@ -1,7 +1,13 @@
+/** React Icons */
+import { RiEditLine, RiDeleteBinLine  } from "react-icons/ri";
+
 /** Orders Data */
 import data from "../../JSON/ordersData.json";
 
-import Table from "../components/Table";
+/** Components */
+import { IconTableActions } from "../components/ui/indexUi";
+
+import Table from "../components/Table/Table";
 
 const Orders = () => {
   /** Table Columns - TanStackTable */
@@ -21,15 +27,23 @@ const Orders = () => {
     {
       header: "Fecha",
       accessorKey: "fecha",
+      isFilter:true,
     },
     {
       header: "Estado",
       accessorKey: "estado",
+      isFilter: true,
+    },
+    {
+      header: "Acciones",
+      cell: () => (
+        <IconTableActions />
+      )
     },
   ];
 
   return (
-    <div className="h-full w-full">
+    <div className="overflow-auto h-full w-full">
       <Table columns={columns} data={data} />
     </div>
   );
