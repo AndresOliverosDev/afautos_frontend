@@ -45,7 +45,7 @@ const Table = ({ columns, data, nameTable }) => {
                     <label
                         className="ml-2 text-gray-300 bg-purple-900 p-1 rounded-full cursor-pointer h-7 w-7"
                         htmlFor="search">
-                        <RiSearch2Line className="w-5 h-5"/>
+                        <RiSearch2Line className="w-5 h-5"/>    
                     </label>
                     <button className="bg-purple-900 text-white h-7 px-4 py-1 rounded-xl mx-4 flex items-center gap-1"
                     onClick={() => setFiltering('En proceso')}>
@@ -85,7 +85,7 @@ const Table = ({ columns, data, nameTable }) => {
                 <tbody className="divide-y divide-gray-800">
                     {
                         table.getRowModel().rows.map((row) => (
-                            <tr className="hover:bg-gray-50" key={row.id}>
+                            <tr className="hover:bg-bg-dark" key={row.id}>
                                 {
                                     row.getVisibleCells().map((cell, index) => (
                                         <td key={index} className="px-5 py-2.5">

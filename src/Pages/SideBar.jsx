@@ -34,7 +34,15 @@ function SideBar() {
 
   /** Items Accordion Nav */
   const dashboardItems = ["Item 1", "Item 2", "Item 3"];
-  const shopItems = ["Ventas", "Pedidos", "Clientes"];
+  const shopItems = [
+    {
+      name:'Productos',
+      link:'Productos',
+    },
+    {
+      name:'Pedidos',
+      link:'Pedidos',
+    }]
 
   /** Links Accordion Nav */
   const linksNav = [
