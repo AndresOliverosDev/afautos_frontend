@@ -6,11 +6,16 @@ import Orders from "./pages/Orders";
 import Hero from "./pages/Hero"
 import "./App.css";
 import Products from "./pages/Products";
+import SignIn from "./Pages/Auth/SignIn";
+import SignUp from "./Pages/Auth/SignUp";
 
 function App() {
   return (
-    <div className="">
-      
+    <div className="w-full min-h-screen">
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
+      </Routes>
     </div>
   )
 };

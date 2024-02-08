@@ -1,7 +1,15 @@
-import BtnSecondaryUI from "./BtnSecondaryUI.jsx";
 import Accordion from "./Accordion.jsx";
-import BtnPrimaryUI from "./BtnPrimaryUI.jsx";
+import BtnPrimary from "./BtnPrimary.jsx";
 import IconTableActions from "./IconTableActions.jsx";
 import ToggleButton from "./ToggleButton.jsx";
+import FormInput from "./FormInput.jsx";
+import CheckBox from "./CheckBox.jsx";
 
-export { BtnPrimaryUI, BtnSecondaryUI, Accordion, IconTableActions, ToggleButton };
+export {
+    BtnPrimary,
+    Accordion,
+    IconTableActions,
+    ToggleButton,
+    FormInput,
+    CheckBox,
+};
