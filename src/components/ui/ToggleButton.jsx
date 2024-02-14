@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /** React Icons */
-import { RiSunLine,RiMoonLine  } from "react-icons/ri";
+import { RiSunLine, RiMoonLine } from "react-icons/ri";
 
 const ToggleButton = () => {
   const [theme, setTheme] = useState("dark");
@@ -24,13 +24,13 @@ const ToggleButton = () => {
       onClick={handleChangeTheme}
       title="Botón de cambio de tema"
       className="
-            bg-bg-light 
             focus:ring-lContrast 
             dark:focus:ring-dContrastSec 
-            relative
+            relative 
             h-6
             w-12
-            rounded-full 
+            rounded-full
+            bg-bg-light 
             transition-colors 
             duration-500
             ease-in 
@@ -45,24 +45,28 @@ const ToggleButton = () => {
         className="
                 text-lTextPri 
                 bg-lBackground
-                dark:bg-color-primary-dark
-                bg-color-primary-light
-                pointer-events-none 
+                pointer-events-none
                 relative
-                flex
-                items-center
-                justify-center
+                flex 
                 h-6
                 w-6
+                items-center
+                justify-center
                 rounded-full
+                bg-color-primary-light
                 text-xs
-                transition-all 
+                transition-all
                 duration-300 
                 ease-out 
-                dark:ml-6
+                dark:ml-6 
+                dark:bg-color-primary-dark
             "
       >
-        {theme == "dark" ? <RiMoonLine className='text-blue-gray-50 w-4 h-4'/> : <RiSunLine className='text-yellow-700 w-4 h-4' />}
+        {theme == "dark" ? (
+          <RiMoonLine className="h-4 w-4 text-blue-gray-50" />
+        ) : (
+          <RiSunLine className="h-4 w-4 text-yellow-700" />
+        )}
       </div>
     </button>
   );

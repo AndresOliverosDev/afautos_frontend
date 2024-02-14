@@ -1,5 +1,5 @@
 /** React Icons */
-import { RiEditLine, RiDeleteBinLine  } from "react-icons/ri";
+import { RiEditLine, RiDeleteBinLine } from "react-icons/ri";
 
 /** Orders Data */
 import data from "../../JSON/ordersData.json";
@@ -27,7 +27,7 @@ const Orders = () => {
     {
       header: "Fecha",
       accessorKey: "fecha",
-      isFilter:true,
+      isFilter: true,
     },
     {
       header: "Estado",
@@ -36,15 +36,13 @@ const Orders = () => {
     },
     {
       header: "Acciones",
-      cell: () => (
-        <IconTableActions />
-      )
+      cell: () => <IconTableActions />,
     },
   ];
 
   return (
-    <div className="overflow-auto h-full w-full">
-      <Table columns={columns} data={data} nameTable={'Pedidos'} />
+    <div className="h-full w-full overflow-auto">
+      <Table columns={columns} data={data} nameTable={"Pedidos"} />
     </div>
   );
 };

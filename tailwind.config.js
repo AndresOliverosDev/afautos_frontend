@@ -5,7 +5,7 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
   // prettier.config.js
-  tailwindConfig: './styles/tailwind.config.js',
+  tailwindConfig: "./styles/tailwind.config.js",
 
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {

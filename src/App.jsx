@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import SideBar from "./pages/SideBar";
 import Orders from "./pages/Orders";
-import Hero from "./pages/Hero"
+import Hero from "./pages/Hero";
 import "./App.css";
 import Products from "./pages/Products";
 import SignIn from "./Pages/Auth/SignIn";
@@ -11,14 +11,14 @@ import SignUp from "./Pages/Auth/SignUp";
 
 function App() {
   return (
-    <div className="w-full min-h-screen">
+    <div className="min-h-screen w-full">
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
       </Routes>
     </div>
-  )
-};
+  );
+}
 /* return (
     <div className="p-2 gap-2 grid h-screen grid-rows-10 grid-cols-5 dark:bg-bg-dark">
       <div className="col-span-5 xl:col-span-4 row-span-1 ">
@@ -34,6 +34,6 @@ function App() {
         </Routes>
       </div>
     </div>
-  *///);}
+  */ //);}
 
 export default App;

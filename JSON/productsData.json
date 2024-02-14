@@ -1,30 +1,272 @@
-[{"id":1,"producto":"llantas","cantidad":18,"precio":984499,"categoria":"lantas","descripcion":"in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio","marca":"Chevrolet"},
-{"id":2,"producto":"parabrisas","cantidad":24,"precio":426566,"categoria":"accesorios","descripcion":"lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci","marca":"BMW"},
-{"id":3,"producto":"faros","cantidad":25,"precio":245756,"categoria":"mecanico","descripcion":"rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat","marca":"Honda"},
-{"id":4,"producto":"amortiguadores","cantidad":67,"precio":193954,"categoria":"lujos","descripcion":"donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu","marca":"Kia"},
-{"id":5,"producto":"baterías","cantidad":42,"precio":837602,"categoria":"accesorios","descripcion":"sapien a libero nam dui proin leo odio porttitor id consequat in consequat","marca":"Land Rover"},
-{"id":6,"producto":"filtros de aire","cantidad":98,"precio":424448,"categoria":"mecanico","descripcion":"proin leo odio porttitor id consequat in consequat ut nulla sed","marca":"Ford"},
-{"id":7,"producto":"radiadores","cantidad":76,"precio":690041,"categoria":"lujos","descripcion":"dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris","marca":"Tesla"},
-{"id":8,"producto":"espejos retrovisores","cantidad":68,"precio":242107,"categoria":"rines","descripcion":"ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus","marca":"Jeep"},
-{"id":9,"producto":"alternadores","cantidad":68,"precio":103626,"categoria":"accesorios","descripcion":"est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum","marca":"Chevrolet"},
-{"id":10,"producto":"embragues","cantidad":19,"precio":543137,"categoria":"accesorios","descripcion":"sit amet eleifend pede libero quis orci nullam molestie nibh","marca":"Lexus"},
-{"id":11,"producto":"llantas","cantidad":99,"precio":868877,"categoria":"mecanico","descripcion":"lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in","marca":"Ford"},
-{"id":12,"producto":"parabrisas","cantidad":1,"precio":721870,"categoria":"rines","descripcion":"nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat","marca":"Chevrolet"},
-{"id":13,"producto":"faros","cantidad":73,"precio":446204,"categoria":"accesorios","descripcion":"cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae","marca":"Land Rover"},
-{"id":14,"producto":"amortiguadores","cantidad":22,"precio":790021,"categoria":"lantas","descripcion":"duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend","marca":"BMW"},
-{"id":15,"producto":"baterías","cantidad":46,"precio":157253,"categoria":"lantas","descripcion":"odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in","marca":"Hyundai"},
-{"id":16,"producto":"filtros de aire","cantidad":1,"precio":669469,"categoria":"mecanico","descripcion":"nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus","marca":"Volkswagen"},
-{"id":17,"producto":"radiadores","cantidad":7,"precio":586158,"categoria":"accesorios","descripcion":"magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae","marca":"Toyota"},
-{"id":18,"producto":"espejos retrovisores","cantidad":24,"precio":886415,"categoria":"lujos","descripcion":"urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi","marca":"Ford"},
-{"id":19,"producto":"alternadores","cantidad":93,"precio":447963,"categoria":"lujos","descripcion":"id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras","marca":"Ford"},
-{"id":20,"producto":"embragues","cantidad":79,"precio":102398,"categoria":"lantas","descripcion":"sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur","marca":"Jeep"},
-{"id":21,"producto":"llantas","cantidad":95,"precio":535331,"categoria":"accesorios","descripcion":"felis ut at dolor quis odio consequat varius integer ac leo","marca":"Porsche"},
-{"id":22,"producto":"parabrisas","cantidad":52,"precio":749973,"categoria":"lujos","descripcion":"primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat","marca":"Subaru"},
-{"id":23,"producto":"faros","cantidad":64,"precio":698505,"categoria":"accesorios","descripcion":"quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel","marca":"Land Rover"},
-{"id":24,"producto":"amortiguadores","cantidad":59,"precio":293578,"categoria":"mecanico","descripcion":"in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit","marca":"Volkswagen"},
-{"id":25,"producto":"baterías","cantidad":4,"precio":853571,"categoria":"lantas","descripcion":"morbi non lectus aliquam sit amet diam in magna bibendum imperdiet","marca":"Volvo"},
-{"id":26,"producto":"filtros de aire","cantidad":10,"precio":658501,"categoria":"lantas","descripcion":"imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat","marca":"Tesla"},
-{"id":27,"producto":"radiadores","cantidad":37,"precio":905117,"categoria":"rines","descripcion":"lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat","marca":"Subaru"},
-{"id":28,"producto":"espejos retrovisores","cantidad":68,"precio":712931,"categoria":"accesorios","descripcion":"ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin","marca":"Subaru"},
-{"id":29,"producto":"alternadores","cantidad":7,"precio":848177,"categoria":"lujos","descripcion":"a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi","marca":"Volkswagen"},
-{"id":30,"producto":"embragues","cantidad":40,"precio":686827,"categoria":"lantas","descripcion":"consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu","marca":"Kia"}]
+[
+  {
+    "id": 1,
+    "producto": "llantas",
+    "cantidad": 18,
+    "precio": 984499,
+    "categoria": "lantas",
+    "descripcion": "in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio",
+    "marca": "Chevrolet"
+  },
+  {
+    "id": 2,
+    "producto": "parabrisas",
+    "cantidad": 24,
+    "precio": 426566,
+    "categoria": "accesorios",
+    "descripcion": "lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci",
+    "marca": "BMW"
+  },
+  {
+    "id": 3,
+    "producto": "faros",
+    "cantidad": 25,
+    "precio": 245756,
+    "categoria": "mecanico",
+    "descripcion": "rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat",
+    "marca": "Honda"
+  },
+  {
+    "id": 4,
+    "producto": "amortiguadores",
+    "cantidad": 67,
+    "precio": 193954,
+    "categoria": "lujos",
+    "descripcion": "donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu",
+    "marca": "Kia"
+  },
+  {
+    "id": 5,
+    "producto": "baterías",
+    "cantidad": 42,
+    "precio": 837602,
+    "categoria": "accesorios",
+    "descripcion": "sapien a libero nam dui proin leo odio porttitor id consequat in consequat",
+    "marca": "Land Rover"
+  },
+  {
+    "id": 6,
+    "producto": "filtros de aire",
+    "cantidad": 98,
+    "precio": 424448,
+    "categoria": "mecanico",
+    "descripcion": "proin leo odio porttitor id consequat in consequat ut nulla sed",
+    "marca": "Ford"
+  },
+  {
+    "id": 7,
+    "producto": "radiadores",
+    "cantidad": 76,
+    "precio": 690041,
+    "categoria": "lujos",
+    "descripcion": "dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris",
+    "marca": "Tesla"
+  },
+  {
+    "id": 8,
+    "producto": "espejos retrovisores",
+    "cantidad": 68,
+    "precio": 242107,
+    "categoria": "rines",
+    "descripcion": "ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus",
+    "marca": "Jeep"
+  },
+  {
+    "id": 9,
+    "producto": "alternadores",
+    "cantidad": 68,
+    "precio": 103626,
+    "categoria": "accesorios",
+    "descripcion": "est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum",
+    "marca": "Chevrolet"
+  },
+  {
+    "id": 10,
+    "producto": "embragues",
+    "cantidad": 19,
+    "precio": 543137,
+    "categoria": "accesorios",
+    "descripcion": "sit amet eleifend pede libero quis orci nullam molestie nibh",
+    "marca": "Lexus"
+  },
+  {
+    "id": 11,
+    "producto": "llantas",
+    "cantidad": 99,
+    "precio": 868877,
+    "categoria": "mecanico",
+    "descripcion": "lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in",
+    "marca": "Ford"
+  },
+  {
+    "id": 12,
+    "producto": "parabrisas",
+    "cantidad": 1,
+    "precio": 721870,
+    "categoria": "rines",
+    "descripcion": "nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat",
+    "marca": "Chevrolet"
+  },
+  {
+    "id": 13,
+    "producto": "faros",
+    "cantidad": 73,
+    "precio": 446204,
+    "categoria": "accesorios",
+    "descripcion": "cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae",
+    "marca": "Land Rover"
+  },
+  {
+    "id": 14,
+    "producto": "amortiguadores",
+    "cantidad": 22,
+    "precio": 790021,
+    "categoria": "lantas",
+    "descripcion": "duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend",
+    "marca": "BMW"
+  },
+  {
+    "id": 15,
+    "producto": "baterías",
+    "cantidad": 46,
+    "precio": 157253,
+    "categoria": "lantas",
+    "descripcion": "odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in",
+    "marca": "Hyundai"
+  },
+  {
+    "id": 16,
+    "producto": "filtros de aire",
+    "cantidad": 1,
+    "precio": 669469,
+    "categoria": "mecanico",
+    "descripcion": "nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus",
+    "marca": "Volkswagen"
+  },
+  {
+    "id": 17,
+    "producto": "radiadores",
+    "cantidad": 7,
+    "precio": 586158,
+    "categoria": "accesorios",
+    "descripcion": "magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae",
+    "marca": "Toyota"
+  },
+  {
+    "id": 18,
+    "producto": "espejos retrovisores",
+    "cantidad": 24,
+    "precio": 886415,
+    "categoria": "lujos",
+    "descripcion": "urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi",
+    "marca": "Ford"
+  },
+  {
+    "id": 19,
+    "producto": "alternadores",
+    "cantidad": 93,
+    "precio": 447963,
+    "categoria": "lujos",
+    "descripcion": "id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras",
+    "marca": "Ford"
+  },
+  {
+    "id": 20,
+    "producto": "embragues",
+    "cantidad": 79,
+    "precio": 102398,
+    "categoria": "lantas",
+    "descripcion": "sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur",
+    "marca": "Jeep"
+  },
+  {
+    "id": 21,
+    "producto": "llantas",
+    "cantidad": 95,
+    "precio": 535331,
+    "categoria": "accesorios",
+    "descripcion": "felis ut at dolor quis odio consequat varius integer ac leo",
+    "marca": "Porsche"
+  },
+  {
+    "id": 22,
+    "producto": "parabrisas",
+    "cantidad": 52,
+    "precio": 749973,
+    "categoria": "lujos",
+    "descripcion": "primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat",
+    "marca": "Subaru"
+  },
+  {
+    "id": 23,
+    "producto": "faros",
+    "cantidad": 64,
+    "precio": 698505,
+    "categoria": "accesorios",
+    "descripcion": "quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel",
+    "marca": "Land Rover"
+  },
+  {
+    "id": 24,
+    "producto": "amortiguadores",
+    "cantidad": 59,
+    "precio": 293578,
+    "categoria": "mecanico",
+    "descripcion": "in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit",
+    "marca": "Volkswagen"
+  },
+  {
+    "id": 25,
+    "producto": "baterías",
+    "cantidad": 4,
+    "precio": 853571,
+    "categoria": "lantas",
+    "descripcion": "morbi non lectus aliquam sit amet diam in magna bibendum imperdiet",
+    "marca": "Volvo"
+  },
+  {
+    "id": 26,
+    "producto": "filtros de aire",
+    "cantidad": 10,
+    "precio": 658501,
+    "categoria": "lantas",
+    "descripcion": "imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat",
+    "marca": "Tesla"
+  },
+  {
+    "id": 27,
+    "producto": "radiadores",
+    "cantidad": 37,
+    "precio": 905117,
+    "categoria": "rines",
+    "descripcion": "lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat",
+    "marca": "Subaru"
+  },
+  {
+    "id": 28,
+    "producto": "espejos retrovisores",
+    "cantidad": 68,
+    "precio": 712931,
+    "categoria": "accesorios",
+    "descripcion": "ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin",
+    "marca": "Subaru"
+  },
+  {
+    "id": 29,
+    "producto": "alternadores",
+    "cantidad": 7,
+    "precio": 848177,
+    "categoria": "lujos",
+    "descripcion": "a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi",
+    "marca": "Volkswagen"
+  },
+  {
+    "id": 30,
+    "producto": "embragues",
+    "cantidad": 40,
+    "precio": 686827,
+    "categoria": "lantas",
+    "descripcion": "consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu",
+    "marca": "Kia"
+  }
+]

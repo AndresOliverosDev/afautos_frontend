@@ -6,10 +6,10 @@ import FormInput from "./FormInput.jsx";
 import CheckBox from "./CheckBox.jsx";
 
 export {
-    BtnPrimary,
-    Accordion,
-    IconTableActions,
-    ToggleButton,
-    FormInput,
-    CheckBox,
+  BtnPrimary,
+  Accordion,
+  IconTableActions,
+  ToggleButton,
+  FormInput,
+  CheckBox,
 };

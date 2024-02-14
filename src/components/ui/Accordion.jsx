@@ -23,12 +23,12 @@ const Accordion = ({ state, title, items, handle, icon }) => {
       {/** Accordion List Items */}
       <ul className={`${state ? "flex" : "hidden"} flex-col`}>
         {items.map((item, index) => (
-        <Link key={index} to={`/${item.link}`}>
+          <Link key={index} to={`/${item.link}`}>
             <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1 text-gray-800 hover:bg-color-hover-light dark:text-gray-500 hover:dark:bg-color-hover-dark">
               {item.name}
               <RiArrowDropRightLine className="h-5 w-5" />
             </li>
-        </Link>
+          </Link>
         ))}
       </ul>
     </div>
