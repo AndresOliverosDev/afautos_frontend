@@ -23,11 +23,18 @@ CREATE TABLE IF NOT EXISTS users (
     rol VARCHAR(20) NOT NULL,
     doc_type VARCHAR(15) NOT NULL,
     birthday DATE NOT NULL,
-    id_addr INTEGER,
     
     PRIMARY KEY(ced_user),
-    CONSTRAINT fk_address_users FOREIGN KEY(id_addr) REFERENCES address(id_addr)
 );
+
+CREATE TABLE IF NOT EXISTS users_address (
+    ced_user VARCHAR(15),
+    id_addr INTEGER,
+
+    CONSTRAINT fk_user_address FOREIGN KEY (ced_user) REFERENCES users(ced_user),
+    CONSTRAINT fk_address_users FOREIGN KEY (id_addr) REFERENCES address(id_addr),
+    PRIMARY KEY(ced_user,id_addr),
+)
 
 /*  Store Process  */
 CREATE TABLE IF NOT EXISTS sales (
