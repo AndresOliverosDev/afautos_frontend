@@ -33,6 +33,7 @@ const Table = ({ columns, data, nameTable }) => {
   return (
     <div className="shadow-m h-auto w-full rounded-xl dark:bg-box-dark">
       <div className="flex h-12 items-center justify-between gap-4 text-sm">
+        {/* Header de la tabla */}
         <h1 className="ml-4 text-xl font-semibold text-gray-200">
           {nameTable}
         </h1>
@@ -61,7 +62,9 @@ const Table = ({ columns, data, nameTable }) => {
         </span>
       </div>
 
+      {/* Table Content*/}
       <table className="w-full text-left text-sm text-gray-500 ">
+        {/* Table Header */}
         <thead className="rounded-xl dark:bg-ctn-primary-dark">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -92,6 +95,8 @@ const Table = ({ columns, data, nameTable }) => {
             </tr>
           ))}
         </thead>
+
+        {/* Table Content*/}
 
         <tbody className="divide-y divide-gray-800">
           {table.getRowModel().rows.map((row) => (
