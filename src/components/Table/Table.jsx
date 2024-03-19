@@ -99,17 +99,24 @@ const Table = ({ columns, data, nameTable }) => {
         {/* Table Content*/}
 
         <tbody className="divide-y divide-gray-800">
-          {table.getRowModel().rows.map((row) => (
-            <tr className="hover:bg-bg-dark" key={row.id}>
-              {row.getVisibleCells().map((cell, index) => (
-                <td key={index} className="px-5 py-2.5">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          {data.map((row, rowIndex) => (
+            <tr key={rowIndex} className="hover:bg-bg-dark">
+              {columns.map((column, colIndex) => (
+                <td key={colIndex} className="px-5 py-2.5">
+                  {column.isImage && column.accessorKey && row[column.accessorKey] ? (
+                    <img src={row[column.accessorKey]} alt={column.header} className="w-16 h-16 object-cover rounded-full" />
+                  ) : (
+                    row[column.accessorKey]
+                  )}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Pagination */}
+
       <div className="flex justify-center gap-4 py-1 text-sm text-white">
         <button
           className="rounded-2xl bg-blue-900 px-2 py-0.5"

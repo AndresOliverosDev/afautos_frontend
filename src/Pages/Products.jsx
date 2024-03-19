@@ -23,7 +23,8 @@ const Products = () => {
   const columns = [
     {
       header: "Imagen",
-      accessorKey: "imageUrl"
+      accessorKey: "imageUrl",
+      isImage:true
     },
     {
       header: "ID",
