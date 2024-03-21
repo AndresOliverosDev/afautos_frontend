@@ -33,6 +33,7 @@ const Table = ({ columns, data, nameTable }) => {
   return (
     <div className="shadow-m h-auto w-full rounded-xl dark:bg-box-dark">
       <div className="flex h-12 items-center justify-between gap-4 text-sm">
+        {/* Header de la tabla */}
         <h1 className="ml-4 text-xl font-semibold text-gray-200">
           {nameTable}
         </h1>
@@ -61,7 +62,9 @@ const Table = ({ columns, data, nameTable }) => {
         </span>
       </div>
 
+      {/* Table Content*/}
       <table className="w-full text-left text-sm text-gray-500 ">
+        {/* Table Header */}
         <thead className="rounded-xl dark:bg-ctn-primary-dark">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -93,18 +96,27 @@ const Table = ({ columns, data, nameTable }) => {
           ))}
         </thead>
 
+        {/* Table Content*/}
+
         <tbody className="divide-y divide-gray-800">
-          {table.getRowModel().rows.map((row) => (
-            <tr className="hover:bg-bg-dark" key={row.id}>
-              {row.getVisibleCells().map((cell, index) => (
-                <td key={index} className="px-5 py-2.5">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          {data.map((row, rowIndex) => (
+            <tr key={rowIndex} className="hover:bg-bg-dark">
+              {columns.map((column, colIndex) => (
+                <td key={colIndex} className="px-5 py-2.5">
+                  {column.isImage && column.accessorKey && row[column.accessorKey] ? (
+                    <img src={row[column.accessorKey]} alt={column.header} className="w-16 h-16 object-cover rounded-full" />
+                  ) : (
+                    row[column.accessorKey]
+                  )}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Pagination */}
+
       <div className="flex justify-center gap-4 py-1 text-sm text-white">
         <button
           className="rounded-2xl bg-blue-900 px-2 py-0.5"
