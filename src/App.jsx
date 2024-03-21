@@ -1,39 +1,18 @@
 /** React Router Dom */
 import { Route, Routes } from "react-router-dom";
 
-import SideBar from "./pages/SideBar";
-import Orders from "./pages/Orders";
-import Hero from "./pages/Hero";
 import "./App.css";
-import Products from "./pages/Products";
-import SignIn from "./Pages/Auth/SignIn";
-import SignUp from "./Pages/Auth/SignUp";
+
+import { SignIn } from "./pages/auth";
+
 
 function App() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full h-full bg-bg-dark">
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/SignUp" element={<SignUp />} />
       </Routes>
     </div>
   );
 }
-/* return (
-    <div className="p-2 gap-2 grid h-screen grid-rows-10 grid-cols-5 dark:bg-bg-dark">
-      <div className="col-span-5 xl:col-span-4 row-span-1 ">
-        <Hero />
-      </div>
-      <div className="xl:grid hidden row-span-full">
-        <SideBar />
-      </div>
-      <div className="col-span-5 row-span-9 xl:col-span-4 xl:row-span-9 w-full">
-        <Routes>
-          <Route path="/Pedidos" element={<Orders />} />
-          <Route path="/Productos" element={<Products />} />
-        </Routes>
-      </div>
-    </div>
-  */ //);}
-
 export default App;
