@@ -2,12 +2,11 @@
 import { RiEditLine, RiDeleteBinLine } from "react-icons/ri";
 
 /** Orders Data */
-import data from "../../JSON/ordersData.json";
 
 /** Components */
-import { IconTableActions } from "../components/UI/indexUi";
+import { IconTableActions } from "../components/UI";
 
-import Table from "../components/Table/Table";
+import Table from "../components/table/Table";
 
 const Orders = () => {
   /** Table Columns - TanStackTable */
@@ -42,7 +41,7 @@ const Orders = () => {
 
   return (
     <div className="h-full w-full overflow-auto">
-      <Table columns={columns} data={data} nameTable={"Pedidos"} />
+      <Table columns={columns}nameTable={"Pedidos"} />
     </div>
   );
 };

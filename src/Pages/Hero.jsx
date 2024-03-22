@@ -1,6 +1,6 @@
 /** React Icons */
 import { RiNotificationLine } from "react-icons/ri";
-import { ToggleButton } from "../components/UI/indexUi.js";
+import { ToggleButton } from "../components/UI";
 
 const Hero = () => {
   return (
