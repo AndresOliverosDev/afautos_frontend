@@ -1,4 +1,4 @@
-import { IconTableActions } from "../../components/UI/index.js";
+import { IconTableActions } from "../../components/ui/index.js";
 import Table from "../../components/table/Table.jsx";
 import { useEffect, useState } from "react";
 import { getAllProd } from "../../services/productAPI.js";

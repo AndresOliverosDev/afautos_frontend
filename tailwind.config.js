@@ -1,9 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
-/** Function of Styles Material Tailwind */
-const withMT = require("@material-tailwind/react/utils/withMT");
-
-module.exports = withMT({
+module.exports = {
   // prettier.config.js
   tailwindConfig: "./styles/tailwind.config.js",
 
@@ -34,4 +30,4 @@ module.exports = withMT({
     },
   },
   plugins: [],
-});
+};

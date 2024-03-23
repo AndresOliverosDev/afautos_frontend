@@ -1,4 +1,3 @@
-import React from "react";
 import {
   RiArrowDownSLine,
   RiSearch2Line,
@@ -14,6 +13,7 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const Table = ({ columns, data, nameTable }) => {
   const [filtering, setFiltering] = useState("");
   const [showMenu, setShowMenu] = useState(false);

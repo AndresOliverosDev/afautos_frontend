@@ -10,7 +10,7 @@ import {
 } from "react-icons/ri";
 
 /** Components UI */
-import { Accordion } from "../components/UI";
+import { Accordion } from "../components/ui";
 
 function SideBar() {
   /** Accordion State */
