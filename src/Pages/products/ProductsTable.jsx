@@ -1,3 +1,4 @@
+
 import { IconTableActions } from "../../components/UI/index.js";
 import Table from "../../components/table/Table.jsx";
 import { useEffect, useState } from "react";
@@ -59,13 +60,31 @@ const ProductsTable = () => {
         },
         {
             header: "Acciones",
-            cell: () => <IconTableActions />,
+            cell: () => {
+                return <IconTableActions/>
+            },
+
         },
     ];
 
+    const filters = [
+        {
+            index: 1,
+            name: "Mayor a menor"
+        },
+        {
+            index: 2,
+            name: "Menor a mayor"
+        },
+    ]
+    const handleDeleteClick = (rowId) => {
+        console.log(`Se hizo clic en eliminar en la fila con ID: ${rowId}`);
+        // Aquí puedes realizar cualquier otra acción que necesites con el ID de la fila
+      };
+
     return (
         <div className="h-full w-full overflow-auto">
-            <Table columns={columns} data={products} nameTable={"Productos"} />
+            <Table columns={columns} data={products} nameTable={"Productos"} filters={filters} onDeleteClick={handleDeleteClick} />
         </div>
     );
 };

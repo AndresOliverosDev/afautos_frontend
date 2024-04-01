@@ -11,6 +11,7 @@ import {
 
 /** Components UI */
 import { Accordion } from "../components/UI";
+import { Card } from "@tremor/react";
 
 function SideBar() {
   /** Accordion State */
@@ -58,7 +59,7 @@ function SideBar() {
   ];
 
   return (
-    <div className="overflow-y-auto rounded-xl bg-ctn-primary-light dark:bg-box-dark">
+    <Card className="overflow-y-auto">
       {/** User */}
       <div className="flex max-h-44 flex-col items-center justify-center gap-1 rounded-xl p-8 dark:bg-ctn-secondary-dark">
         <img
@@ -101,7 +102,7 @@ function SideBar() {
           ))}
         </ul>
       </nav>
-    </div>
+    </Card>
   );
 }
 export default SideBar;

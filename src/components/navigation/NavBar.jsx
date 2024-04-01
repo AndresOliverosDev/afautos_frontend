@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Tab, TabGroup, TabList, Card } from '@tremor/react';
 import { RiMenuLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
-const NavBar = ({ icon, links }) => {
+const NavBarTabs = ({ icon, links }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-
     return (
-        <nav className="bg-box-dark rounded-xl">
+        <Card className="p-1">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -25,18 +25,16 @@ const NavBar = ({ icon, links }) => {
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 items-center text-gray-200">
-                        {React.cloneElement(icon, { className: "h-6 w-6" })}
+                            {React.cloneElement(icon, { className: "h-6 w-6" })}
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
-                            <ul className="flex space-x-4">
-                                {links.map((link, index) => (
-                                    <li key={index}>
-                                        <Link to={link.to} className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                                            {link.text}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                            <TabGroup>
+                                <TabList variant="line" defaultValue="1">
+                                    {links.map((link, index) => (
+                                        <Tab key={index} value={index + 1}>{link.text}</Tab>
+                                    ))}
+                                </TabList>
+                            </TabGroup>
                         </div>
                     </div>
                 </div>
@@ -55,8 +53,8 @@ const NavBar = ({ icon, links }) => {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </Card>
     );
 };
 
-export default NavBar;
+export default NavBarTabs;
