@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+<<<<<<< HEAD
 import colors from 'tailwindcss/colors';
 
 export default {
@@ -10,6 +11,13 @@ export default {
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: 'class',
+=======
+module.exports = {
+  // prettier.config.js
+  tailwindConfig: "./styles/tailwind.config.js",
+
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+>>>>>>> 5755f02a4061c8e79a6fdec21e3b098e95b16e56
   theme: {
     transparent: 'transparent',
     current: 'currentColor',
@@ -126,6 +134,7 @@ export default {
       },
     },
   },
+<<<<<<< HEAD
   safelist: [
     {
       pattern:
@@ -157,3 +166,7 @@ export default {
   ],
   plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms')],
 }
+=======
+  plugins: [],
+};
+>>>>>>> 5755f02a4061c8e79a6fdec21e3b098e95b16e56

@@ -15,9 +15,11 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 // Tremor UI
-import { Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, SelectItem } from "@tremor/react";
+import {
+  Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, SelectItem
+} from "@tremor/react";
 
-const TableMain = ({ columns, data, nameTable, filters, onCellClick  }) => {
+const TableMain = ({ columns, data, nameTable, filters }) => {
   // States
   const [filtering, setFiltering] = useState("");
   const [showMenu, setShowMenu] = useState(false);
@@ -148,8 +150,6 @@ const TableMain = ({ columns, data, nameTable, filters, onCellClick  }) => {
                   <TableCell key={colIndex} className="px-5 py-2.5">
                     {column.isImage && column.accessorKey && row[column.accessorKey] ? (
                       <img src={row[column.accessorKey]} alt={column.header} className="w-12 h-12 object-cover rounded-full" />
-                    ) : column.cell ? (
-                      column.cell()
                     ) : (
                       row[column.accessorKey]
                     )}

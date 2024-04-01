@@ -1,16 +1,21 @@
-import { ProductsTable, ProductsNav, ProductsAdd} from "./";
-import { Route, Routes } from "react-router-dom";
+import { ProductsTable, ProductsNav } from "./";
+
 
 const ProductsPage = () => {
+<<<<<<< HEAD
     return (
         <section className="flex flex-col gap-2 h-[97.5vh]">
             <div className="">
+=======
+    return (    
+        <section className="flex flex-col gap-2">
+            <div>
+>>>>>>> 5755f02a4061c8e79a6fdec21e3b098e95b16e56
                 <ProductsNav />
             </div>
-            <Routes>
-                <Route path="/" element={<ProductsTable />} />
-                <Route path="/agregar_productos" element={<ProductsAdd />} />
-            </Routes>
+            <div className="">
+                <ProductsTable />
+            </div>
 
         </section>
     );

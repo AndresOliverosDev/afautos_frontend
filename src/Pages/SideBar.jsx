@@ -10,8 +10,12 @@ import {
 } from "react-icons/ri";
 
 /** Components UI */
+<<<<<<< HEAD
 import { Accordion } from "../components/UI";
 import { Card } from "@tremor/react";
+=======
+import { Accordion } from "../components/ui";
+>>>>>>> 5755f02a4061c8e79a6fdec21e3b098e95b16e56
 
 function SideBar() {
   /** Accordion State */

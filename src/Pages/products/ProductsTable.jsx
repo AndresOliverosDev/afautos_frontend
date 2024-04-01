@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 import { IconTableActions } from "../../components/UI/index.js";
+=======
+import { IconTableActions } from "../../components/ui/index.js";
+>>>>>>> 5755f02a4061c8e79a6fdec21e3b098e95b16e56
 import Table from "../../components/table/Table.jsx";
 import { useEffect, useState } from "react";
 import { getAllProd } from "../../services/productAPI.js";
