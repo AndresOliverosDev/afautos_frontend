@@ -19,14 +19,19 @@ import {
   Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, SelectItem
 } from "@tremor/react";
 
-const TableMain = ({ columns, data, nameTable, filters }) => {
+const TableMain = ({ columns, data, nameTable, filters, idForDelete, idDelete }) => {
   // States
+  const [idDelete, setIdDelete] = useState("")
   const [filtering, setFiltering] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [pagination, setPagination] = useState({
     pageIndex: 0, //initial page index
     pageSize: 10, //default page size
   });
+
+  const idForDelete = () => {
+    setIdDelete(row.id)
+  }
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -43,7 +48,7 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
   });
 
   return (
-    <div className="flex flex-col gap-2 h-full">
+    <div className="flex flex-col gap-2 h-full overflow-auto">
       {/* Table Menu For Desktop */}
       <Card className="flex h-12 items-center justify-between gap-4 text-sm">
 
@@ -109,9 +114,8 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
       )}
 
       {/* Table */}
-      <Card className="overflow-auto">
-        <Table className="overflow-auto">
-
+      <Card >
+        <Table>
           {/* Table Head */}
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -147,9 +151,11 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
             {data.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => (
-                  <TableCell key={colIndex} className="px-5 py-2.5">
+                  <TableCell key={colIndex} className="px-4 py-2">
                     {column.isImage && column.accessorKey && row[column.accessorKey] ? (
                       <img src={row[column.accessorKey]} alt={column.header} className="w-12 h-12 object-cover rounded-full" />
+                    ) : column.cell ? (
+                      column.cell()
                     ) : (
                       row[column.accessorKey]
                     )}

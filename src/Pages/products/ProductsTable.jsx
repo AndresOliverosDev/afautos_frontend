@@ -1,4 +1,4 @@
-import { IconTableActions } from "../../components/UI/index.js";
+import { IconTableActions } from "../../components/UI";
 
 import Table from "../../components/table/Table.jsx";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { getAllProd } from "../../services/productAPI.js";
 const ProductsTable = () => {
     /** Table Columns - TanStackTable */
 
+    const [deleteProduct, setDeleteProduct] = useState("");
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -19,6 +20,10 @@ const ProductsTable = () => {
         };
         fetchData();
     }, []);
+
+    const deleteOption = () => {
+        {idForDelete}
+    }
 
     const columns = [
         {
@@ -61,7 +66,7 @@ const ProductsTable = () => {
         {
             header: "Acciones",
             cell: () => {
-                return <IconTableActions/>
+                return <IconTableActions deleteOption={deleteOption}/>
             },
 
         },
@@ -77,14 +82,10 @@ const ProductsTable = () => {
             name: "Menor a mayor"
         },
     ]
-    const handleDeleteClick = (rowId) => {
-        console.log(`Se hizo clic en eliminar en la fila con ID: ${rowId}`);
-        // Aquí puedes realizar cualquier otra acción que necesites con el ID de la fila
-      };
 
     return (
         <div className="h-full w-full overflow-auto">
-            <Table columns={columns} data={products} nameTable={"Productos"} filters={filters} onDeleteClick={handleDeleteClick} />
+            <Table columns={columns} data={products} nameTable={"Productos"} filters={filters} idForDelete={idForDelete} idDelete={deleteProduct}/>
         </div>
     );
 };
