@@ -6,7 +6,6 @@ import { getAllProd } from "../../services/productAPI.js";
 const ProductsTable = () => {
     /** Table Columns - TanStackTable */
 
-    const [deleteProduct, setDeleteProduct] = useState("");
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -85,7 +84,7 @@ const ProductsTable = () => {
 
     return (
         <div className="h-full w-full overflow-auto">
-            <Table columns={columns} data={products} nameTable={"Productos"} filters={filters} idForDelete={idForDelete} idDelete={deleteProduct}/>
+            <Table columns={columns} data={products} nameTable={"Productos"} filters={filters}/>
         </div>
     );
 };

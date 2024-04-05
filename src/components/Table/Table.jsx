@@ -19,9 +19,9 @@ import {
   Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, SelectItem
 } from "@tremor/react";
 
-const TableMain = ({ columns, data, nameTable, filters, idForDelete, idDelete }) => {
+const TableMain = ({ columns, data, nameTable, filters }) => {
   // States
-  const [idDelete, setIdDelete] = useState("")
+  const [idDelete, setIdDelete] = useState("");
   const [filtering, setFiltering] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [pagination, setPagination] = useState({
