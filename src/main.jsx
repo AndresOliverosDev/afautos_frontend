@@ -9,6 +9,6 @@ import AppTest from "./AppTest.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <AppTest/>
+    <App/>
   </BrowserRouter>,
 );

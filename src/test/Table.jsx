@@ -1,12 +1,11 @@
-import {Card, TableHead} from '@tremor/react'
-const Table = () => {
+import {Card} from '@tremor/react'
+const TableTest = ( {button} ) => {
     return (
-        <Card className='w-1/2 text-center'>
-            <TableHead>
-                
-            </TableHead>
+        <Card className='w-1/2 text-center flex flex-col gap-4'>
+            Tabla
+            {button}
         </Card>
     );
 }
 
-export default Table
+export default TableTest;

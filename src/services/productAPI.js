@@ -7,6 +7,6 @@ export const getAllProd = async () => {
         const response = await axios.post(`${URL_API}/getAllProd`);
         return response.data;
     } catch (error) {
-        throw new Error("Error en la conexion con el servidor")
+        throw new Error("Error en la conexión con el servidor")
     }
 };
