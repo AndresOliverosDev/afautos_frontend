@@ -1,28 +1,8 @@
-import { IconTableActions } from "../../components/UI";
+import SimpleTable from "../../components/table/SimpleTable.jsx";
+import useProducts from "./../../hooks/useProduct.js";
 
-import Table from "../../components/table/Table.jsx";
-import { useEffect, useState } from "react";
-import { getAllProd } from "../../services/productAPI.js";
 const ProductsTable = () => {
-    /** Table Columns - TanStackTable */
-
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const Products = await getAllProd();
-                setProducts(Products);
-            } catch (error) {
-                console.error(error.message);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const deleteOption = () => {
-        {idForDelete}
-    }
+    const { products, loading, error, delProduct } = useProducts();
 
     const columns = [
         {
@@ -62,13 +42,6 @@ const ProductsTable = () => {
             accessorKey: "brand",
             isFilter: true,
         },
-        {
-            header: "Acciones",
-            cell: () => {
-                return <IconTableActions deleteOption={deleteOption}/>
-            },
-
-        },
     ];
 
     const filters = [
@@ -80,12 +53,25 @@ const ProductsTable = () => {
             index: 2,
             name: "Menor a mayor"
         },
-    ]
+    ];
+
+    const handleDelete = (id) => {
+        delProduct(id);
+    };
+
+    if (loading) {
+        return <div>Cargando productos...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
 
     return (
         <div className="h-full w-full overflow-auto">
-            <Table columns={columns} data={products} nameTable={"Productos"} filters={filters}/>
+            <SimpleTable columns={columns} data={products} nameTable={"Productos"} filters={filters} delete1={handleDelete} />
         </div>
     );
 };
+
 export default ProductsTable;

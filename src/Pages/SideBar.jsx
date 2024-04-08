@@ -10,8 +10,9 @@ import {
 } from "react-icons/ri";
 
 /** Components UI */
-import { Accordion } from "../components/UI";
+import { Accordion } from "../components/UI/";
 import { Card } from "@tremor/react";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   /** Accordion State */
@@ -34,7 +35,9 @@ function SideBar() {
   };
 
   /** Items Accordion Nav */
-  const dashboardItems = ["Item 1", "Item 2", "Item 3"];
+  const dashboardItems = [
+    { name: "Productos" }
+  ];
   const shopItems = [
     {
       name: "Productos",
@@ -75,7 +78,11 @@ function SideBar() {
         </p>
       </div>
       {/** Nav */}
-      <nav className="mt-4 flex flex-col items-center gap-2 px-6 py-3">
+      <nav className="mt-4 flex flex-col  gap-2 px-6 py-3">
+        <Link to="/" className="flex w-full rounded-lg px-6 py-1 cursor-pointer">
+          <RiHomeLine className="h-5 w-5 dark:text-gray-400"/>
+            <p className="hpe-1 font-medium text-gray-900 hover:bg-color-hover-light dark:text-gray-400 ml-2">Inicio</p>
+        </Link>
         <Accordion
           title={"Dashboard"}
           state={accordionDashboard}

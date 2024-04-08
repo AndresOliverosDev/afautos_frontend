@@ -3,23 +3,25 @@ import {
   RiArrowDownSLine,
   RiSearch2Line,
   RiMenuLine,
-  RiCloseLine
+  RiCloseLine,
+  RiFileSearchLine,
+  RiDeleteBin7Line,
+  RiEditBoxLine
 } from "react-icons/ri";
 // TanStackTable
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
-  getFilteredRowModel,
   getPaginationRowModel,
 } from "@tanstack/react-table";
 import { useState } from "react";
 // Tremor UI
 import {
-  Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, SelectItem
+  Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, Icon, SelectItem
 } from "@tremor/react";
 
-const TableMain = ({ columns, data, nameTable, filters }) => {
+const SimpleTabla = ({ columns, data, nameTable, filters, delete1 }) => {
   // States
   const [idDelete, setIdDelete] = useState("");
   const [filtering, setFiltering] = useState("");
@@ -28,10 +30,6 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
     pageIndex: 0, //initial page index
     pageSize: 10, //default page size
   });
-
-  const idForDelete = () => {
-    setIdDelete(row.id)
-  }
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -142,6 +140,9 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
                     </span>
                   </TableHeaderCell>
                 ))}
+                <TableHeaderCell>
+                  Acciones
+                </TableHeaderCell>
               </TableRow>
             ))}
           </TableHead>
@@ -151,7 +152,7 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
             {data.map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {columns.map((column, colIndex) => (
-                  <TableCell key={colIndex} className="px-4 py-2">
+                  <TableCell key={colIndex} className="px-4 py-2 max-w-48 text-wrap">
                     {column.isImage && column.accessorKey && row[column.accessorKey] ? (
                       <img src={row[column.accessorKey]} alt={column.header} className="w-12 h-12 object-cover rounded-full" />
                     ) : column.cell ? (
@@ -161,6 +162,18 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
                     )}
                   </TableCell>
                 ))}
+                <TableCell>
+                  <span className="flex gap-2 cursor-pointer">
+                    <Icon icon={RiDeleteBin7Line} variant="shadow" tooltip="Eliminar" size="xs"
+                      onClick={() => delete1(row.id)}
+                    />
+                    <Icon icon={RiEditBoxLine} variant="shadow" tooltip="Editar" size="xs"
+                      onClick={() => alert(2)}
+                    />
+                    <Icon icon={RiFileSearchLine} variant="shadow" tooltip="Detalles" size="xs"
+                      onClick={() => alert(3)}/>
+                  </span>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -188,5 +201,5 @@ const TableMain = ({ columns, data, nameTable, filters }) => {
   );
 };
 
-export default TableMain;
+export default SimpleTabla;
 

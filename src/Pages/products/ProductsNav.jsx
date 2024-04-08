@@ -1,21 +1,19 @@
-import { NavBar } from "../../components/navigation";
+// En ProductNav.js
 import { RiStore3Fill } from "react-icons/ri";
+import { Button, Card } from "@tremor/react";
+import React from "react";
 import { ProductsAdd } from "./";
 
-const ProductsNav = () => {
-
-    const icon = <RiStore3Fill />;
-    const links = [
-        { text: 'Añadir Productos', to: '/agregar_productos' },
-        { text: 'Análisis', to: '/análisis_productos' },
-        { text: 'Historial', to: '/historial_productos' }
-    ];
-
+const ProductNav = () => {
+    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
     return (
-        <>
-        <NavBar icon={icon} links={links} />
-        </>
+        <Card className="p-2 flex justify-start gap-3">
+            <Button className="" onClick={() => setIsDialogOpen(true)}>
+                Añadir productos
+            </Button>
+            <ProductsAdd isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} />
+        </Card>
     );
-}
+};
 
-export default ProductsNav;
+export default ProductNav;
