@@ -1,39 +1,42 @@
 import { Card, Icon } from '@tremor/react';
 import { RiStore3Line, RiFireLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
+import { ProductsAdd } from "../pages/products"
+import {useState} from 'react';
 
 const Home = () => {
 
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
     const cardLinks = [
         {
             "title": "Inventario productos",
             "desc": "Ver inventario de productos",
             "icon": RiStore3Line,
-            "route": "/Pedidos"
+            "route": "/Productos"
         },
         {
             "title": "Añadir productos",
             "desc": "Añadir productos a tienda",
             "icon": RiFireLine,
-            'route': "/Productos"
+            'route': true
         },
         {
             "title": "Registrar venta",
             "desc": "Registrar venta",
             "icon": RiFireLine,
-            'route': "/Productos"
+            'route': "/Ventas"
         },
         {
             "title": "Ver pedidos",
             "desc": "Ver lista de pedidos",
             "icon": RiFireLine,
-            'route': "/Productos"
+            'route': "/Pedidos"
         },
         {
             "title": "Ver Clientes",
             "desc": "Ver lista de clientes",
             "icon": RiFireLine,
-            'route': "/Productos"
+            'route': "/Clientes"
         },
         {
             "title": "Añadir clientes",
@@ -44,7 +47,7 @@ const Home = () => {
             "title": "Crear pedido",
             "desc": "Crear un nuevo pedido",
             "icon": RiFireLine,
-            'route': "/Productos"
+            'route': "/Pedidos"
         },
 
     ]
@@ -60,6 +63,7 @@ const Home = () => {
                 decoration="top"
                 decorationColor="blue"
                 className='p-4 flex gap-4'
+                onClick={() => card.route && setIsDialogOpen(true)}
             >
                 <Icon
                     tooltip={card.title}
@@ -79,6 +83,7 @@ const Home = () => {
             </Card>
         </Link>
     )}
+    <ProductsAdd isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
 </section>
     );
 }

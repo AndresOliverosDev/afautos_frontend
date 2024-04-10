@@ -3,102 +3,152 @@ import { Button, Dialog, DialogPanel, TextInput, Textarea, NumberInput, SearchSe
 import React, { useState } from 'react';
 import { addProd } from '../../services/products/productAPI';
 
+import { useForm } from 'react-hook-form';
+import useCategory from '../../hooks/products/useCategory';
+
 const ProductsAdd = ({ isOpen, onClose }) => {
 
-  const categories = [
-    "Filtros de aceite",
-    "Pastillas de freno",
-    "Discos de freno",
-    "Bujías",
-    "Neumáticos",
-    "Baterías",
-    "Correas de distribución",
-    "Bombillas",
-    "Amortiguadores",
-    "Escobillas limpiaparabrisas"
-  ];
+  const { register, handleSubmit, setValue, reset,
+    formState: { errors } } = useForm();
+
+    const catData = [
+      {
+        "id": 1,
+        "name": "Filtros",
+      },
+      {
+        "id": 2,
+        "name": "Frenos",
+      },
+      {
+        "id": 3,
+        "name": "Baterías",
+      },
+      {
+        "id": 4,
+        "name": "Lubricantes",
+      }
+    ]
+
   const brands = [
-    "Bosch",
-    "Michelin",
-    "NGK",
-    "Ferodo",
-    "Brembo",
-    "Varta",
-    "Gates",
-    "Osram",
-    "Monroe",
-    "Bosal"
-  ];
-
-  const [formData, setFormData] = useState({
-    name: '',
-    desc: '',
-    quantity: '',
-    price: '',
-    imageUrl: '',
-    cat: '',
-    brand: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await addProd(formData);
-      onClose();
-    } catch (error) {
-      console.error("Error al crear el producto", error);
+    {
+      "id": 2,
+      "name": "ACDelco"
+    },
+    {
+      "id": 1,
+      "name": "Bosch"
+    },
+    {
+      "id": 4,
+      "name": "Brembo"
+    },
+    {
+      "id": 3,
+      "name": "Mann Filter"
+    },
+    {
+      "id": 5,
+      "name": "Motul"
     }
+  ]
+
+  const handleChangeBrand = (value) => {
+    setValue('brand', value);
   };
+
+  const handleChangeCat = (value) => {
+    setValue('cat', value);
+  };
+
+  const onSubmit = handleSubmit((data) => {
+    try {
+      addProd(data);
+      onClose();
+      return alert("Producto creado")
+    } catch(error) {
+      return "error"
+    }
+    reset();
+  })
 
   return (
     <Dialog open={isOpen} onClose={onClose} static={true} className=''>
       <DialogPanel>
-        <form onSubmit={handleSubmit} className="p-1 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+        <form onSubmit={onSubmit} className="p-1 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
           <div className="flex flex-col gap-2">
             <h1 className='text-tremor-title dark:text-dark-tremor-content-emphasis text-tremor-content-emphasis'>Crear Producto</h1>
             <div className="flex flex-col">
               <label htmlFor="prod_name">Nombre del Producto</label>
               <TextInput
+                error={errors.name}
+                errorMessage={errors.name?.message}
                 type="text"
                 id="prod_name"
                 name="prod_name"
-                value={formData.prod_name}
-                onChange={handleChange}
+                {...register("name", {
+                  required: {
+                    value:true,
+                    message: "¡Este campo es requerido!"
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: "¡La longitud máxima se excede!"
+                  }
+                })}
               />
             </div>
             <div className="flex flex-col">
               <label htmlFor="description">Descripción</label>
               <Textarea
+
                 id="description"
                 name="description"
-                value={formData.description}
-                onChange={handleChange}
+                {...register("desc")}
                 className="mt-1 p-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 min-w-min"
               ></Textarea>
             </div>
             <div className="flex flex-col">
               <label htmlFor="quantity">Cantidad</label>
               <NumberInput
+                error={errors.quantity}
+                errorMessage={errors.quantity?.message}
                 type="number"
                 id="quantity"
                 name="quantity"
-                value={formData.quantity}
-                onChange={handleChange}
+                {...register("quantity",
+                {
+                  required: {
+                    value:true,
+                    message: "¡Este campo es requerido!"
+                  },
+                  max: {
+                    value:32000,
+                    message:"La cantidad maxima es de 32.000"
+                  }
+                })}
               />
             </div>
             <div className="flex flex-col">
               <label htmlFor="price">Precio</label>
               <NumberInput
+                error={errors.price}
+                errorMessage={errors.price?.message}
                 type="number"
                 id="price"
                 name="price"
-                value={formData.price}
-                onChange={handleChange}
+                {...register("price",
+                {
+                  required: {
+                    value:true,
+                    message: "¡Este campo es requerido!"
+                  },
+                  max: {
+                    value:9999999999,
+                    message:"El precio supero la cantidad maxima"
+                  }
+                }
+              )}
               />
             </div>
             <div className="flex flex-col">
@@ -107,34 +157,33 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 type="text"
                 id="image_url"
                 name="image_url"
-                value={formData.image_url}
-                onChange={handleChange}
+                {...register("imageUrl")}
               />
             </div>
             <div className="flex flex-col">
               <label htmlFor="cat">Categoría</label>
-              <SearchSelect>
-                {categories.map((cat, index) => (
-                  <SearchSelectItem value={index}>
-                    {index+1}
+              <SearchSelect onValueChange={handleChangeCat}>
+                {catData.map((cat) => (
+                  <SearchSelectItem key={cat.id} value={cat.id}>
+                    {cat.name}
                   </SearchSelectItem>
                 ))}
               </SearchSelect>
             </div>
             <div className="flex flex-col">
               <label htmlFor="brand">Marca</label>
-              <SearchSelect>
-                {brands.map((brand, index) => (
-                  <SearchSelectItem value={index}>
-                    {brand}
+              <SearchSelect onValueChange={handleChangeBrand}>
+                {brands.map((brand) => (
+                  <SearchSelectItem key={brand.id} value={brand.id}>
+                    {brand.name}
                   </SearchSelectItem>
                 ))}
               </SearchSelect>
             </div>
           </div>
           <Button type='submit' className="mt-8 w-full">
-          Got it!
-        </Button>
+            Got it!
+          </Button>
         </form>
       </DialogPanel>
     </Dialog>

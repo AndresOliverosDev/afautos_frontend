@@ -1,5 +1,4 @@
 // En ProductNav.js
-import { RiStore3Fill } from "react-icons/ri";
 import { Button, Card } from "@tremor/react";
 import React from "react";
 import { ProductsAdd } from "./";

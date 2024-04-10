@@ -22,7 +22,7 @@ export const getAllProd = async () => {
 
 export const addProd = async (product) => {
     try {
-        const response = await axios.put(`${URL_API}/addProd`, product)
+        const response = await axios.post(`${URL_API}/addProd`, product)
         return response.data;
     } catch (error) {
         throw new Error("Error en la conexión con el servidor")

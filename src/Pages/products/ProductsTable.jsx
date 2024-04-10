@@ -59,14 +59,6 @@ const ProductsTable = () => {
         delProduct(id);
     };
 
-    if (loading) {
-        return <div>Cargando productos...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
-
     return (
         <div className="h-full w-full overflow-auto">
             <SimpleTable columns={columns} data={products} nameTable={"Productos"} filters={filters} delete1={handleDelete} />

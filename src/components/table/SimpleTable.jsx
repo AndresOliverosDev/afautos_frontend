@@ -23,7 +23,6 @@ import {
 
 const SimpleTabla = ({ columns, data, nameTable, filters, delete1 }) => {
   // States
-  const [idDelete, setIdDelete] = useState("");
   const [filtering, setFiltering] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [pagination, setPagination] = useState({

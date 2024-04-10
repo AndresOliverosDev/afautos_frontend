@@ -35,9 +35,9 @@ const useProducts = () => {
     const addProduct = async (product) => {
         try {
             await addProd(product);
-            alert(`Producto creado correctamente`)
+            alert(product.data)
         } catch(error) {
-            console.error("Error al crear el producto")
+            console.error("error al crear el producto")
         }
     }
 
