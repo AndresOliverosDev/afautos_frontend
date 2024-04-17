@@ -1,8 +1,10 @@
 /** React Router Dom */
 import { Link } from "react-router-dom";
 
+import { Icon } from "@tremor/react";
+
 /** Icons */
-import { RiArrowDownSLine, RiArrowDropRightLine } from "react-icons/ri";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 const Accordion = ({ state, title, items, handle, icon }) => {
   /** Hover Tailwind Styles */
@@ -11,22 +13,21 @@ const Accordion = ({ state, title, items, handle, icon }) => {
     <div className="w-full">
       {/** Accordion Title */}
       <button
-        className="flex w-full rounded-lg px-6 py-1 text-gray-900 hover:bg-color-hover-light dark:text-gray-400 hover:dark:bg-color-hover-dark"
+        className="flex w-full px-4 rounded-lg py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 hover:dark:bg-gray-600"
         onClick={handle}
       >
-        <span className="self-start pr-2">{icon}</span>
-        <p className="pe-1 font-medium">{title}</p>
+        <Icon icon={icon} variant="simple" size="md" className="self-start p-0 pr-2"/>
+        <h2 className="pe-1 font-medium">{title}</h2>
         <RiArrowDownSLine
-          className={`self-center text-gray-900 dark:text-gray-400 ${state ? "rotate-180" : ""}`}
+          className={`transition-all duration-300 h-5 w-5 self-center ${state ? "rotate-180" : ""}`}
         />
       </button>
       {/** Accordion List Items */}
-      <ul className={`${state ? "flex" : "hidden"} flex-col`}>
+      <ul className={`${state ? "flex" : "hidden"} flex-col `}>
         {items.map((item, index) => (
-          <Link key={index} to={`/${item.link}`}>
-            <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1 text-gray-800 hover:bg-color-hover-light dark:text-gray-500 hover:dark:bg-color-hover-dark">
+          <Link key={index} to={`${item.link}`}>
+            <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">
               {item.name}
-              <RiArrowDropRightLine className="h-5 w-5" />
             </li>
           </Link>
         ))}

@@ -61,7 +61,7 @@ function SideBar() {
     },
   ];
 
-  return (
+  return ( 
     <Card className="overflow-y-auto">
       {/** User */}
       <div className="flex max-h-44 flex-col items-center justify-center gap-1 rounded-xl p-8 dark:bg-ctn-secondary-dark">

@@ -45,7 +45,7 @@ const SimpleTabla = ({ columns, data, nameTable, filters, delete1 }) => {
   });
 
   return (
-    <div className="flex flex-col gap-2 h-full overflow-auto">
+    <div className="flex flex-col gap-2 h-full overflow-auto w-full">
       {/* Table Menu For Desktop */}
       <Card className="flex h-12 items-center justify-between gap-4 text-sm">
 
@@ -111,7 +111,7 @@ const SimpleTabla = ({ columns, data, nameTable, filters, delete1 }) => {
       )}
 
       {/* Table */}
-      <Card >
+      <Card className="py-1">
         <Table>
           {/* Table Head */}
           <TableHead>
@@ -148,8 +148,8 @@ const SimpleTabla = ({ columns, data, nameTable, filters, delete1 }) => {
 
           {/* Table Body */}
           <TableBody>
-            {data.map((row, rowIndex) => (
-              <TableRow key={rowIndex}>
+            {data.map((row) => (
+              <TableRow key={row.id}>
                 {columns.map((column, colIndex) => (
                   <TableCell key={colIndex} className="px-4 py-2 max-w-48 text-wrap">
                     {column.isImage && column.accessorKey && row[column.accessorKey] ? (

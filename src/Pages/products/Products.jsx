@@ -1,9 +1,9 @@
-import { ProductsTable, ProductsNav } from "./";
+import { ProductsTable, ProductsNav } from ".";
 
 
-const ProductsPage = () => {
+const Products = () => {
     return (
-        <section className="flex flex-col gap-2 h-[97.5vh]">
+        <section className="flex flex-col gap-2 h-[97.5vh] w-full overflow-auto">
             <div>
                 <ProductsNav />
             </div>
@@ -15,4 +15,4 @@ const ProductsPage = () => {
     );
 }
 
-export default ProductsPage;
+export default Products;
