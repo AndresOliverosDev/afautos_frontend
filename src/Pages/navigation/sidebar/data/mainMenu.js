@@ -1,8 +1,15 @@
-import { RiAccountPinCircleLine, RiBox3Line, RiShoppingBag3Line, RiShoppingCart2Line, } from "react-icons/ri";
+import { RiAccountPinCircleLine, RiBox3Line, RiHomeLine, RiShoppingBag3Line, RiShoppingCart2Line, } from "react-icons/ri";
 
 export const mainMenu = [
     {
+        "header": "Inicio",
+        "accordion":false,
+        "icon":RiHomeLine,
+        "link":"/"
+    },
+    {
         "header": "Productos",
+        "accordion":true,
         "icon": RiShoppingBag3Line,
         "links": [
             {
@@ -18,6 +25,7 @@ export const mainMenu = [
     {
         "header": "Pedidos",
         "icon": RiBox3Line,
+        "accordion":true,
         "links": [
             {
                 "name": 'Listado pedidos',
@@ -32,6 +40,7 @@ export const mainMenu = [
     {
         "header": "Clientes",
         "icon": RiAccountPinCircleLine,
+        "accordion":true,
         "links": [
             {
                 "name": 'Listado clientes',
@@ -46,6 +55,7 @@ export const mainMenu = [
     {
         "header": "Ventas",
         "icon": RiShoppingCart2Line,
+        "accordion":true,
         "links": [
             {
                 "name": 'Listado ventas',

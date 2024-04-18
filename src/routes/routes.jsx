@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { MainLayout } from '../layout';
-import { Products, ProductsNav } from '../pages/products';
+import { Home } from '../pages/home';
 
 const MyRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={
         <MainLayout>
-          <Products />
+          <Home />
         </MainLayout>
       }/>
         <Route path='/sidebar' element={

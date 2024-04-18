@@ -4,7 +4,7 @@ import { CircleAvatar } from "../../../components/UI";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
-import { mainMenu } from "./data/mainMenu";
+import { mainMenu } from "./data";
 import { Accordion } from "../../../components/UI"
 import useAccordion from "../../../hooks/ui/useAccordion";
 import useTheme from "../../../hooks/theme/useTheme";
@@ -41,14 +41,19 @@ const MobileNavigation = ({ user }) => {
                                 <h2 className="text-xs text-gray-400">MENU PRINCIPAL</h2>
                                 {
                                     mainMenu.map((item, index) => (
-                                        <Accordion
-                                            key={index}
-                                            title={item.header}
-                                            state={openAccordion === `${item.header}`}
-                                            items={item.links}
-                                            handle={() => toggleAccordion(item.header)}
-                                            icon={item.icon}
-                                        />
+                                        item.accordion ?
+                                            <Accordion
+                                                key={index}
+                                                title={item.header}
+                                                state={openAccordion === `${item.header}`}
+                                                items={item.links}
+                                                handle={() => toggleAccordion(item.header)}
+                                                icon={item.icon}
+                                            /> :
+                                            <Link to={item.link} key={index} className="flex items-center px-4 rounded-lg py-1.5 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium cursor-pointer">
+                                                <Icon icon={item.icon} className="self-start p-0 pr-2" />
+                                                <p className="pe-1 font-medium dark:text-gray-400 text-gray-600">{item.header}</p>
+                                            </Link>
                                     ))
                                 }
                             </div>

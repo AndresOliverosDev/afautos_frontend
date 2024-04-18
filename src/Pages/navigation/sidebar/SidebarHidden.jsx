@@ -1,6 +1,6 @@
 import { Card, Icon } from "@tremor/react"
 import { CircleAvatar } from "../../../components/UI";
-import { RiExpandLeftLine, RiLogoutCircleLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
+import { RiExpandLeftLine, RiHome8Line, RiHomeLine, RiLogoutCircleLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
 import { mainMenu, settingMenu } from "./data";
 import { Link } from "react-router-dom";
 import useTheme from "../../../hooks/theme/useTheme";
@@ -28,6 +28,7 @@ const SidebarHidden = ({ state, toggleSidebar, user }) => {
                 {
                     settingMenu.map((item, index) => (
                         <Icon
+                            key={index}
                             icon={item.icon}
                             onClick={toggleSidebar}
                             className="cursor-pointer"

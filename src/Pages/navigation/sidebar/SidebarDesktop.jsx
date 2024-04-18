@@ -37,20 +37,21 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
             </div>
             <div className="flex flex-col gap-1">
                 <h2 className="text-xs text-gray-400">MENU PRINCIPAL</h2>
-                <Link to="/inicio" className="flex items-center  px-4 rounded-lg py-1.5 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium  cursor-pointer">
-                    <Icon icon={RiHomeLine} className="self-start p-0 pr-2"/>
-                    <p className="pe-1 font-medium">Inicio</p>
-                </Link>
                 {
                     mainMenu.map((item, index) => (
-                        <Accordion
-                            key={index}
-                            title={item.header}
-                            state={openAccordion === `${item.header}`}
-                            items={item.links}
-                            handle={() => toggleAccordion(item.header)}
-                            icon={item.icon}
-                        />
+                        item.accordion ?
+                            <Accordion
+                                key={index}
+                                title={item.header}
+                                state={openAccordion === `${item.header}`}
+                                items={item.links}
+                                handle={() => toggleAccordion(item.header)}
+                                icon={item.icon}
+                            /> :
+                            <Link key={index} to={item.link} className="flex items-center px-4 rounded-lg py-1.5 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium cursor-pointer">
+                                <Icon icon={item.icon} className="self-start p-0 pr-2" />
+                                <p className="pe-1 font-medium">{item.header}</p>
+                            </Link>
                     ))
                 }
             </div>
@@ -59,23 +60,23 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
 
                 {
                     settingMenu.map((item, index) => (
-                <Link key={index} to={item.link} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-1.5">
-                    <Icon icon={item.icon} className="self-start p-0 pr-2"/>
-                    <p className="">{item.name}</p>
-                </Link>
+                        <Link key={index} to={item.link} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-1.5">
+                            <Icon icon={item.icon} className="self-start p-0 pr-2" />
+                            <p className="">{item.name}</p>
+                        </Link>
                     ))
                 }
                 <button onClick={() => handleTheme()} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-1.5 w-full">
-                    <Icon icon={theme === "dark" ? RiSunFoggyLine : RiMoonLine} className="self-start p-0 pr-2"/>
+                    <Icon icon={theme === "dark" ? RiSunFoggyLine : RiMoonLine} className="self-start p-0 pr-2" />
                     <p>
                         {
-                        theme === "dark" ? "Tema oscuro" : "Tema claro"
-                    }
+                            theme === "dark" ? "Tema oscuro" : "Tema claro"
+                        }
                     </p>
                 </button>
             </div>
             <Link to='iniciar_sesión' className="py-1.5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
-                <Icon icon={RiLogoutCircleLine} color="red-400" className="self-start p-0 pr-2"/>
+                <Icon icon={RiLogoutCircleLine} color="red-400" className="self-start p-0 pr-2" />
                 <p>
                     Cerrar sesión
                 </p>

@@ -1,8 +1,8 @@
 import { Card, Icon } from '@tremor/react';
 import { RiStore3Line, RiFireLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
-import { ProductsAdd } from "../pages/products"
 import {useState} from 'react';
+import { ProductsAdd } from '../products';
 
 const Home = () => {
 
