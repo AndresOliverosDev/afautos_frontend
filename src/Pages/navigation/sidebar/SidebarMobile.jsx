@@ -7,24 +7,12 @@ import { Disclosure } from "@headlessui/react";
 import { mainMenu } from "./data/mainMenu";
 import { Accordion } from "../../../components/UI"
 import useAccordion from "../../../hooks/ui/useAccordion";
+import useTheme from "../../../hooks/theme/useTheme";
 
 const MobileNavigation = ({ user }) => {
-    const [openMenu, setOpenMenu] = useState(true);
-    const [theme, setTheme] =useState('dark')
+    const { theme, handleTheme } = useTheme();
+    const [openMenu, setOpenMenu] = useState(false);
     const { openAccordion, toggleAccordion } = useAccordion();
-
-    const handleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-
-        // Cambiar la clase en el elemento <html>
-        const htmlElement = document.documentElement;
-        if (newTheme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-    };
 
     return (
         <Disclosure>
@@ -64,7 +52,7 @@ const MobileNavigation = ({ user }) => {
                                     ))
                                 }
                             </div>
-                            <div className="dark:text-gray-400 text-gray-600">
+                            <div className="dark:text-gray-400 text-gray-600 pt-4">
                                 <h2 className="text-xs text-gray-400 mb-2">AJUSTES</h2>
                                 <Link to="/ajustes" className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-0.5">
                                     <Icon icon={RiSettings2Line} />
@@ -83,7 +71,7 @@ const MobileNavigation = ({ user }) => {
                                     </label>
                                 </button>
                             </div>
-                            <Link to='iniciar_sesión' className="pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
+                            <Link to='iniciar_sesión' className="mt-5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
                                 <Icon icon={RiLogoutCircleLine} color="red-400" />
                                 <p>
                                     Cerrar sesión

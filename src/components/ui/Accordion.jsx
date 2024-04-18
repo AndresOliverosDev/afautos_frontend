@@ -13,7 +13,7 @@ const Accordion = ({ state, title, items, handle, icon }) => {
     <div className="w-full">
       {/** Accordion Title */}
       <button
-        className="flex w-full px-4 rounded-lg py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 hover:dark:bg-gray-600"
+        className="flex w-full px-4 rounded-lg py-1.5 text-gray-600 hover:bg-gray-100 dark:text-gray-400 hover:dark:bg-gray-600"
         onClick={handle}
       >
         <Icon icon={icon} variant="simple" size="md" className="self-start p-0 pr-2"/>
@@ -26,7 +26,7 @@ const Accordion = ({ state, title, items, handle, icon }) => {
       <ul className={`${state ? "flex" : "hidden"} flex-col `}>
         {items.map((item, index) => (
           <Link key={index} to={`${item.link}`}>
-            <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">
+            <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1.5 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">
               {item.name}
             </li>
           </Link>

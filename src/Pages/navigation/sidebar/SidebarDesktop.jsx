@@ -1,28 +1,18 @@
 import { Card, Icon } from "@tremor/react"
 import { CircleAvatar, Accordion } from "../../../components/UI";
-import { RiExpandLeftLine, RiLogoutCircleLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
+import { RiExpandLeftLine, RiHomeLine, RiLogoutCircleLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
 import { useState } from "react";
 import useAccordion from "../../../hooks/ui/useAccordion"
-import { mainMenu } from "./data/mainMenu";
+import { mainMenu, settingMenu } from "./data";
 import { Link } from "react-router-dom";
+import useTheme from "../../../hooks/theme/useTheme";
 
 function SidebarDesktop({ user, state, toggleSidebar }) {
 
     const { openAccordion, toggleAccordion } = useAccordion();
 
-    const [theme, setTheme] = useState('dark');
-    const handleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
+    const { theme, handleTheme } = useTheme();
 
-        // Cambiar la clase en el elemento <html>
-        const htmlElement = document.documentElement;
-        if (newTheme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-    };
 
     return (
         <Card
@@ -45,8 +35,12 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
                     className={`cursor-pointer transition-all duration-300 ${state ? "" : "rotate-180"}`}
                 />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
                 <h2 className="text-xs text-gray-400">MENU PRINCIPAL</h2>
+                <Link to="/inicio" className="flex items-center  px-4 rounded-lg py-1.5 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium  cursor-pointer">
+                    <Icon icon={RiHomeLine} className="self-start p-0 pr-2"/>
+                    <p className="pe-1 font-medium">Inicio</p>
+                </Link>
                 {
                     mainMenu.map((item, index) => (
                         <Accordion
@@ -62,16 +56,17 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
             </div>
             <div>
                 <h2 className="text-xs text-gray-400 mb-2">AJUSTES</h2>
-                <Link to="/ajustes" className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-0.5">
-                    <Icon icon={RiSettings2Line} />
-                    <p className="">Ajustes</p>
+
+                {
+                    settingMenu.map((item, index) => (
+                <Link key={index} to={item.link} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-1.5">
+                    <Icon icon={item.icon} className="self-start p-0 pr-2"/>
+                    <p className="">{item.name}</p>
                 </Link>
-                <Link to='notificaciones' className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-0.5">
-                    <Icon icon={RiNotification3Line} />
-                    <p className="">Notificaciones</p>
-                </Link>
-                <button onClick={() => handleTheme()} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-0.5 w-full">
-                    <Icon icon={theme === "dark" ? RiSunFoggyLine : RiMoonLine} />
+                    ))
+                }
+                <button onClick={() => handleTheme()} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-1.5 w-full">
+                    <Icon icon={theme === "dark" ? RiSunFoggyLine : RiMoonLine} className="self-start p-0 pr-2"/>
                     <p>
                         {
                         theme === "dark" ? "Tema oscuro" : "Tema claro"
@@ -79,8 +74,8 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
                     </p>
                 </button>
             </div>
-            <Link to='iniciar_sesión' className="pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
-                <Icon icon={RiLogoutCircleLine} color="red-400" />
+            <Link to='iniciar_sesión' className="py-1.5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
+                <Icon icon={RiLogoutCircleLine} color="red-400" className="self-start p-0 pr-2"/>
                 <p>
                     Cerrar sesión
                 </p>

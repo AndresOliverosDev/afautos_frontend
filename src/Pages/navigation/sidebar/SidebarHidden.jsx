@@ -1,25 +1,13 @@
 import { Card, Icon } from "@tremor/react"
 import { CircleAvatar } from "../../../components/UI";
 import { RiExpandLeftLine, RiLogoutCircleLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
-import { mainMenu } from "./data/mainMenu";
-import { useState } from "react";
+import { mainMenu, settingMenu } from "./data";
 import { Link } from "react-router-dom";
+import useTheme from "../../../hooks/theme/useTheme";
 
 const SidebarHidden = ({ state, toggleSidebar, user }) => {
 
-    const [theme, setTheme] = useState('dark');
-    const handleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-
-        // Cambiar la clase en el elemento <html>
-        const htmlElement = document.documentElement;
-        if (newTheme === 'dark') {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-    };
+    const { theme, handleTheme } = useTheme();
 
     return (
         <Card
@@ -37,16 +25,15 @@ const SidebarHidden = ({ state, toggleSidebar, user }) => {
                 ))
             }
             <div className="flex flex-col pt-4 gap-3">
-                <Icon
-                    icon={RiSettings2Line}
-                    onClick={toggleSidebar}
-                    className="cursor-pointer"
-                    tooltip="Ajustes" />
-                <Icon
-                    icon={RiNotification3Line}
-                    onClick={toggleSidebar}
-                    className="cursor-pointer"
-                    tooltip="Notificaciones" />
+                {
+                    settingMenu.map((item, index) => (
+                        <Icon
+                            icon={item.icon}
+                            onClick={toggleSidebar}
+                            className="cursor-pointer"
+                            tooltip={item.name} />
+                    ))
+                }
                 <button
                     onClick={() => handleTheme()}
                     className="hover:bg-gray-100 hover:dark:bg-gray-600 rounded-lg cursor-pointer w-full">
