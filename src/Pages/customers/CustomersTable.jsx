@@ -1,5 +1,5 @@
 
-import { IconTableActions } from "../../components/UI";
+import { IconTableActions } from "../../components/ui";
 
 import Table from "../../components/table/Table.jsx";
 import { useEffect, useState } from "react";

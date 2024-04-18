@@ -1,4 +1,4 @@
-import { BtnPrimary } from "../UI/buttons";
+import { BtnPrimary } from "../ui/buttons";
 import Input from "./Input";
 
 

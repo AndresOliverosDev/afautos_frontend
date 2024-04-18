@@ -4,7 +4,7 @@ import { RiEditLine, RiDeleteBinLine } from "react-icons/ri";
 /** Orders Data */
 
 /** Components */
-import { IconTableActions } from "../components/UI";
+import { IconTableActions } from "../components/ui";
 
 import Table from "../components/table/Table";
 

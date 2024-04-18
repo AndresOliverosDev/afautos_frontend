@@ -1,11 +1,10 @@
 import { Card, Icon } from "@tremor/react"
-import { CircleAvatar, Accordion } from "../../../components/UI";
-import { RiExpandLeftLine, RiHomeLine, RiLogoutCircleLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
-import { useState } from "react";
-import useAccordion from "../../../hooks/ui/useAccordion"
+import { CircleAvatar, Accordion } from "../ui";
+import { RiExpandLeftLine, RiLogoutCircleLine, RiMoonLine, RiSunFoggyLine } from "react-icons/ri";
+import useAccordion from "../../hooks/ui/useAccordion"
 import { mainMenu, settingMenu } from "./data";
 import { Link } from "react-router-dom";
-import useTheme from "../../../hooks/theme/useTheme";
+import useTheme from "../../hooks/theme/useTheme";
 
 function SidebarDesktop({ user, state, toggleSidebar }) {
 

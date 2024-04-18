@@ -1,5 +1,5 @@
 import user from './user.json';
-import { Sidebar } from "../pages/navigation/sidebar";
+import { Sidebar } from '../components/sidebar'
 
 const MainLayout = ({ children }) => {
     return (

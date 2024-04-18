@@ -1,5 +1,4 @@
 import React from "react";
-import SideBar from "./pages/navigation/sidebar/Sidebar";
 import MyRoutes from "./routes/routes";
 
 function App() {

@@ -1,13 +1,12 @@
 import { Card, Icon } from "@tremor/react";
 import { RiCloseLine, RiLogoutCircleLine, RiMenuLine, RiMoonLine, RiNotification3Line, RiSettings2Line, RiSunFoggyLine } from "react-icons/ri";
-import { CircleAvatar } from "../../../components/UI";
+import { CircleAvatar, Accordion } from "../ui";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { mainMenu } from "./data";
-import { Accordion } from "../../../components/UI"
-import useAccordion from "../../../hooks/ui/useAccordion";
-import useTheme from "../../../hooks/theme/useTheme";
+import useAccordion from '../../hooks/ui/useAccordion'
+import useTheme from "../../hooks/theme/useTheme"
 
 const MobileNavigation = ({ user }) => {
     const { theme, handleTheme } = useTheme();
