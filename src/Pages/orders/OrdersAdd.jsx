@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { addProd } from '../../services/products/productAPI';
 
 import { useForm } from 'react-hook-form';
+import useCategory from '../../hooks/products/useCategory';
 
 const ProductsAdd = ({ isOpen, onClose }) => {
 

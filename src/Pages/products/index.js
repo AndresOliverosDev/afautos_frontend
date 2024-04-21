@@ -7,5 +7,5 @@ export {
     Products,
     ProductsTable,
     ProductsNav,
-    ProductsAdd
+    ProductsAdd,
 }
