@@ -1,7 +1,17 @@
+import { useState } from "react";
 import SimpleTable from "../../components/table/SimpleTable.jsx";
 import useProducts from "./../../hooks/useProduct.js";
+import ProductsAdd from "./ProductsAdd.jsx";
+import MyContext from "../../context/MyContext.js";
 
 const ProductsTable = () => {
+
+    const [isOpen, setIsOpen] = useState(true)
+
+    const handleClose = () => {
+        setIsOpen(false)
+    }
+
     const { products, loading, error, delProduct } = useProducts();
 
     const columns = [
@@ -70,6 +80,7 @@ const ProductsTable = () => {
 
     return (
         <div className="h-full w-full overflow-auto">
+            <ProductsAdd isOpen={isOpen}  onClose={handleClose}/>
             <SimpleTable columns={columns} data={products} nameTable={"Productos"} filters={filters} delete1={handleDelete} buttonAdd={buttonAdd}/>
         </div>
     );

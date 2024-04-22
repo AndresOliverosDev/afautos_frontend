@@ -15,35 +15,24 @@ import {
 import { useState } from "react";
 // Tremor UI
 import {
-  Button, Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, TextInput, Select, Icon, SelectItem
+  Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Icon
 } from "@tremor/react";
 import TableHeader from "./TableHeader";
 import TableFooter from "./TableFooter";
+import { DialogDelete } from "../ui/dialog";
 
 const SimpleTabla = ({ columns, data, nameTable, filters, delete1, buttonAdd }) => {
-  // States
-  const [filtering, setFiltering] = useState("");
-  const [showMenu, setShowMenu] = useState(false);
-  const [pagination, setPagination] = useState({
-    pageIndex: 0, //initial page index
-    pageSize: 10, //default page size
-  });
-
   // Table Structure
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    state: {
-      pagination,
-    },
   });
 
   return (
     <div className="flex flex-col gap-2 h-full overflow-auto w-full">
 
-      <TableHeader title={nameTable} buttonAdd={buttonAdd}/>
+      <TableHeader title={nameTable} buttonAdd={buttonAdd} filters={filters}/>
       {/* Table */}
       <Card className="py-1">
         <Table>
@@ -97,8 +86,9 @@ const SimpleTabla = ({ columns, data, nameTable, filters, delete1, buttonAdd }) 
                 ))}
                 <TableCell>
                   <span className="flex gap-2 cursor-pointer">
-                    <Icon icon={RiDeleteBin7Line} variant="shadow" tooltip="Eliminar" size="xs"
-                      onClick={() => delete1(row.id)}
+                    <DialogDelete
+                    nameObject={row.name}
+                    deleteAPI={() => delete1(row.id)}
                     />
                     <Icon icon={RiEditBoxLine} variant="shadow" tooltip="Editar" size="xs"
                       onClick={() => alert(2)}

@@ -23,10 +23,7 @@ const useProducts = () => {
     const delProduct = async (id) => {
         try {
             await deleteProd(id);
-
             setProducts(products.filter(product => product.id !== id));
-
-            alert(`Producto con ID ${id} eliminado`);
         } catch (error) {
             console.error("Error al eliminar el producto", error);
         }

@@ -7,7 +7,6 @@ import { Icon } from "@tremor/react";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const Accordion = ({ state, title, items, handle, icon }) => {
-  /** Hover Tailwind Styles */
 
   return (
     <div className="w-full">
@@ -23,7 +22,7 @@ const Accordion = ({ state, title, items, handle, icon }) => {
         />
       </button>
       {/** Accordion List Items */}
-      <ul className={`${state ? "flex" : "hidden"} flex-col `}>
+      <ul className={`transition-max-height ease-in-out duration-300 ${state ? 'max-h-screen' : 'max-h-0'} overflow-hidden flex flex-col`}>
         {items.map((item, index) => (
           <Link key={index} to={`${item.link}`}>
             <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1.5 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">

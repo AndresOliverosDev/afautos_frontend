@@ -1,6 +1,5 @@
 // En DialogUsageExample.j
 import { Button, Dialog, DialogPanel, TextInput, Textarea, NumberInput, SearchSelect, SearchSelectItem } from '@tremor/react';
-import React, { useState } from 'react';
 import { addProd } from '../../services/products/productAPI';
 
 import { useForm } from 'react-hook-form';
@@ -10,24 +9,24 @@ const ProductsAdd = ({ isOpen, onClose }) => {
   const { register, handleSubmit, setValue, reset,
     formState: { errors } } = useForm();
 
-    const catData = [
-      {
-        "id": 1,
-        "name": "Filtros",
-      },
-      {
-        "id": 2,
-        "name": "Frenos",
-      },
-      {
-        "id": 3,
-        "name": "Baterías",
-      },
-      {
-        "id": 4,
-        "name": "Lubricantes",
-      }
-    ]
+  const catData = [
+    {
+      "id": 1,
+      "name": "Filtros",
+    },
+    {
+      "id": 2,
+      "name": "Frenos",
+    },
+    {
+      "id": 3,
+      "name": "Baterías",
+    },
+    {
+      "id": 4,
+      "name": "Lubricantes",
+    }
+  ]
 
   const brands = [
     {
@@ -65,7 +64,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
       addProd(data);
       onClose();
       return alert("Producto creado")
-    } catch(error) {
+    } catch (error) {
       return "error"
     }
     reset();
@@ -87,7 +86,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 name="prod_name"
                 {...register("name", {
                   required: {
-                    value:true,
+                    value: true,
                     message: "¡Este campo es requerido!"
                   },
                   maxLength: {
@@ -116,16 +115,16 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 id="quantity"
                 name="quantity"
                 {...register("quantity",
-                {
-                  required: {
-                    value:true,
-                    message: "¡Este campo es requerido!"
-                  },
-                  max: {
-                    value:32000,
-                    message:"La cantidad maxima es de 32.000"
-                  }
-                })}
+                  {
+                    required: {
+                      value: true,
+                      message: "¡Este campo es requerido!"
+                    },
+                    max: {
+                      value: 32000,
+                      message: "La cantidad maxima es de 32.000"
+                    }
+                  })}
               />
             </div>
             <div className="flex flex-col">
@@ -137,17 +136,17 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 id="price"
                 name="price"
                 {...register("price",
-                {
-                  required: {
-                    value:true,
-                    message: "¡Este campo es requerido!"
-                  },
-                  max: {
-                    value:9999999999,
-                    message:"El precio supero la cantidad maxima"
+                  {
+                    required: {
+                      value: true,
+                      message: "¡Este campo es requerido!"
+                    },
+                    max: {
+                      value: 9999999999,
+                      message: "El precio supero la cantidad maxima"
+                    }
                   }
-                }
-              )}
+                )}
               />
             </div>
             <div className="flex flex-col">
