@@ -5,7 +5,6 @@ import MobileNavigation from "./SidebarMobile";
 
 const Sidebar = ({ user }) => {
     const [open, setOpen] = useState(true);
-    const [mobile, setMobile] = useState(false)
 
     const handleOpen = () => {
         setOpen(!open);

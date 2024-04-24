@@ -99,10 +99,15 @@ const ProductsAdd = ({ isOpen, onClose }) => {
             <div className="flex flex-col">
               <label htmlFor="description">Descripción</label>
               <Textarea
-
+              error={errors.desc}
+              errorMessage={errors.desc?.message}
                 id="description"
                 name="description"
-                {...register("desc")}
+                {...register("desc",
+                {maxLength: {
+                  value:255,
+                  message:"La cantidad maxima es de 255 caracteres"
+                }})}
                 className="mt-1 p-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 min-w-min"
               ></Textarea>
             </div>
@@ -152,10 +157,16 @@ const ProductsAdd = ({ isOpen, onClose }) => {
             <div className="flex flex-col">
               <label htmlFor="image_url">URL de la Imagen</label>
               <Textarea
+                error={errors.imageUrl}
+                errorMessage={errors.imageUrl?.message}
                 type="text"
                 id="image_url"
                 name="image_url"
-                {...register("imageUrl")}
+                {...register("imageUrl",
+                {maxLength: {
+                  value:255,
+                  message:"La cantidad maxima es de 255 caracteres"
+                }})}
               />
             </div>
             <div className="flex flex-col">

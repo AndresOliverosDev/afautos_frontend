@@ -17,7 +17,7 @@ const SidebarHidden = ({ state, toggleSidebar, user }) => {
                 icon={RiExpandLeftLine}
                 onClick={toggleSidebar}
                 variant="shadow"
-                className={`cursor-pointer transition-all duration-300 ${state ? "" : "rotate-180"}`}
+                className={`cursor-pointer transition-all duration-150 ${state ? "" : "rotate-180"}`}
             />
             {
                 mainMenu.map((item, index) => (

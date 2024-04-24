@@ -1,14 +1,16 @@
-import { ProductsTable, ProductsNav } from ".";
+import { ProductsTable } from ".";
+import { ProductProvider } from "../../context/ProductProvider.jsx";
 
 
 const Products = () => {
     return (
-        <section className="flex flex-col gap-2 h-[97.5vh] w-full overflow-auto">
-            <div className="overflow-auto">
-                <ProductsTable />
-            </div>
-
-        </section>
+        <ProductProvider>
+            <section className="flex flex-col gap-2 h-[97.5vh] w-full overflow-auto">
+                <div className="overflow-auto">
+                    <ProductsTable />
+                </div>
+            </section>
+        </ProductProvider>
     );
 }
 

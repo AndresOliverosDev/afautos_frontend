@@ -8,12 +8,7 @@ const TableHeader = ({ title, buttonAdd, filters }) => {
             <div className="flex items-center justify-between border-b dark:border-slate-700 p-5">
                 <h1 className="text-tremor-title font-semibold">{title}</h1>
                 <div className="flex gap-2">
-                    <Button
-                        tooltip={buttonAdd.text}
-                        onClick={buttonAdd.onClick}
-                    >
-                        {buttonAdd.text}
-                    </Button>
+                    {buttonAdd}
                     <Icon icon={RiTwitterXLine} variant="outlined" />
                 </div>
             </div>

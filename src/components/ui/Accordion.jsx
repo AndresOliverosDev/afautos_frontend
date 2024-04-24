@@ -18,11 +18,11 @@ const Accordion = ({ state, title, items, handle, icon }) => {
         <Icon icon={icon} variant="simple" size="md" className="self-start p-0 pr-2"/>
         <h2 className="pe-1 font-medium">{title}</h2>
         <RiArrowDownSLine
-          className={`transition-all duration-300 h-5 w-5 self-center ${state ? "rotate-180" : ""}`}
+          className={`transition-all duration-150 h-5 w-5 self-center ${state ? "rotate-180" : ""}`}
         />
       </button>
       {/** Accordion List Items */}
-      <ul className={`transition-max-height ease-in-out duration-300 ${state ? 'max-h-screen' : 'max-h-0'} overflow-hidden flex flex-col`}>
+      <ul className={`transition-max-height ${state ? 'max-h-screen' : 'max-h-0'} overflow-hidden flex flex-col`}>
         {items.map((item, index) => (
           <Link key={index} to={`${item.link}`}>
             <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1.5 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">

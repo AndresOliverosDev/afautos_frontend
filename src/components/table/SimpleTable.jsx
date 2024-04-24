@@ -2,7 +2,6 @@
 import {
   RiArrowDownSLine,
   RiFileSearchLine,
-  RiDeleteBin7Line,
   RiEditBoxLine
 } from "react-icons/ri";
 // TanStackTable
@@ -10,12 +9,12 @@ import {
   useReactTable,
   getCoreRowModel,
   flexRender,
-  getPaginationRowModel,
 } from "@tanstack/react-table";
 import { useState } from "react";
 // Tremor UI
 import {
-  Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Icon
+  Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Icon,
+  Button
 } from "@tremor/react";
 import TableHeader from "./TableHeader";
 import TableFooter from "./TableFooter";

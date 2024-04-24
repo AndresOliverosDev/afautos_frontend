@@ -2,17 +2,16 @@ import { useState } from "react";
 import SimpleTable from "../../components/table/SimpleTable.jsx";
 import useProducts from "./../../hooks/useProduct.js";
 import ProductsAdd from "./ProductsAdd.jsx";
-import MyContext from "../../context/MyContext.js";
+import { Button } from "@tremor/react";
 
 const ProductsTable = () => {
 
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpenForm, setIsOpenForm] = useState(false);
+    const handleToggleForm = () => {
+        setIsOpenForm(!isOpenForm);
+    };
 
-    const handleClose = () => {
-        setIsOpen(false)
-    }
-
-    const { products, loading, error, delProduct } = useProducts();
+    const { products, delProduct } = useProducts();
 
     const columns = [
         {
@@ -69,19 +68,18 @@ const ProductsTable = () => {
         delProduct(id);
     };
 
-    const handle = () => {
-        console.log("hola Mundo")
-    }
+    const buttonAdd = (
+        < Button onClick={handleToggleForm} >
+            Añadir Productos
+        </Button>
+    )
 
-    const buttonAdd = {
-        "text":"Añadir productos",
-        "onClick":handle
-    }
+
 
     return (
         <div className="h-full w-full overflow-auto">
-            <ProductsAdd isOpen={isOpen}  onClose={handleClose}/>
-            <SimpleTable columns={columns} data={products} nameTable={"Productos"} filters={filters} delete1={handleDelete} buttonAdd={buttonAdd}/>
+            <ProductsAdd isOpen={isOpenForm} onClose={handleToggleForm} />
+            <SimpleTable columns={columns} data={products} nameTable={"Productos"} filters={filters} delete1={handleDelete} buttonAdd={buttonAdd} />
         </div>
     );
 };
