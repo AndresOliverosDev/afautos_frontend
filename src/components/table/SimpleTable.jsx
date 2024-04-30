@@ -20,7 +20,7 @@ import TableHeader from "./TableHeader";
 import TableFooter from "./TableFooter";
 import { DialogDelete } from "../ui/dialog";
 
-const SimpleTabla = ({ columns, data, nameTable, filters, delete1, buttonAdd }) => {
+const SimpleTabla = ({ dataDetails, detailsProd, columns, data, nameTable, filters, delete1, buttonAdd }) => {
   // Table Structure
   const table = useReactTable({
     columns,
@@ -90,10 +90,13 @@ const SimpleTabla = ({ columns, data, nameTable, filters, delete1, buttonAdd }) 
                     deleteAPI={() => delete1(row.id)}
                     />
                     <Icon icon={RiEditBoxLine} variant="shadow" tooltip="Editar" size="xs"
-                      onClick={() => alert(2)}
+                      onClick={() => alert("Editar")}
                     />
                     <Icon icon={RiFileSearchLine} variant="shadow" tooltip="Detalles" size="xs"
-                      onClick={() => alert(3)}/>
+                     onClick={() => {
+                      dataDetails(row);
+                      detailsProd();
+                     }} />
                   </span>
                 </TableCell>
               </TableRow>

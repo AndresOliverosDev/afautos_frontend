@@ -1,4 +1,4 @@
-import ProductsTable from "./ProductsTable";
+import ProductsTable from "./productsTable/ProductsTable";
 import ProductsNav from "./ProductsNav";
 import ProductsAdd from "./ProductsAdd";
 import Products from "./Products";

@@ -13,7 +13,7 @@ export const deleteProd = async (id) => {
 
 export const getAllProd = async () => {
     try {
-        const response = await axios.post(`${URL_API}/getAllProd`);
+        const response = await axios.get(`${URL_API}/product/getAllProd`);
         return response.data;
     } catch (error) {
         throw new Error("Error en la conexión con el servidor");
