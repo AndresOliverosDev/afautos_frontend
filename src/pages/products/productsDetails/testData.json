@@ -1,0 +1,10 @@
+{
+    "name":"Planeta Saturno",
+    "imageUrl": "/src/pages/products/productsDetails/image.png",
+    "desc":"Saturno, el sexto planeta del sistema solar, es famoso por sus deslumbrantes anillos compuestos de hielo y roca. Además de su belleza única, Saturno también es conocido por su gran luna Titán y su atmósfera de hidrógeno y helio.",
+    "id":"0001",
+    "quantity":10,
+    "cat":"Planetas",
+    "brand":"Saturno",
+    "price":1000000
+}
