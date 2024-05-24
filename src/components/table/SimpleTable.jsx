@@ -28,6 +28,10 @@ const SimpleTabla = ({ dataDetails, detailsProd, columns, data, nameTable, filte
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const formatPrice = (price) => {
+    return typeof price === "number" ? price.toLocaleString() : price;
+  };
+
   return (
     <div className="flex flex-col gap-2 h-full overflow-auto w-full">
 
@@ -73,11 +77,13 @@ const SimpleTabla = ({ dataDetails, detailsProd, columns, data, nameTable, filte
             {data.map((row) => (
               <TableRow key={row.id}>
                 {columns.map((column, colIndex) => (
-                  <TableCell key={colIndex} className="px-4 py-2 max-w-48 text-wrap">
+                  <TableCell key={colIndex} className="px-4 py-2 max-w-48 text-wrap overflow-hidden overflow-ellipsis whitespace-nowrap">
                     {column.isImage && column.accessorKey && row[column.accessorKey] ? (
                       <img src={row[column.accessorKey]} alt={column.header} className="w-12 h-12 object-cover rounded-full" />
                     ) : column.cell ? (
                       column.cell()
+                    ) : column.isPrice === true ? (
+                      `$ ${formatPrice(row[column.accessorKey])}`
                     ) : (
                       row[column.accessorKey]
                     )}

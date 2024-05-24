@@ -45,7 +45,7 @@ const SidebarHidden = ({ state, toggleSidebar, user }) => {
                     />
                 </button>
             </div>
-            <Link to='iniciar_sesión' className="text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 rounded-lg cursor-pointer ">
+            <Link to='/login' className="text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 rounded-lg cursor-pointer ">
                 <Icon icon={RiLogoutCircleLine} color="red-400" />
             </Link>
         </Card>

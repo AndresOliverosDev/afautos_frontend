@@ -13,11 +13,6 @@ export const columns = [
         accessorKey: "name",
     },
     {
-        header: "Descripción",
-        accessorKey: "desc",
-        isFilter: true,
-    },
-    {
         header: "Cantidad",
         accessorKey: "quantity",
     },
@@ -25,6 +20,7 @@ export const columns = [
         header: "Precio",
         accessorKey: "price",
         isFilter: true,
+        isPrice:true
     },
     {
         header: "Categoría",

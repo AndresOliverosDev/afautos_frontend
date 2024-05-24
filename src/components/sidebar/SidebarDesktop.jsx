@@ -74,7 +74,7 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
                     </p>
                 </button>
             </div>
-            <Link to='iniciar_sesión' className="py-1.5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
+            <Link to='/login' className="py-1.5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
                 <Icon icon={RiLogoutCircleLine} color="red-400" className="self-start p-0 pr-2" />
                 <p>
                     Cerrar sesión

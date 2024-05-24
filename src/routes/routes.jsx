@@ -3,6 +3,8 @@ import { MainLayout } from '../layout';
 import { Home } from '../pages/home';
 import { Products } from '../pages/products';
 import { ReportsCustomers, ReportsOrders, ReportsProducts, ReportsSales } from "../pages/reports"
+import Login from '../pages/auth/Login';
+import SingleLayout from '../layout/SingleLayout';
 
 const MyRoutes = () => {
   return (
@@ -12,6 +14,7 @@ const MyRoutes = () => {
           <Home />
         </MainLayout>
       } />
+      
       {/** Products */}
       <Route path='/productos' element={
         <MainLayout>
@@ -23,23 +26,33 @@ const MyRoutes = () => {
           <ReportsProducts />
         </MainLayout>
       } />
+
       {/** Orders */}
       <Route path='/pedidos/informes' element={
         <MainLayout>
           <ReportsOrders />
         </MainLayout>
       } />
-            {/** Customers */}
-            <Route path='/clientes/informes' element={
+
+      {/** Customers */}
+      <Route path='/clientes/informes' element={
         <MainLayout>
           <ReportsCustomers />
         </MainLayout>
       } />
-            {/** Sales */}
-            <Route path='/ventas/informes' element={
+      
+      {/** Sales */}
+      <Route path='/ventas/informes' element={
         <MainLayout>
           <ReportsSales />
         </MainLayout>
+      } />
+
+      {/** Authentication */}
+      <Route path='/login' element={
+        <SingleLayout>
+          <Login />
+        </SingleLayout>
       } />
 
     </Routes>
