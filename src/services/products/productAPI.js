@@ -1,6 +1,7 @@
 import axios from "axios";
+import { URL_API_BASE } from "../URL_API_BASE";
 
-const URL_API = "http://localhost:8081";
+const URL_API = `${URL_API_BASE}/product`;
 
 export const deleteProd = async (id) => {
     try {
@@ -12,8 +13,14 @@ export const deleteProd = async (id) => {
 };
 
 export const getAllProd = async () => {
+    const token = sessionStorage.getItem("jwt");
+    console.log(token)
     try {
-        const response = await axios.get(`${URL_API}/product/getAllProd`);
+        const response = await axios.get(`${URL_API}/getAllProducts`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         return response.data;
     } catch (error) {
         throw new Error("Error en la conexión con el servidor");

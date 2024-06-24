@@ -6,7 +6,7 @@ import { mainMenu, settingMenu } from "./data";
 import { Link } from "react-router-dom";
 import useTheme from "../../hooks/theme/useTheme";
 
-function SidebarDesktop({ user, state, toggleSidebar }) {
+function SidebarDesktop({ user, state, toggleSidebar, logout }) {
 
     const { openAccordion, toggleAccordion } = useAccordion();
 
@@ -74,12 +74,14 @@ function SidebarDesktop({ user, state, toggleSidebar }) {
                     </p>
                 </button>
             </div>
-            <Link to='/login' className="py-1.5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
+            <button 
+            className="py-1.5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer "
+            onClick={logout}>
                 <Icon icon={RiLogoutCircleLine} color="red-400" className="self-start p-0 pr-2" />
                 <p>
                     Cerrar sesión
                 </p>
-            </Link>
+            </button>
         </Card>
     );
 };

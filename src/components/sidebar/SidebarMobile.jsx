@@ -8,7 +8,7 @@ import { mainMenu } from "./data";
 import useAccordion from '../../hooks/ui/useAccordion'
 import useTheme from "../../hooks/theme/useTheme"
 
-const MobileNavigation = ({ user }) => {
+const MobileNavigation = ({ user, logout }) => {
     const { theme, handleTheme } = useTheme();
     const [openMenu, setOpenMenu] = useState(false);
     const { openAccordion, toggleAccordion } = useAccordion();
@@ -75,12 +75,14 @@ const MobileNavigation = ({ user }) => {
                                     </label>
                                 </button>
                             </div>
-                            <Link to='/login' className="mt-5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer ">
+                            <button
+                            className="mt-5 pl-2 flex items-center text-red-400 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer "
+                            onClick={logout}>
                                 <Icon icon={RiLogoutCircleLine} color="red-400" />
                                 <p>
                                     Cerrar sesión
                                 </p>
-                            </Link>
+                            </button>
                         </Card>
                     </Disclosure.Panel>
                 </>
