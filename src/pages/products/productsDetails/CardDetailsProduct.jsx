@@ -1,6 +1,15 @@
+import React from 'react';
 import { Button, Dialog, DialogPanel } from "@tremor/react";
 
-const CardDetailsProduct = ({ isOpen, handleClose, data, details }) => {
+const CardDetailsProduct = ({ isOpen, handleClose, data }) => {
+    // Aquí creas la variable details con los datos que necesitas
+    const details = data ? [
+        { title: 'Categoría', text: data.category },
+        { title: 'Marca', text: data.brand },
+        { title: 'Cantidad', text: data.quantity },
+        // Puedes agregar más detalles según lo necesites
+    ] : [];
+
     return (
         <Dialog open={isOpen} onClose={handleClose}>
             <DialogPanel className="max-w-4xl p-0 max-h-screen">
@@ -9,8 +18,8 @@ const CardDetailsProduct = ({ isOpen, handleClose, data, details }) => {
                     <div className="md:w-5/12 w-full flex justify-center items-center">
                         <img
                             className="w-4/12 md:w-11/12"
-                            src={data.imageUrl}
-                            alt={data.name}
+                            src={data?.image}  // Asegúrate de que la URL de la imagen esté en data.image
+                            alt={data?.name}
                         />
                     </div>
                     {/* Body Content Section */}
@@ -18,10 +27,10 @@ const CardDetailsProduct = ({ isOpen, handleClose, data, details }) => {
                         {/* Title and Description */}
                         <header className="flex flex-col gap-2">
                             <h1 className="text-tremor-title font-semibold w-full pr-4">
-                                {data.name}
+                                {data?.name}
                             </h1>
-                            <p className=" w-full whitespace-pre-line break-words">
-                                {data.desc}
+                            <p className="w-full whitespace-pre-line break-words">
+                                {data?.desc}
                             </p>
                         </header>
                         <div className="flex flex-col gap-4">
@@ -42,7 +51,7 @@ const CardDetailsProduct = ({ isOpen, handleClose, data, details }) => {
                                         Precio
                                     </h2>
                                     <p className="text-tremor-metric">
-                                        ${data.price ? data.price.toLocaleString() : ""}
+                                        ${data?.price ? data.price.toLocaleString() : ""}
                                     </p>
                                 </div>
                                 <div className="flex gap-2">

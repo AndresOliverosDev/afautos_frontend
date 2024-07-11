@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { addProd, deleteProd, getAllProd } from "../services/products/productAPI.js";
+import { addProd, deleteProd, getAllProd } from "../../services/products/productAPI.js";
 
-const useProducts = () => {
+const useProduct = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -41,4 +41,4 @@ const useProducts = () => {
     return { products, loading, error, delProduct, addProduct};
 };
 
-export default useProducts;
+export default useProduct;

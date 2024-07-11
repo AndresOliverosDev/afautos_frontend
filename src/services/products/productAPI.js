@@ -1,11 +1,10 @@
-import axios from "axios";
-import { URL_API_BASE } from "../URL_API_BASE";
+import apiClient from "../apiClient";
 
-const URL_API = `${URL_API_BASE}/product`;
+const URL_API = "/product";
 
 export const deleteProd = async (id) => {
     try {
-        const response = await axios.delete(`${URL_API}/deleteProd/${id}`);
+        const response = await apiClient.delete(`/deleteProd/${id}`);
         return response.data;
     } catch (error) {
         throw new Error("Error en la conexión con el servidor")
@@ -13,25 +12,21 @@ export const deleteProd = async (id) => {
 };
 
 export const getAllProd = async () => {
-    const token = sessionStorage.getItem("jwt");
-    console.log(token)
     try {
-        const response = await axios.get(`${URL_API}/getAllProducts`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await apiClient.get(`${URL_API}/getAllProducts`);
         return response.data;
     } catch (error) {
-        throw new Error("Error en la conexión con el servidor");
+        console.log(error);
+        throw error;
     }
 }
 
 export const addProd = async (product) => {
     try {
-        const response = await axios.post(`${URL_API}/addProd`, product)
+        const response = await apiClient.post(`${URL_API}/createProduct`, product)
         return response.data;
     } catch (error) {
-        throw new Error("Error en la conexión con el servidor")
+        console.log(error)
+        throw error;
     }
 }

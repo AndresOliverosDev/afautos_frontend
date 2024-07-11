@@ -1,60 +1,107 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { MainLayout } from '../layout';
-import { Home } from '../pages/home';
-import { Products } from '../pages/products';
-import { ReportsCustomers, ReportsOrders, ReportsProducts, ReportsSales } from "../pages/reports"
-import Login from '../pages/auth/Login';
+import MainLayout from '../layout/MainLayout';
+import Home from '../pages/home/Home';
+import Products from '../pages/products/Products';
+import { ReportsCustomers, ReportsOrders, ReportsProducts, ReportsSales } from "../pages/reports";
+import Login from '../pages/auth/login/Login';
 import SingleLayout from '../layout/SingleLayout';
+import ProtectedRoute from './ProtectedRoute';
+import { NotFoundPage, Unauthorized } from '../pages/errors/index';
+import { Customer } from '../pages/customers/index';
+import Sales from '../pages/sales/Sales';
+import Orders from "../pages/orders/Orders"
 
 const MyRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={
-        <MainLayout>
-          <Home />
-        </MainLayout>
+      <Route path="/login" element={<SingleLayout><Login /></SingleLayout>} />
+
+      <Route path='/inicio' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS', 'ROLE_LOGISTICA']}>
+          <MainLayout>
+            <Home />
+          </MainLayout>
+        </ProtectedRoute>
       } />
-      
+
+      {/** Customers */}
+      <Route path='/clientes' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <Customer />
+          </MainLayout>
+        </ProtectedRoute>
+      } />
+
       {/** Products */}
       <Route path='/productos' element={
-        <MainLayout>
-          <Products />
-        </MainLayout>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS', 'ROLE_LOGISTICA']}>
+          <MainLayout>
+            <Products />
+          </MainLayout>
+        </ProtectedRoute>
       } />
       <Route path='/productos/informes' element={
-        <MainLayout>
-          <ReportsProducts />
-        </MainLayout>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <ReportsProducts />
+          </MainLayout>
+        </ProtectedRoute>
       } />
 
       {/** Orders */}
       <Route path='/pedidos/informes' element={
-        <MainLayout>
-          <ReportsOrders />
-        </MainLayout>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <ReportsOrders />
+          </MainLayout>
+        </ProtectedRoute>
+      } />
+
+<Route path='/pedidos' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <Orders />
+          </MainLayout>
+        </ProtectedRoute>
       } />
 
       {/** Customers */}
       <Route path='/clientes/informes' element={
-        <MainLayout>
-          <ReportsCustomers />
-        </MainLayout>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <ReportsCustomers />
+          </MainLayout>
+        </ProtectedRoute>
       } />
-      
+
       {/** Sales */}
+      <Route path='/ventas' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <Sales />
+          </MainLayout>
+        </ProtectedRoute>
+      } />
+
       <Route path='/ventas/informes' element={
-        <MainLayout>
-          <ReportsSales />
-        </MainLayout>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
+          <MainLayout>
+            <ReportsSales />
+          </MainLayout>
+        </ProtectedRoute>
       } />
 
-      {/** Authentication */}
-      <Route path='/login' element={
-        <SingleLayout>
-          <Login />
-        </SingleLayout>
-      } />
+      <Route path='*' element={<NotFoundPage />} />
 
+      <Route path='/unauthorized' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS', 'ROLE_LOGISTICA']}>
+          <MainLayout>
+            <Unauthorized />
+          </MainLayout>
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 }

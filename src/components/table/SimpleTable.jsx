@@ -1,31 +1,35 @@
-// React Icons
-import {
-  RiArrowDownSLine,
-  RiFileSearchLine,
-  RiEditBoxLine
-} from "react-icons/ri";
-// TanStackTable
+import React, { useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { useState } from "react";
-// Tremor UI
 import {
-  Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow, Icon,
-  Button
+  Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow,
 } from "@tremor/react";
 import TableHeader from "./TableHeader";
 import TableFooter from "./TableFooter";
-import { DialogDelete } from "../ui/dialog";
+import { RiArrowDownSLine } from "react-icons/ri";
 
-const SimpleTabla = ({ dataDetails, detailsProd, columns, data, nameTable, filters, delete1, buttonAdd }) => {
-  // Table Structure
+const SimpleTable = ({ renderActionButtons, columns, data, nameTable, filters, additionalButton }) => {
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
+
   const table = useReactTable({
-    columns,
     data,
+    columns,
+    state: {
+      globalFilter,
+      pagination,
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    globalFilterFn: "includesString",
   });
 
   const formatPrice = (price) => {
@@ -34,19 +38,20 @@ const SimpleTabla = ({ dataDetails, detailsProd, columns, data, nameTable, filte
 
   return (
     <div className="flex flex-col gap-2 h-full overflow-auto w-full">
-
-      <TableHeader title={nameTable} buttonAdd={buttonAdd} filters={filters}/>
-      {/* Table */}
+      <TableHeader 
+        title={nameTable} 
+        filters={filters}
+        globalFilter={globalFilter}
+        setGlobalFilter={setGlobalFilter}
+        additionalButton={additionalButton}
+      />
       <Card className="py-1">
         <Table>
-          {/* Table Head */}
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header, index) => (
-                  <TableHeaderCell
-                    key={index}
-                  >
+                {headerGroup.headers.map((header) => (
+                  <TableHeaderCell key={header.id}>
                     <span
                       className={`flex items-center gap-1 ${header.column.columnDef.isFilter
                         ? "cursor-pointer hover:text-gray-700"
@@ -65,57 +70,49 @@ const SimpleTabla = ({ dataDetails, detailsProd, columns, data, nameTable, filte
                     </span>
                   </TableHeaderCell>
                 ))}
-                <TableHeaderCell>
-                  Acciones
-                </TableHeaderCell>
+                {renderActionButtons && (
+                  <TableHeaderCell>
+                    Acciones
+                  </TableHeaderCell>
+                )}
               </TableRow>
             ))}
           </TableHead>
-
-          {/* Table Body */}
           <TableBody>
-            {data.map((row) => (
+            {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
-                {columns.map((column, colIndex) => (
-                  <TableCell key={colIndex} className="px-4 py-2 max-w-48 text-wrap overflow-hidden overflow-ellipsis whitespace-nowrap">
-                    {column.isImage && column.accessorKey && row[column.accessorKey] ? (
-                      <img src={row[column.accessorKey]} alt={column.header} className="w-12 h-12 object-cover rounded-full" />
-                    ) : column.cell ? (
-                      column.cell()
-                    ) : column.isPrice === true ? (
-                      `$ ${formatPrice(row[column.accessorKey])}`
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id} className="px-4 py-2 max-w-48 text-wrap overflow-hidden overflow-ellipsis whitespace-nowrap">
+                    {cell.column.columnDef.isImage && cell.column.columnDef.accessorKey && cell.getValue() ? (
+                      <img src={cell.getValue()} alt={cell.column.columnDef.header} className="w-12 h-12 object-cover rounded-full" />
+                    ) : cell.column.columnDef.isPrice === true ? (
+                      `$ ${formatPrice(cell.getValue())}`
                     ) : (
-                      row[column.accessorKey]
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
                     )}
                   </TableCell>
                 ))}
-                <TableCell>
-                  <span className="flex gap-2 cursor-pointer">
-                    <DialogDelete
-                    nameObject={row.name}
-                    deleteAPI={() => delete1(row.id)}
-                    />
-                    <Icon icon={RiEditBoxLine} variant="shadow" tooltip="Editar" size="xs"
-                      onClick={() => alert("Editar")}
-                    />
-                    <Icon icon={RiFileSearchLine} variant="shadow" tooltip="Detalles" size="xs"
-                     onClick={() => {
-                      dataDetails(row);
-                      detailsProd();
-                     }} />
-                  </span>
-                </TableCell>
+                {renderActionButtons && (
+                  <TableCell>
+                    {renderActionButtons(row.original)}
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </Card>
-
-      {/* Table Pagination */}
-          <TableFooter />
+      <TableFooter
+        pageCount={table.getPageCount()}
+        pageIndex={pagination.pageIndex}
+        setPageIndex={(pageIndex) => setPagination((prev) => ({ ...prev, pageIndex }))}
+        canPreviousPage={table.getCanPreviousPage()}
+        canNextPage={table.getCanNextPage()}
+        nextPage={() => table.nextPage()}
+        previousPage={() => table.previousPage()}
+      />
     </div>
   );
 };
 
-export default SimpleTabla;
-
+export default SimpleTable;

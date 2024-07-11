@@ -1,7 +1,7 @@
 export const columns = [
     {
         header: "Imagen",
-        accessorKey: "imageUrl",
+        accessorKey: "image",
         isImage: true
     },
     {
@@ -24,7 +24,7 @@ export const columns = [
     },
     {
         header: "Categoría",
-        accessorKey: "cat",
+        accessorKey: "category",
         isFilter: true,
     },
     {

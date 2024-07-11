@@ -1,6 +1,5 @@
-import { ProductsTable } from ".";
+import { ProductsTable } from "./index.js";
 import { ProductProvider } from "../../context/ProductProvider.jsx";
-import { useState } from "react";
 
 
 const Products = () => {

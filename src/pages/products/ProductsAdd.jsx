@@ -1,10 +1,12 @@
-// En DialogUsageExample.j
 import { Button, Dialog, DialogPanel, TextInput, Textarea, NumberInput, SearchSelect, SearchSelectItem } from '@tremor/react';
 import { addProd } from '../../services/products/productAPI';
 
 import { useForm } from 'react-hook-form';
+import useProduct from '../../hooks/products/useProduct';
 
 const ProductsAdd = ({ isOpen, onClose }) => {
+
+  const { addProduct } = useProduct();
 
   const { register, handleSubmit, setValue, reset,
     formState: { errors } } = useForm();
@@ -12,11 +14,11 @@ const ProductsAdd = ({ isOpen, onClose }) => {
   const catData = [
     {
       "id": 1,
-      "name": "Filtros",
+      "name": "Electronica",
     },
     {
       "id": 2,
-      "name": "Frenos",
+      "name": "Productos electrónicos",
     },
     {
       "id": 3,
@@ -31,11 +33,11 @@ const ProductsAdd = ({ isOpen, onClose }) => {
   const brands = [
     {
       "id": 2,
-      "name": "ACDelco"
+      "name": "Nokia"
     },
     {
       "id": 1,
-      "name": "Bosch"
+      "name": "Sony"
     },
     {
       "id": 4,
@@ -56,13 +58,22 @@ const ProductsAdd = ({ isOpen, onClose }) => {
   };
 
   const handleChangeCat = (value) => {
-    setValue('cat', value);
+    setValue('category', value);
   };
 
   const onSubmit = handleSubmit((data) => {
     try {
-      addProd(data);
+      addProduct({
+        name: data.name,
+        desc: data.desc,
+        quantity: data.quantity,
+        price: data.price,
+        image: data.image,
+        category: data.category,
+        brand: data.brand,
+      });
       onClose();
+      console.log(data)
       return alert("Producto creado")
     } catch (error) {
       return "error"
@@ -77,13 +88,13 @@ const ProductsAdd = ({ isOpen, onClose }) => {
           <div className="flex flex-col gap-2">
             <h1 className='text-tremor-title dark:text-dark-tremor-content-emphasis text-tremor-content-emphasis'>Crear Producto</h1>
             <div className="flex flex-col">
-              <label htmlFor="prod_name">Nombre del Producto</label>
+              <label htmlFor="name">Nombre del Producto</label>
               <TextInput
                 error={errors.name}
                 errorMessage={errors.name?.message}
                 type="text"
-                id="prod_name"
-                name="prod_name"
+                id="name"
+                name="name"
                 {...register("name", {
                   required: {
                     value: true,
@@ -97,16 +108,16 @@ const ProductsAdd = ({ isOpen, onClose }) => {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="description">Descripción</label>
+              <label htmlFor="desc">Descripción</label>
               <Textarea
-              error={errors.desc}
-              errorMessage={errors.desc?.message}
-                id="description"
-                name="description"
+                error={errors.desc}
+                errorMessage={errors.desc?.message}
+                id="desc"
+                name="desc"
                 {...register("desc",
                 {maxLength: {
-                  value:255,
-                  message:"La cantidad maxima es de 255 caracteres"
+                  value: 255,
+                  message: "La cantidad máxima es de 255 caracteres"
                 }})}
                 className="mt-1 p-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 min-w-min"
               ></Textarea>
@@ -127,7 +138,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                     },
                     max: {
                       value: 32000,
-                      message: "La cantidad maxima es de 32.000"
+                      message: "La cantidad máxima es de 32,000"
                     }
                   })}
               />
@@ -148,29 +159,29 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                     },
                     max: {
                       value: 9999999999,
-                      message: "El precio supero la cantidad maxima"
+                      message: "El precio superó la cantidad máxima"
                     }
                   }
                 )}
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="image_url">URL de la Imagen</label>
+              <label htmlFor="image">URL de la Imagen</label>
               <Textarea
-                error={errors.imageUrl}
-                errorMessage={errors.imageUrl?.message}
+                error={errors.image}
+                errorMessage={errors.image?.message}
                 type="text"
-                id="image_url"
-                name="image_url"
-                {...register("imageUrl",
+                id="image"
+                name="image"
+                {...register("image",
                 {maxLength: {
-                  value:255,
-                  message:"La cantidad maxima es de 255 caracteres"
+                  value: 255,
+                  message: "La cantidad máxima es de 255 caracteres"
                 }})}
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="cat">Categoría</label>
+              <label htmlFor="category">Categoría</label>
               <SearchSelect onValueChange={handleChangeCat}>
                 {catData.map((cat) => (
                   <SearchSelectItem key={cat.id} value={cat.id}>

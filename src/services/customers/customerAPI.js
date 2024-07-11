@@ -1,9 +1,13 @@
-import { axios } from "axios";
+import apiClient from "../apiClient";
 
-const URL_API = "http//:localhost:8081"
+const URL_API = "/user"
 
-export const getAllCustomer = async () => {
+export const getActiveCustomers = async () => {
     try {
-        const response = await axios.get(`${URL_API}/getAllUser`)
+        const response = await apiClient.get(`${URL_API}/getAllCustomers`)
+        return response.data;
+    } catch (error) {
+        console.log('Error al obtener usuarios:', error);
+        throw error;
     }
 }

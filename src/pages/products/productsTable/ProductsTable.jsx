@@ -1,66 +1,55 @@
-import { useState } from "react";
+import React from "react";
 import SimpleTable from "../../../components/table/SimpleTable.jsx";
-import useProducts from "../../../hooks/useProduct.js";
-import ProductsAdd from "../ProductsAdd.jsx";
-import { Button } from "@tremor/react";
-import { columns, filters } from "./dataTable.js"
-import { CardDetailsProduct } from "../productsDetails";
-import data from "../productsDetails/testData.json"
+import { columns, filters } from "./dataTable.js";
+import useProduct from "../../../hooks/products/useProduct.js";
+import { RiEditBoxLine, RiFileSearchLine } from "react-icons/ri";
+import { Button, Icon } from "@tremor/react";
+import CardDetailsProduct from "../productsDetails/CardDetailsProduct.jsx";
+import useActionsTable from "../../../hooks/ui/useActionsTable.js";
+import ProductAdd from "../ProductsAdd.jsx"
 
 const ProductsTable = () => {
+    const { products } = useProduct();
 
-    const [dataDetails, setDataDetails] = useState([]);
+    // Actions Button Table
+    const { detailsIsOpen, handleCloseDetails, handleSelectDetailData, selectDetailData, createIsOpen, handleCloseCreate } = useActionsTable();
 
-    const [isOpenForm, setIsOpenForm] = useState(false);
-    const handleToggleForm = () => {
-        setIsOpenForm(!isOpenForm);
-    };
+    const renderActionButtons = (row) => (
+        <span className="flex gap-2 cursor-pointer">
+            <Icon icon={RiEditBoxLine} variant="shadow" tooltip="Editar" size="xs"
+                onClick={() => alert("Editar")}
+            />
+            <Icon icon={RiFileSearchLine} variant="shadow" tooltip="Detalles" size="xs"
+                onClick={() => handleSelectDetailData(row)}
+            />
+        </span>
+    );
 
-    const { products, delProduct } = useProducts();
-
-    const handleDelete = (id) => {
-        delProduct(id);
-    };
-
-    const buttonAdd = (
-        < Button onClick={handleToggleForm} >
-            Añadir Productos
+    const additionalButton = (
+        <Button onClick={handleCloseCreate}>
+            Crear Producto
         </Button>
-    )
-
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleClose = () => {
-        setIsOpen(!isOpen);
-    }
-
-    const details = [
-        {
-            "title": "ID",
-            "text": data.id
-        },
-        {
-            "title": "Cantidad",
-            "text": data.quantity
-        },
-        {
-            "title": "Categoría",
-            "text": data.cat
-        },
-        {
-            "title": "Marca",
-            "text": data.brand
-        }
-    ]
+    );
 
 
-
+    
 
     return (
         <div className="h-full w-full overflow-auto">
-            <CardDetailsProduct isOpen={isOpen} handleClose={handleClose} data={dataDetails} details={details} dataDetails={dataDetails}/>
-            <ProductsAdd isOpen={isOpenForm} onClose={handleToggleForm} />
-            <SimpleTable columns={columns} data={products} nameTable={"Productos"} filters={filters} delete1={handleDelete} buttonAdd={buttonAdd} detailsProd={handleClose} dataDetails={setDataDetails}/>
+            <ProductAdd isOpen={createIsOpen} onClose={handleCloseCreate}/>
+            <CardDetailsProduct 
+                isOpen={detailsIsOpen} 
+                handleClose={handleCloseDetails} 
+                data={selectDetailData} 
+            />
+            <SimpleTable 
+                columns={columns} 
+                data={products} 
+                nameTable={"Productos"} 
+                filters={filters} 
+                renderActionButtons={renderActionButtons}
+                additionalButton={additionalButton} 
+            />
         </div>
     );
 };

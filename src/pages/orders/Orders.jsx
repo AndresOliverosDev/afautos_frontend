@@ -1,18 +1,13 @@
-import { ProductsTable, ProductsNav } from ".";
+import OrderTable from "./OrderTable";
 
-
-const Products = () => {
+const Orders = () => {
     return (
         <section className="flex flex-col gap-2 h-[97.5vh] w-full overflow-auto">
-            <div>
-                <ProductsNav />
-            </div>
             <div className="overflow-auto">
-                <ProductsTable />
+                <OrderTable />
             </div>
-
         </section>
-    );
+);
 }
 
-export default Products;
+export default Orders;

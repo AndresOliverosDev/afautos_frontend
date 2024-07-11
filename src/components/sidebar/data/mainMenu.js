@@ -5,7 +5,7 @@ export const mainMenu = [
         "header": "Inicio",
         "accordion":false,
         "icon":RiHomeLine,
-        "link":"/"
+        "link":"/inicio"
     },
     {
         "header": "Productos",

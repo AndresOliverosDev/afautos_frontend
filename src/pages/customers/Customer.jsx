@@ -1,15 +1,14 @@
-import SalesTable from "./SalesTable/SalesTable";
+import CustomerTable from "./customerTable/CustomerTable";
 
-
-const Sales = () => {
+const Customer = () => {
 
     return (
             <section className="flex flex-col gap-2 h-[97.5vh] w-full overflow-auto">
                 <div className="overflow-auto">
-                    <SalesTable />
+                    <CustomerTable />
                 </div>
             </section>
     );
 }
 
-export default Sales;
+export default Customer;

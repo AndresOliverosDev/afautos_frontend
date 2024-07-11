@@ -1,7 +1,7 @@
 // En ProductNav.js
 import { Button, Card } from "@tremor/react";
 import React from "react";
-import { ProductsAdd } from "./";
+import { ProductsAdd } from ".";
 
 const ProductNav = () => {
     const [isDialogOpen, setIsDialogOpen] = React.useState(false);
