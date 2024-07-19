@@ -11,6 +11,7 @@ import { NotFoundPage, Unauthorized } from '../pages/errors/index';
 import { Customer } from '../pages/customers/index';
 import Sales from '../pages/sales/Sales';
 import Orders from "../pages/orders/Orders"
+import Category from "../pages/products/category/Category";
 
 const MyRoutes = () => {
   return (
@@ -46,6 +47,14 @@ const MyRoutes = () => {
         <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VENTAS']}>
           <MainLayout>
             <ReportsProducts />
+          </MainLayout>
+        </ProtectedRoute>
+      } />
+
+      <Route path='/categorias' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+          <MainLayout>
+            <Category />
           </MainLayout>
         </ProtectedRoute>
       } />

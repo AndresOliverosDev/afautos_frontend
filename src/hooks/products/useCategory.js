@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
-import { getAllCat } from "../../services/products/categories/categoryAPI";
+import { getAllCategories } from "../../services/products/categoryAPI";
 
 const useCategory = () => {
-    const [catData, setCatData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const cat = await getAllCat();
-                setCatData(cat);
+                const data = await getAllCategories();
+                setCategoryData(categoryData);
+                setLoading(false);
             } catch (error) {
-                throw new Error("Error del servidor");
+                setError(error);
+                setLoading(false);
             }
         };
       fetchData();
     }, []);
-    return (catData);
+
+    return (
+        categoryData,
+        error,
+        loading
+    );
 }
 
-export default useCategory;
+export default useCategory; 
