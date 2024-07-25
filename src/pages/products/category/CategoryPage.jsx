@@ -1,12 +1,12 @@
 import { Card } from "@tremor/react"
 import CategoryTable from "./categoryTable/CategoryTable";
 
-const Category = () => {
+const CategoryPage = () => {
     return (
-        <Card>
+        <Card className="h-full">
             <CategoryTable />
         </Card>
     )
 }
 
-export default Category;
+export default CategoryPage;

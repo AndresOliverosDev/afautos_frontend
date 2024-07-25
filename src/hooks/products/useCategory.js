@@ -1,30 +1,43 @@
 import { useEffect, useState } from "react";
-import { getAllCategories } from "../../services/products/categoryAPI";
+import { getAllCategories, createCategoryAPI } from "../../services/products/categoryAPI";
 
 const useCategory = () => {
     const [categoryData, setCategoryData] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [createMessage, setCreateMessage] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const data = await getAllCategories();
-                setCategoryData(categoryData);
+                setCategoryData(data);
                 setLoading(false);
             } catch (error) {
                 setError(error);
                 setLoading(false);
             }
         };
-      fetchData();
+        fetchData();
     }, []);
 
-    return (
+    const createCategory = async (category) => {
+        try {
+            const response = await createCategoryAPI(category);
+            setCategoryData(prevData => [...prevData, category]);
+            setCreateMessage(response);
+        } catch(error) {
+            setError(error);
+        }
+    }
+
+    return {
         categoryData,
         error,
-        loading
-    );
+        loading,
+        createCategory,
+        createMessage
+    };
 }
 
 export default useCategory; 

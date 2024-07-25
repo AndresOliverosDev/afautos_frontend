@@ -11,7 +11,7 @@ import { NotFoundPage, Unauthorized } from '../pages/errors/index';
 import { Customer } from '../pages/customers/index';
 import Sales from '../pages/sales/Sales';
 import Orders from "../pages/orders/Orders"
-import Category from "../pages/products/category/Category";
+import Category from "../pages/products/category/CategoryPage";
 
 const MyRoutes = () => {
   return (
