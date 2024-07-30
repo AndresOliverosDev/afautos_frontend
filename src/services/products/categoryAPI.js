@@ -25,3 +25,15 @@ export const createCategoryAPI = async (category) => {
         }
     }
 }
+
+export const deleteCategoryAPI = async (id) => {
+    try {
+        const response = await apiClient.delete(`${URL_API}/deleteCategory/${id}`);
+        return response.data;
+    } catch (error) {
+        throw {
+            code: error.response?.status || 500,
+            message: error.response?.message || "Error desconocido"
+        } 
+    }
+}

@@ -11,5 +11,5 @@ export {
   LoadingComponent,
   ErrorComponent,
   SimpleTable,
-  ActionButtons
+  ActionButtons,
 };

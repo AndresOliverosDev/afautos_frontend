@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import { getAllCategories, createCategoryAPI } from "../../services/products/categoryAPI";
+import { getAllCategories, createCategoryAPI, deleteCategoryAPI } from "../../services/products/categoryAPI";
 
 const useCategory = () => {
     const [categoryData, setCategoryData] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [createMessage, setCreateMessage] = useState(null);
+    const [messages, setMessages] = useState({ create: null, delete: null });
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
                 const data = await getAllCategories();
                 setCategoryData(data);
-                setLoading(false);
             } catch (error) {
-                setError(error);
+                setError(error.message);
+            } finally {
                 setLoading(false);
             }
         };
@@ -23,21 +24,41 @@ const useCategory = () => {
 
     const createCategory = async (category) => {
         try {
-            const response = await createCategoryAPI(category);
-            setCategoryData(prevData => [...prevData, category]);
-            setCreateMessage(response);
-        } catch(error) {
-            setError(error);
+            const createdCategory = await createCategoryAPI(category);
+            setCategoryData(prevData => [...prevData, createdCategory]);
+            console.log(categoryData)
+            setMessages(prevMessages => ({ ...prevMessages, create: `Categoría "${createdCategory.name}" creada correctamente.` }));
+            setError(null);
+            return createdCategory;
+        } catch (error) {
+            setError(error.message);
+            setMessages(prevMessages => ({ ...prevMessages, create: error.message }));
+            throw error;
         }
-    }
+    };
+
+    const deleteCategory = async (id) => {
+        try {
+            const response = await deleteCategoryAPI(id);
+            setCategoryData(prevData => prevData.filter(category => category.id !== id));
+            setMessages(prevMessages => ({ ...prevMessages, delete: "Categoría eliminada correctamente" }));
+            setError(null);
+            return response;
+        } catch (error) {
+            setError(error.message);
+            setMessages(prevMessages => ({ ...prevMessages, delete: error.message }));
+            throw error;
+        }
+    };
 
     return {
         categoryData,
         error,
         loading,
         createCategory,
-        createMessage
+        deleteCategory,
+        messages
     };
-}
+};
 
-export default useCategory; 
+export default useCategory;
