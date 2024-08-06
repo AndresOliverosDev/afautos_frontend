@@ -9,7 +9,7 @@ export const columns = [
     },
     {
         header: "Descripcion",
-        accessorKey: "description",
+        accessorKey: "desc",
     },
 ];
 

@@ -26,7 +26,6 @@ const useCategory = () => {
         try {
             const createdCategory = await createCategoryAPI(category);
             setCategoryData(prevData => [...prevData, createdCategory]);
-            console.log(categoryData)
             setMessages(prevMessages => ({ ...prevMessages, create: `Categoría "${createdCategory.name}" creada correctamente.` }));
             setError(null);
             return createdCategory;
@@ -36,6 +35,9 @@ const useCategory = () => {
             throw error;
         }
     };
+    
+
+    
 
     const deleteCategory = async (id) => {
         try {

@@ -23,6 +23,10 @@ export const mainMenu = [
             {
                 "name": 'Categorias',
                 'link': '/categorias'
+            },
+            {
+                "name": 'Marcas',
+                'link': '/marcas'
             }
         ]
     },

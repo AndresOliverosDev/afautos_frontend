@@ -15,9 +15,9 @@ function SidebarDesktop({ user, state, toggleSidebar, logout }) {
 
     return (
         <Card
-            className="overflow-y-auto max-w-64 p-4 hidden lg:flex flex-col text-tremor-default dark:text-gray-400 text-gray-600 h-full gap-8">
+            className="overflow-y-auto max-w-64 p-4 hidden lg:flex flex-col text-tremor-default dark:text-gray-400 text-gray-600 h-full gap-5">
             <div className="flex gap-2 items-center justify-between">
-                <div className="flex gap-2 items-center w-fit">
+                <div className="flex gap-2 items-center w-fit mb-1">
                     <CircleAvatar firstWord={user.names} secondWord={user.lastName} />
                     <h1
                         className="font-medium">
@@ -61,7 +61,7 @@ function SidebarDesktop({ user, state, toggleSidebar, logout }) {
                     settingMenu.map((item, index) => (
                         <Link key={index} to={item.link} className="flex items-center pl-2 hover:bg-gray-100 hover:dark:bg-gray-600 font-medium rounded-lg cursor-pointer py-1.5">
                             <Icon icon={item.icon} className="self-start p-0 pr-2" />
-                            <p className="">{item.name}</p>
+                            <p>{item.name}</p>
                         </Link>
                     ))
                 }

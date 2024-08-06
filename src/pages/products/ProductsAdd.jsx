@@ -3,32 +3,15 @@ import { addProd } from '../../services/products/productAPI';
 
 import { useForm } from 'react-hook-form';
 import useProduct from '../../hooks/products/useProduct';
+import useCategory from '../../hooks/products/useCategory';
 
 const ProductsAdd = ({ isOpen, onClose }) => {
 
   const { addProduct } = useProduct();
+  const { categoryData } = useCategory();
 
   const { register, handleSubmit, setValue, reset,
     formState: { errors } } = useForm();
-
-  const catData = [
-    {
-      "id": 1,
-      "name": "Electronica",
-    },
-    {
-      "id": 2,
-      "name": "Productos electrónicos",
-    },
-    {
-      "id": 3,
-      "name": "Baterías",
-    },
-    {
-      "id": 4,
-      "name": "Lubricantes",
-    }
-  ]
 
   const brands = [
     {
@@ -183,7 +166,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
             <div className="flex flex-col">
               <label htmlFor="category">Categoría</label>
               <SearchSelect onValueChange={handleChangeCat}>
-                {catData.map((cat) => (
+                {categoryData.map((cat) => (
                   <SearchSelectItem key={cat.id} value={cat.id}>
                     {cat.name}
                   </SearchSelectItem>

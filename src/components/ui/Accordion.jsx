@@ -25,7 +25,7 @@ const Accordion = ({ state, title, items, handle, icon }) => {
       <ul className={`transition-max-height ${state ? 'max-h-screen' : 'max-h-0'} overflow-hidden flex flex-col`}>
         {items.map((item, index) => (
           <Link key={index} to={`${item.link}`}>
-            <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1.5 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">
+            <li className="hover:bg-color-light flex cursor-pointer items-center gap-1 rounded-md px-10 py-1 text-gray-500 hover:bg-gray-50 dark:text-gray-500 hover:dark:bg-gray-800">
               {item.name}
             </li>
           </Link>

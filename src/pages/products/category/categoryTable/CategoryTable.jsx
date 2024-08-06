@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useCategory from "../../../../hooks/products/useCategory";
 import useActionsTable from "../../../../hooks/ui/useActionsTable";
 import { Button } from "@tremor/react";
@@ -8,12 +8,14 @@ import { columns, filters } from "./categoryDataTable";
 import CategoryForm from "../CategoryForm";
 
 const CategoryTable = () => {
+
     const {
         categoryData,
         deleteCategory,
         loading,
         error,
-        messages
+        messages,
+        createCategory
     } = useCategory();
 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -25,7 +27,10 @@ const CategoryTable = () => {
         handleCloseDelete
     } = useActionsTable();
 
-
+    const handleCreate = async (category) => {
+        await createCategory(category);
+        handleCloseCreate();
+    };
 
     const handleDelete = async () => {
         if (selectedCategory) {
@@ -71,6 +76,7 @@ const CategoryTable = () => {
                 <CategoryForm
                     isOpen={createIsOpen}
                     onClose={handleCloseCreate}
+                    onCreate={handleCreate}
                 />
                 <DialogDelete
                     isOpen={deleteIsOpen}
