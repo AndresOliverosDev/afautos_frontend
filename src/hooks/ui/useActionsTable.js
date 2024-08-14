@@ -5,6 +5,7 @@ const useActionsTable = () => {
     const [selectDetailData, setSelectDetailData] = useState(null);
     const [createIsOpen, setCreateIsOpen] = useState(false);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+    const [updateIsOpen, setUpdateIsOpen] = useState(false);
 
     const handleCloseDetails = () => {
         setDetailsIsOpen(!detailsIsOpen);
@@ -23,6 +24,11 @@ const useActionsTable = () => {
         setCreateIsOpen(!createIsOpen);
     };
 
+    const handleCloseUpdate = (data) => {
+        setSelectDetailData(data);
+        setUpdateIsOpen(!updateIsOpen);
+    };
+
     return {
         detailsIsOpen,
         handleCloseDetails,
@@ -31,7 +37,9 @@ const useActionsTable = () => {
         createIsOpen,
         handleCloseCreate,
         deleteIsOpen,
-        handleCloseDelete
+        handleCloseDelete,
+        updateIsOpen,
+        handleCloseUpdate
     };
 };
 

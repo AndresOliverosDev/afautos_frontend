@@ -1,24 +1,33 @@
-import { Button, Dialog, DialogPanel, Textarea, TextInput } from "@tremor/react"
+import { Button, Dialog, DialogPanel, Textarea, TextInput } from "@tremor/react";
 import { useForm } from "react-hook-form";
 import useCategory from "../../../hooks/products/useCategory";
+import { useEffect } from "react";
 
-const CategoryForm = ({ isOpen, onClose }) => {
+const CategoryForm = ({ isOpen, onClose, dataUpdate }) => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const { register, handleSubmit, setValue, reset,
-        formState: { errors } } = useForm();
-    
-    const {createCategory} = useCategory();
+    const { createCategory, updateCategory } = useCategory();
+
+    useEffect(() => {
+        if (dataUpdate) {
+            reset({ name: dataUpdate?.name, description: dataUpdate?.desc });
+        }
+    }, [dataUpdate, reset]);
 
     const onSubmit = handleSubmit((data) => {
-        createCategory(data);
+        if (dataUpdate) {
+            updateCategory(dataUpdate.id, data);
+        } else {
+            createCategory(data);
+        }
         onClose();
-    })
+    });
 
     return (
         <Dialog open={isOpen} onClose={onClose}>
             <DialogPanel className="flex flex-col gap-5">
                 <p className="text-xl border-b-4 border-tremor-brand pb-2">
-                    CREAR CATEGORÍA
+                    {dataUpdate ? 'ACTUALIZAR CATEGORÍA' : 'CREAR CATEGORÍA'}
                 </p>
                 <form className="flex flex-col gap-4" onSubmit={onSubmit}>
                     <div className="flex flex-col gap-2">
@@ -30,12 +39,12 @@ const CategoryForm = ({ isOpen, onClose }) => {
                             error={errors.name}
                             errorMessage={errors.name?.message}
                             {
-                                ...register("name",{
-                                    required: {
-                                        value:true,
-                                        message:"El nombre es requerido"
-                                    }
-                                })
+                            ...register("name", {
+                                required: {
+                                    value: true,
+                                    message: "El nombre es requerido"
+                                }
+                            })
                             }
                         />
                     </div>
@@ -45,24 +54,25 @@ const CategoryForm = ({ isOpen, onClose }) => {
                             placeholder="Descripción de la categoría"
                             id="description"
                             name="description"
-                            error={errors.name}
-                            errorMessage={errors.name?.message}
+                            error={errors.description}
+                            errorMessage={errors.description?.message}
                             {
-                                ...register("description",{
-                                    required: {
-                                        value:true,
-                                        message:"El nombre es requerido"
-                                    }
-                                })
+                            ...register("description", {
+                                required: {
+                                    value: true,
+                                    message: "La descripción es requerida"
+                                }
+                            })
                             }
                         />
                     </div>
                     <Button variant="secondary" type="submit">
-                        Crear categoría
+                        {dataUpdate ? 'Actualizar categoría' : 'Crear categoría'}
                     </Button>
                 </form>
             </DialogPanel>
         </Dialog>
-    )
-}
+    );
+};
+
 export default CategoryForm;

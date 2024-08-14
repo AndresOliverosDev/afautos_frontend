@@ -23,8 +23,10 @@ const CategoryTable = () => {
     const {
         createIsOpen,
         deleteIsOpen,
+        updateIsOpen,
         handleCloseCreate,
-        handleCloseDelete
+        handleCloseDelete,
+        handleCloseUpdate,
     } = useActionsTable();
 
     const handleCreate = async (category) => {
@@ -40,11 +42,15 @@ const CategoryTable = () => {
 
     const renderActionButtons = (row) => (
         <ActionButtons
-            editAction={() => alert("Editar")}
+            editAction={() => {
+                setSelectedCategory(row);
+                handleCloseUpdate();
+            }}
             deleteAction={() => {
                 setSelectedCategory(row);
                 handleCloseDelete();
             }}
+
         />
     );
 
@@ -77,6 +83,12 @@ const CategoryTable = () => {
                     isOpen={createIsOpen}
                     onClose={handleCloseCreate}
                     onCreate={handleCreate}
+                />
+                <CategoryForm
+                    isOpen={updateIsOpen}
+                    onClose={handleCloseUpdate}
+                    onCreate={() => alert("jdjdj")}
+                    dataUpdate={selectedCategory}
                 />
                 <DialogDelete
                     isOpen={deleteIsOpen}

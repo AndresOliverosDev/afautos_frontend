@@ -34,6 +34,18 @@ export const deleteCategoryAPI = async (id) => {
         throw {
             code: error.response?.status || 500,
             message: error.response?.message || "Error desconocido"
-        } 
+        }
+    }
+}
+
+export const updateCategoryAPI = async (category, categoryId) => {
+    try {
+        const response = await apiClient.put(`${URL_API}/updateCategory/${categoryId}`, category);
+        return response.data;
+    } catch (error) {
+        throw {
+            code: error.response?.status || 500,
+            message: error.response?.message || "Error desconocido",
+        }
     }
 }
