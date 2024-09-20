@@ -13,14 +13,8 @@ const useAuth = () => {
             setUser(userData);
             setErrorAuth(null);
             return userData;
-        } catch (err) {
-            setErrorAuth(
-                (err.response &&
-                    err.response.data &&
-                    err.response.data.message) ||
-                    err.message ||
-                    err.toString()
-                );
+        } catch (error) {
+            setErrorAuth(error.message);
         }
     };
 

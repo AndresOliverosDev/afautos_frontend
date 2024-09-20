@@ -21,7 +21,12 @@ const login = async (username, password) => {
 
         return response.data;
     } catch (error) {
-        throw error;
+        throw {
+            code: error?.response?.status || 500,
+            message: error?.response?.status && error?.response?.status === 401 && "Error al conectar el servidor" ||
+                error?.response?.message || "Error al conectar el servidor"
+        };
+        console.log(error.message)
     }
 };
 

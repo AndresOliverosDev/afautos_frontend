@@ -3,12 +3,10 @@ import { RiKey2Fill, RiUserFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/authentication/useAuth";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 const Login = () => {
-    const { login } = useAuth();
+    const { login, errorAuth } = useAuth();
     const navigate = useNavigate();
-    const [authError, setAuthError] = useState("");
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -16,8 +14,6 @@ const Login = () => {
         const success = await login(data.username, data.password);
         if (success) {
             navigate("/inicio");
-        } else {
-            setAuthError("Nombre de usuario o contraseña incorrectos");
         }
     }
 
@@ -25,14 +21,14 @@ const Login = () => {
         <div className="flex w-full justify-center items-center">
             <Card className="w-[95%] sm:w-[55%] md:w-[45%] lg:w-[30%] h-[92%] p-3 flex flex-col gap-2">
                 <div className="bg-black h-[30%] flex items-center justify-center bg-opacity-5 rounded-xl">
-                    <p className="font-bold text-4xl bg-black p-4 rounded-full bg-opacity-30">AF</p>
+                    <img className="w-44 h-44" src="../../../../public/logo_afautos.svg" />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="bg-black rounded-xl bg-opacity-15 h-[70%] flex items-center justify-center flex-col gap-4">
                     <h1 className="text-xl">
                         Iniciar sesión
                     </h1>
-                    {authError && (
-                        <span className="text-red-500 text-sm">{authError}</span>
+                    {errorAuth && (
+                        <span className="text-red-500 text-sm">{errorAuth}</span>
                     )}
                     <div className="bg-dark w-full px-8 flex flex-col gap-3">
                         <div className="flex flex-col gap-1 items-end">
