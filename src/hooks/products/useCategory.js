@@ -80,7 +80,8 @@ const useCategory = () => {
         loading,
         createCategory,
         deleteCategory,
-        messages
+        messages,
+        updateCategory
     };
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useCategory from "../../../../hooks/products/useCategory";
 import useActionsTable from "../../../../hooks/ui/useActionsTable";
 import { Button } from "@tremor/react";

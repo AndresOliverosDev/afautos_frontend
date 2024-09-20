@@ -4,6 +4,8 @@ import { addProd } from '../../services/products/productAPI';
 import { useForm } from 'react-hook-form';
 import useProduct from '../../hooks/products/useProduct';
 import useCategory from '../../hooks/products/useCategory';
+import { TextInputIcon } from '../../components/ui/input';
+import { RiShoppingBag2Line, RiUser5Line } from 'react-icons/ri';
 
 const ProductsAdd = ({ isOpen, onClose }) => {
 
@@ -71,13 +73,15 @@ const ProductsAdd = ({ isOpen, onClose }) => {
           <div className="flex flex-col gap-2">
             <h1 className='text-tremor-title dark:text-dark-tremor-content-emphasis text-tremor-content-emphasis'>Crear Producto</h1>
             <div className="flex flex-col">
-              <label htmlFor="name">Nombre del Producto</label>
-              <TextInput
+              <TextInputIcon
+                label="Nombre del Producto"
+                Icon={RiShoppingBag2Line}
                 error={errors.name}
                 errorMessage={errors.name?.message}
                 type="text"
                 id="name"
                 name="name"
+                placeholder="Ingresa el nombre del producto"
                 {...register("name", {
                   required: {
                     value: true,
@@ -89,6 +93,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                   }
                 })}
               />
+
             </div>
             <div className="flex flex-col">
               <label htmlFor="desc">Descripción</label>
@@ -98,10 +103,12 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 id="desc"
                 name="desc"
                 {...register("desc",
-                {maxLength: {
-                  value: 255,
-                  message: "La cantidad máxima es de 255 caracteres"
-                }})}
+                  {
+                    maxLength: {
+                      value: 255,
+                      message: "La cantidad máxima es de 255 caracteres"
+                    }
+                  })}
                 className="mt-1 p-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 min-w-min"
               ></Textarea>
             </div>
@@ -157,10 +164,12 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 id="image"
                 name="image"
                 {...register("image",
-                {maxLength: {
-                  value: 255,
-                  message: "La cantidad máxima es de 255 caracteres"
-                }})}
+                  {
+                    maxLength: {
+                      value: 255,
+                      message: "La cantidad máxima es de 255 caracteres"
+                    }
+                  })}
               />
             </div>
             <div className="flex flex-col">

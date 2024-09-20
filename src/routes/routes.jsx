@@ -12,6 +12,7 @@ import { Customer } from '../pages/customers/index';
 import Sales from '../pages/sales/Sales';
 import Orders from "../pages/orders/Orders"
 import Category from "../pages/products/category/CategoryPage";
+import AddressPage from '../pages/address/AddressPage';
 
 const MyRoutes = () => {
   return (
@@ -55,6 +56,14 @@ const MyRoutes = () => {
         <ProtectedRoute allowedRoles={['ROLE_ADMIN']}>
           <MainLayout>
             <Category />
+          </MainLayout>
+        </ProtectedRoute>
+      } />
+
+<Route path='/marcas' element={
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+          <MainLayout>
+            <AddressPage />
           </MainLayout>
         </ProtectedRoute>
       } />

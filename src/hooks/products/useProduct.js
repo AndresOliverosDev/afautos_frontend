@@ -32,7 +32,7 @@ const useProduct = () => {
     const addProduct = async (product) => {
         try {
             await addProd(product);
-            alert(product.data)
+            alert("Product creado")
         } catch(error) {
             console.error("error al crear el producto")
         }

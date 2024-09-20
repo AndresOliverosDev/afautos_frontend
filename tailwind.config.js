@@ -38,6 +38,34 @@ export default {
         "color-disable-light": "#03396c",
         },
 
+        light: {
+          border: {
+            DEFAULT: "#e7e5e4"
+          },
+          brand: {
+            DEFAULT: "#1e40af"
+          },
+          content: {
+            DEFAULT: "#6b7280",
+            error: "#dc2626",
+          }
+        },
+
+        dark: {
+          border: {
+            DEFAULT: "#1e293b"
+          },
+          brand: {
+            DEFAULT: "#1d4ed8",
+          },
+          content: {
+            DEFAULT: "#9ca3af",
+            error: "#ef4444",
+            subtle: "#4b5563",
+            emphasis: "#e5e7eb",
+          }
+        },
+
         // light mode
         tremor: {
           brand: {
@@ -124,6 +152,13 @@ export default {
         'tremor-title': ['1.125rem', { lineHeight: '1.75rem' }],
         'tremor-metric': ['1.875rem', { lineHeight: '2.25rem' }],
       },
+      fontSize: {
+        small: ['0.65rem', { lineHeight: "0.95rem" }],
+        label: ['0.75rem', { lineHeight: '1rem' }],
+        default: ['0.875rem', { lineHeight: '1.25rem' }],
+        title: ['1.125rem', { lineHeight: '1.75rem' }],
+        metric: ['1.875rem', { lineHeight: '2.25rem' }],
+      },
     },
   },
   safelist: [
@@ -155,5 +190,5 @@ export default {
         /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
     },
   ],
-  plugins: [require('@headlessui/tailwindcss'), require('@tailwindcss/forms')],
+  plugins: [require('@headlessui/tailwindcss')],
 }
