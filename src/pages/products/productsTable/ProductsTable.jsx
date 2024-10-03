@@ -2,14 +2,14 @@ import React from "react";
 import SimpleTable from "../../../components/table/SimpleTable.jsx";
 import { columns, filters } from "./dataTable.js";
 import useProduct from "../../../hooks/products/useProduct.js";
-import { RiEditBoxLine, RiFileSearchLine } from "react-icons/ri";
+import { RiDeleteBack2Line, RiEditBoxLine, RiFileSearchLine } from "react-icons/ri";
 import { Button, Icon } from "@tremor/react";
 import CardDetailsProduct from "../productsDetails/CardDetailsProduct.jsx";
 import useActionsTable from "../../../hooks/ui/useActionsTable.js";
 import ProductAdd from "../ProductsAdd.jsx"
 
 const ProductsTable = () => {
-    const { products } = useProduct();
+    const { products, getAllProducts, delProduct } = useProduct();
 
     // Actions Button Table
     const { detailsIsOpen, handleCloseDetails, handleSelectDetailData, selectDetailData, createIsOpen, handleCloseCreate } = useActionsTable();
@@ -22,6 +22,9 @@ const ProductsTable = () => {
             <Icon icon={RiFileSearchLine} variant="shadow" tooltip="Detalles" size="xs"
                 onClick={() => handleSelectDetailData(row)}
             />
+            <Icon icon={RiDeleteBack2Line} variant="shadow" tooltip="Eliminar" size="xs"
+                onClick={() => delProduct(row.id)}
+            />
         </span>
     );
 
@@ -29,6 +32,7 @@ const ProductsTable = () => {
         <Button onClick={handleCloseCreate}>
             Crear Producto
         </Button>
+        
     );
 
 
@@ -48,7 +52,8 @@ const ProductsTable = () => {
                 nameTable={"Productos"} 
                 filters={filters} 
                 renderActionButtons={renderActionButtons}
-                additionalButton={additionalButton} 
+                additionalButton={additionalButton}
+                reloadAction={getAllProducts}
             />
         </div>
     );

@@ -13,7 +13,7 @@ import TableHeader from "./TableHeader";
 import TableFooter from "./TableFooter";
 import { RiArrowDownSLine } from "react-icons/ri";
 
-const SimpleTable = ({ renderActionButtons, columns, data, nameTable, filters, additionalButton }) => {
+const SimpleTable = ({ renderActionButtons, columns, data, nameTable, filters, additionalButton, reloadAction }) => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
 
@@ -44,6 +44,7 @@ const SimpleTable = ({ renderActionButtons, columns, data, nameTable, filters, a
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
         additionalButton={additionalButton}
+        reloadAction={reloadAction}
       />
       <Card className="py-1">
         <Table>

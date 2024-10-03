@@ -1,13 +1,14 @@
 import apiClient from "../apiClient";
+import { handleError } from "../handleError";
 
 const URL_API = "/product";
 
 export const deleteProd = async (id) => {
     try {
-        const response = await apiClient.delete(`/deleteProd/${id}`);
+        const response = await apiClient.delete(`${URL_API}/deleteProductById/${id}`);
         return response.data;
     } catch (error) {
-        throw new Error("Error en la conexión con el servidor")
+        throw handleError(error)
     }
 };
 
@@ -16,8 +17,7 @@ export const getAllProd = async () => {
         const response = await apiClient.get(`${URL_API}/getAllProducts`);
         return response.data;
     } catch (error) {
-        console.log(error);
-        throw error;
+        throw handleError(error);
     }
 }
 

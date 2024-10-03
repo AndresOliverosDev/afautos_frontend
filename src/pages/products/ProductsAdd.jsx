@@ -4,8 +4,6 @@ import { addProd } from '../../services/products/productAPI';
 import { useForm } from 'react-hook-form';
 import useProduct from '../../hooks/products/useProduct';
 import useCategory from '../../hooks/products/useCategory';
-import { TextInputIcon } from '../../components/ui/input';
-import { RiShoppingBag2Line, RiUser5Line } from 'react-icons/ri';
 
 const ProductsAdd = ({ isOpen, onClose }) => {
 
@@ -73,9 +71,8 @@ const ProductsAdd = ({ isOpen, onClose }) => {
           <div className="flex flex-col gap-2">
             <h1 className='text-tremor-title dark:text-dark-tremor-content-emphasis text-tremor-content-emphasis'>Crear Producto</h1>
             <div className="flex flex-col">
-              <TextInputIcon
-                label="Nombre del Producto"
-                Icon={RiShoppingBag2Line}
+            <label htmlFor="desc">Nombre</label>
+              <TextInput
                 error={errors.name}
                 errorMessage={errors.name?.message}
                 type="text"

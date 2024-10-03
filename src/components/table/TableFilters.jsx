@@ -1,6 +1,7 @@
-import { Select, SelectItem, TextInput } from "@tremor/react";
+import { Icon, Select, SelectItem, TextInput } from "@tremor/react";
+import { RiRestartLine } from "react-icons/ri";
 
-const TableFilters = ({ filters, globalFilter, setGlobalFilter }) => {
+const TableFilters = ({ filters, globalFilter, setGlobalFilter, reloadAction }) => {
     return (
         <div className="py-2 px-5 flex justify-between">
             <div>
@@ -10,7 +11,7 @@ const TableFilters = ({ filters, globalFilter, setGlobalFilter }) => {
                     onChange={(e) => setGlobalFilter(e.target.value)} 
                 />
             </div>
-            <div>
+            <div className="flex items-center gap-6"> 
                 <Select defaultValue="1">
                     {filters.map((item) => (
                         <SelectItem value={item.index} key={item.index}>
@@ -18,6 +19,13 @@ const TableFilters = ({ filters, globalFilter, setGlobalFilter }) => {
                         </SelectItem>
                     ))}
                 </Select>
+                <button onClick={reloadAction}>    
+                    <Icon 
+                    className="h-10 w-10"
+                    icon={RiRestartLine}
+                    variant="shadow"
+                    ></Icon>
+                </button>
             </div>
         </div>
     );

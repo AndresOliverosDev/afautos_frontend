@@ -6,19 +6,27 @@ const useProduct = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Obtener todos los productos
+
+    const getAllProducts = async () => {
+        setLoading(true);
+        setError(null);
+        try { 
+            const response = await getAllProd();
+            setProducts(response);
+        } catch (error) {
+            setError(error.message)
+            console.log(error.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const Products = await getAllProd();
-                setProducts(Products);
-                setLoading(false);
-            } catch (error) {
-                setError(error);
-                setLoading(false);
-            }
-        };
-        fetchData();
+        getAllProducts();
     }, []);
+
+    // Eliminar productos
 
     const delProduct = async (id) => {
         try {
@@ -38,7 +46,7 @@ const useProduct = () => {
         }
     }
 
-    return { products, loading, error, delProduct, addProduct};
+    return { products, loading, error, delProduct, addProduct, getAllProducts};
 };
 
 export default useProduct;
