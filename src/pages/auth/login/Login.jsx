@@ -1,8 +1,9 @@
-import { Button, Card, Icon, TextInput } from "@tremor/react";
-import { RiKey2Fill, RiUserFill } from "react-icons/ri";
+import { Button, Card, Icon } from "@tremor/react";
+import { RiKey2Fill, RiUserFill, RiXboxFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/authentication/useAuth";
 import { useForm } from "react-hook-form";
+import { TextInput } from "../../../components/ui";
 
 const Login = () => {
     const { login, errorAuth } = useAuth();
@@ -33,10 +34,10 @@ const Login = () => {
                     <div className="bg-dark w-full px-8 flex flex-col gap-3">
                         <div className="flex flex-col gap-1 items-end">
                             <div className="flex items-center gap-2 w-full">
-                                <Icon icon={RiUserFill} color="gray" />
                                 <TextInput
                                     placeholder="Nombre de usuario"
                                     error={errors.username}
+                                    icon={<RiUserFill />}
                                     {...register("username", {
                                         required: {
                                             value: true,
@@ -55,11 +56,11 @@ const Login = () => {
                         </div>
                         <div className="flex flex-col gap-1 items-end">
                             <div className="flex items-center gap-2 w-full">
-                                <Icon icon={RiKey2Fill} color="gray" />
                                 <TextInput
                                     placeholder="Contraseña"
                                     type="password"
                                     error={errors.password}
+                                    icon={<RiKey2Fill />}
                                     {...register("password", {
                                         required: {
                                             value: true,

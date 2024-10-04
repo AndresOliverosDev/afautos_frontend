@@ -145,6 +145,9 @@ export default {
         'tremor-small': '0.375rem',
         'tremor-default': '0.5rem',
         'tremor-full': '9999px',
+        'small': '0.375rem',
+        'default': '0.7rem',
+        'full': '9999px',
       },
       fontSize: {
         'tremor-label': ['0.75rem', { lineHeight: '1rem' }],

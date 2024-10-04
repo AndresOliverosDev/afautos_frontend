@@ -1,40 +1,19 @@
-import { Button, Dialog, DialogPanel, TextInput, Textarea, NumberInput, SearchSelect, SearchSelectItem } from '@tremor/react';
-import { addProd } from '../../services/products/productAPI';
-
+import { Button, Dialog, DialogPanel, Textarea, NumberInput, SearchSelect, SearchSelectItem } from '@tremor/react';
 import { useForm } from 'react-hook-form';
 import useProduct from '../../hooks/products/useProduct';
 import useCategory from '../../hooks/products/useCategory';
+import { TextInput } from '../../components/ui'
+import useBrand from '../../hooks/products/useBrand'
 
 const ProductsAdd = ({ isOpen, onClose }) => {
 
   const { addProduct } = useProduct();
   const { categoryData } = useCategory();
+  const { brandData } = useBrand();
 
   const { register, handleSubmit, setValue, reset,
     formState: { errors } } = useForm();
 
-  const brands = [
-    {
-      "id": 2,
-      "name": "Nokia"
-    },
-    {
-      "id": 1,
-      "name": "Sony"
-    },
-    {
-      "id": 4,
-      "name": "Brembo"
-    },
-    {
-      "id": 3,
-      "name": "Mann Filter"
-    },
-    {
-      "id": 5,
-      "name": "Motul"
-    }
-  ]
 
   const handleChangeBrand = (value) => {
     setValue('brand', value);
@@ -71,7 +50,6 @@ const ProductsAdd = ({ isOpen, onClose }) => {
           <div className="flex flex-col gap-2">
             <h1 className='text-tremor-title dark:text-dark-tremor-content-emphasis text-tremor-content-emphasis'>Crear Producto</h1>
             <div className="flex flex-col">
-            <label htmlFor="desc">Nombre</label>
               <TextInput
                 error={errors.name}
                 errorMessage={errors.name?.message}
@@ -79,6 +57,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
                 id="name"
                 name="name"
                 placeholder="Ingresa el nombre del producto"
+                label="Nombre"
                 {...register("name", {
                   required: {
                     value: true,
@@ -182,7 +161,7 @@ const ProductsAdd = ({ isOpen, onClose }) => {
             <div className="flex flex-col">
               <label htmlFor="brand">Marca</label>
               <SearchSelect onValueChange={handleChangeBrand}>
-                {brands.map((brand) => (
+                {brandData.map((brand) => (
                   <SearchSelectItem key={brand.id} value={brand.id}>
                     {brand.name}
                   </SearchSelectItem>

@@ -4,6 +4,7 @@ import LoadingComponent from "./LoadingComponent.jsx";
 import ErrorComponent from "./ErrorComponent.jsx";
 import SimpleTable from "../table/SimpleTable.jsx"
 import ActionButtons from "./ActionButtons.jsx"
+import TextInput from "./inputs/TextInput.jsx";
 
 export {
   Accordion,
@@ -12,4 +13,5 @@ export {
   ErrorComponent,
   SimpleTable,
   ActionButtons,
+  TextInput
 };
