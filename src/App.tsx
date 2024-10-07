@@ -4,7 +4,7 @@ import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="h-screen p-1 w-full dark:bg-slate-950 bg-slate-200 dark:text-gray-200">
+    <div className="h-screen p-1 w-full dark:bg-dark-background bg-light-background dark:text-gray-200">
       <MyRoutes />
     </div>
   );

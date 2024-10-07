@@ -18,40 +18,58 @@ export default {
         // Page Colors
         page: {
           /*Background Dark*/
-        "bg-dark": "#1A222C",
-        "box-dark": "#24303F",
-        "ctn-primary-dark": "#130046",
-        "ctn-secondary-dark": "#110030",
-        /** Background Light */
-        "bg-light": "#E0E0E0",
-        "ctn-primary-light": "#F2F8FF",
-        "ctn-secondary-light": "#0E0027",
-        /** Dark Colors */
-        "color-primary-dark": "#4F2D8E",
-        "color-hover-dark": "#FFFFFF19",
-        "color-active-dark": "#b3cde0",
-        "color-disable-dark": "#03396c",
-        /** Light Colors */
-        "color-primary-light": "#9B81E1",
-        "color-hover-light": "#00000019",
-        "color-active-light": "#b3cde0",
-        "color-disable-light": "#03396c",
+          "bg-dark": "#1A222C",
+          "box-dark": "#24303F",
+          "ctn-primary-dark": "#130046",
+          "ctn-secondary-dark": "#110030",
+          /** Background Light */
+          "bg-light": "#E0E0E0",
+          "ctn-primary-light": "#F2F8FF",
+          "ctn-secondary-light": "#0E0027",
+          /** Dark Colors */
+          "color-primary-dark": "#4F2D8E",
+          "color-hover-dark": "#FFFFFF19",
+          "color-active-dark": "#b3cde0",
+          "color-disable-dark": "#03396c",
+          /** Light Colors */
+          "color-primary-light": "#9B81E1",
+          "color-hover-light": "#00000019",
+          "color-active-light": "#b3cde0",
+          "color-disable-light": "#03396c",
         },
 
         light: {
+          background: {
+            DEFAULT: colors.blue[50],
+          },
+          card: {
+            muted: colors.gray[50],
+            subtle: colors.gray[100],
+            DEFAULT: colors.white,
+            emphasis: colors.gray[700],
+          },
           border: {
             DEFAULT: "#e7e5e4"
           },
           brand: {
-            DEFAULT: "#1e40af"
+            DEFAULT: "#3b82f6"
           },
           content: {
-            DEFAULT: "#6b7280",
+            DEFAULT: "#1f2937",
             error: "#dc2626",
           }
         },
 
         dark: {
+          background: {
+            DEFAULT: colors.gray[800],
+          },
+          card: {
+            muted: '#131A2B',
+            subtle: colors.gray[800],
+            DEFAULT: colors.gray[900],
+            emphasis: colors.gray[300],
+          },
           border: {
             DEFAULT: "#1e293b"
           },
@@ -59,7 +77,7 @@ export default {
             DEFAULT: "#1d4ed8",
           },
           content: {
-            DEFAULT: "#9ca3af",
+            DEFAULT: "#d1d5db",
             error: "#ef4444",
             subtle: "#4b5563",
             emphasis: "#e5e7eb",
@@ -139,6 +157,18 @@ export default {
         'dark-tremor-card':
           '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
         'dark-tremor-dropdown':
+          '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        // light
+        'input': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+        'card':
+          '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+        'dropdown':
+          '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        // dark
+        'dark-input': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+        'dark-card':
+          '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+        'dark-dropdown':
           '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
       },
       borderRadius: {

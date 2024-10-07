@@ -1,5 +1,6 @@
 // Tipo para capturar en la respuesta de la API el error
 export interface ErrorResponse {
+    message: any;
     response? : {
         status?: number;
         message?: string;
