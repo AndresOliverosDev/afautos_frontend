@@ -3,14 +3,15 @@ import { forwardRef, useState, InputHTMLAttributes } from "react";
 
 // Define las propiedades que tu componente acepta
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    error?: any;          // Indica si hay un error
-    errorMessage?: any;    // Mensaje de error a mostrar
-    label?: string;           // Etiqueta del input
-    icon?: JSX.Element;       // Icono a mostrar en el input
+    error?: any;   
+    errorMessage?: any;  
+    label?: string; 
+    icon?: JSX.Element;
+    className?: string;
 }
 
 // Utiliza forwardRef para permitir el uso de referencias en el input
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({ error, errorMessage, label, icon, ...props }, ref) => {
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({ error, errorMessage, label, icon, className, ...props }, ref) => {
     const [focus, setFocus] = useState(false);
 
     const handleFocus = () => {
@@ -32,7 +33,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({ error, errorMe
                 )}
                 <input
                     ref={ref}
-                    className={`bg-transparent p-2 rounded-default w-full placeholder:text-gray-500 border ${focus ? styleFocus : error ? styleError : styleDefault}`}
+                    className={`bg-transparent px-2 py-1.5 rounded-default w-full placeholder:text-gray-500 border ${focus ? styleFocus : error ? styleError : styleDefault} ${className}`}
                     {...props}
                     onBlur={handleFocus}
                     onFocus={handleFocus}

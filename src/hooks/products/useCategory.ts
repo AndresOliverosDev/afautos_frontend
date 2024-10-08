@@ -19,18 +19,20 @@ const useCategory = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [messages, setMessages] = useState<Messages>({ create: null, delete: null, update: null }); // Tipado de messages
 
+    // Obtener datos de las categorias
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const data: Category[] = await getAllCategories(); // Tipar la respuesta como array de Category
+            setCategoryData(data);
+        } catch (error) {
+            setError((error as Error).message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const data: Category[] = await getAllCategories(); // Tipar la respuesta como array de Category
-                setCategoryData(data);
-            } catch (error) {
-                setError((error as Error).message);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchData();
     }, []);
 

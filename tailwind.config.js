@@ -57,6 +57,7 @@ export default {
           content: {
             DEFAULT: "#1f2937",
             error: "#dc2626",
+            inverted: "#e7e5e4"
           }
         },
 
@@ -65,7 +66,7 @@ export default {
             DEFAULT: colors.gray[800],
           },
           card: {
-            muted: '#131A2B',
+            muted: '#192135FF',
             subtle: colors.gray[800],
             DEFAULT: colors.gray[900],
             emphasis: colors.gray[300],
@@ -176,7 +177,7 @@ export default {
         'tremor-default': '0.5rem',
         'tremor-full': '9999px',
         'small': '0.375rem',
-        'default': '0.7rem',
+        'default': '0.5rem',
         'full': '9999px',
       },
       fontSize: {

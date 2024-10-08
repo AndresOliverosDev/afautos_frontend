@@ -14,7 +14,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
     deleteAction,
 }) => {
     return (
-        <span className="flex gap-2 cursor-pointer">
+        <span className="flex gap-2 cursor-pointer justify-end pr-2">
             {editAction && (
                 <Icon
                     icon={RiEditBoxLine}

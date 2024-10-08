@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { RiArrowDownSLine } from "react-icons/ri"; // Icono
+import { RiAddLargeFill, RiAddLine, RiArrowDownSLine, RiLoader4Fill, RiLoopRightLine } from "react-icons/ri"; // Icono
 import { Button, TextInput } from "../ui";
 
 interface Column<TData> {
@@ -15,7 +15,8 @@ interface SimpleTableProps<TData> {
   columns: Column<TData>[];
   data: TData[];
   nameTable: string;
-  reloadAction?: () => void;
+  reloadTable?: () => void;
+  handleCreate?: () => void;
 }
 
 const SimpleTable = <TData extends Record<string, any>>({
@@ -23,7 +24,8 @@ const SimpleTable = <TData extends Record<string, any>>({
   columns,
   data,
   nameTable,
-  reloadAction,
+  reloadTable,
+  handleCreate
 }: SimpleTableProps<TData>) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 6 });
@@ -50,23 +52,48 @@ const SimpleTable = <TData extends Record<string, any>>({
 
   return (
     <div className="flex flex-col gap-2 h-full overflow-auto w-full">
-      <div className="flex items-center justify-between">
-        {/* Input de la tabla */}
-        <div>
-          <TextInput
-            type="text"
-            placeholder="Buscar..."
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-          />
+      <div className="flex flex-col gap-2 overflow-auto w-full">
+        <div className="flex items-center px-6 pt-4">
+          {/* Titulo de la tabla */}
+          <div className="flex-shrink-0">
+            <h1 className="text-xl font-bold">{nameTable}</h1>
+          </div>
+          {/* Contenedor para el input y el botón */}
+          <div className="flex-grow flex items-center justify-end gap-10">
+            <div className="flex justify-end w-full max-w-xs">
+              <TextInput
+                className="max-w-xs"
+                type="text"
+                placeholder="Buscar..."
+                value={globalFilter}
+                onChange={(e) => setGlobalFilter(e.target.value)}
+              />
+            </div>
+            <div className="flex gap-4">
+              {
+                reloadTable &&
+                <Button
+                variant="ghost"
+                  onClick={reloadTable}
+                  className="px-7"
+                >
+                  <RiLoopRightLine />
+                </Button>
+
+              }
+              {
+                handleCreate &&
+                <Button
+                  onClick={handleCreate}
+                  className="px-7"
+                >
+                  <RiAddLine className="mr-1" /> Crear {nameTable.slice(0, -1)}
+                </Button>
+
+              }
+            </div>
+          </div>
         </div>
-        {/** Titulo de la tabla */}
-        <div className="flex items-center gap-2 justify-center">
-          <h1 className="text-xl font-bold">{nameTable}</h1>
-        </div>
-        <button onClick={reloadAction} className="">
-          R
-        </button>
       </div>
 
       {/* Cuerpo de la tabla */}
@@ -85,7 +112,7 @@ const SimpleTable = <TData extends Record<string, any>>({
                   </div>
                 </th>
               ))}
-              {renderActionButtons && <th className="px-4 text-left text-sm font-semibold text-gray-900 dark:text-gray-50 ">Acciones</th>}
+              {renderActionButtons && <th className="px-4 text-end text-sm font-semibold text-gray-900 dark:text-gray-50 pr-7">Acciones</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
@@ -107,7 +134,7 @@ const SimpleTable = <TData extends Record<string, any>>({
                   </td>
                 ))}
                 {renderActionButtons && (
-                  <td className="px-4 py-2 p-4 text-sm text-gray-600 dark:text-gray-400">
+                  <td className="py-2 text-sm text-gray-600 dark:text-gray-400 text-right">
                     {renderActionButtons(row)}
                   </td>
                 )}
