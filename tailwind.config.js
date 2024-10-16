@@ -55,9 +55,12 @@ export default {
             DEFAULT: "#3b82f6"
           },
           content: {
-            DEFAULT: "#1f2937",
-            error: "#dc2626",
-            inverted: "#e7e5e4"
+            subtle: colors.gray[600],
+            DEFAULT: colors.gray[500],
+            emphasis: colors.gray[200],
+            strong: colors.gray[50],
+            inverted: colors.gray[950],
+            success: colors.green[400],
           }
         },
 
@@ -81,7 +84,8 @@ export default {
             DEFAULT: "#d1d5db",
             error: "#ef4444",
             subtle: "#4b5563",
-            emphasis: "#e5e7eb",
+            emphasis: colors.gray[200],
+            success: colors.green[500],
           }
         },
 
@@ -191,7 +195,7 @@ export default {
         label: ['0.75rem', { lineHeight: '1rem' }],
         default: ['0.875rem', { lineHeight: '1.25rem' }],
         title: ['1.125rem', { lineHeight: '1.75rem' }],
-        metric: ['1.875rem', { lineHeight: '2.25rem' }],
+        metric: ['1.975rem', { lineHeight: '2.50rem' }],
       },
     },
   },

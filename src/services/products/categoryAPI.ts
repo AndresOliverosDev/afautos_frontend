@@ -5,7 +5,7 @@ import { handleError } from "../handleError";
 
 const URL_API = "/category";
 
-export const getAllCategories = async (): Promise<Category[]> => {
+export const getAllCategoriesAPI = async (): Promise<Category[]> => {
     try {
         const response = await apiClient.get(`${URL_API}/getAllCategories`);
         return response.data;

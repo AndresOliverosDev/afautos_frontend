@@ -8,8 +8,8 @@ export const columns = [
         accessorKey: "name",
     },
     {
-        header: "Descripcion",
-        accessorKey: "desc",
+        header: "Descripción",
+        accessorKey: "description",
     },
 ];
 

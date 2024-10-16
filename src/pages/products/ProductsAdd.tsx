@@ -10,10 +10,10 @@ import {
 } from "@tremor/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import useProduct from "../../hooks/products/useProduct";
-import useCategory from "../../hooks/products/useCategory";
 import { TextInput } from "../../components/ui";
 import { ProductCreate } from "../../types"; // Ajusta la ruta según la estructura de tu proyecto
 import { useBrand } from "../../hooks/products/useBrand";
+import useCategory from "../../products/category/hooks/useCategory";
 
 interface ProductsAddProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ interface ProductsAddProps {
 
 const ProductsAdd: React.FC<ProductsAddProps> = ({ isOpen, onClose }) => {
   const { addProduct } = useProduct();
-  const { categoryData } = useCategory();
+  const { categories } = useCategory();
   const { brandData } = useBrand();
 
   const {
@@ -119,7 +119,7 @@ const ProductsAdd: React.FC<ProductsAddProps> = ({ isOpen, onClose }) => {
             id="image"
           />
           <SearchSelect onValueChange={handleChangeCat}>
-            {categoryData.map((cat) => (
+            {categories.map((cat) => (
               <SearchSelectItem key={cat.id} value={cat.id}>
                 {cat.name}
               </SearchSelectItem>

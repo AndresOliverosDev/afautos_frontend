@@ -9,11 +9,10 @@ import MainLayout from '../layout/MainLayout';
 import Home from '../pages/home/Home';
 import { Customer } from '../pages/customers';
 import { Products } from '../pages/orders';
-import { Category } from '../types/product/category';
-import CategoryPage from '../pages/products/category/CategoryPage';
 import Orders from '../pages/orders/Orders';
 import Sales from '../pages/sales/Sales';
 import { NotFoundPage, Unauthorized } from '../pages/errors';
+import { CategoryPage } from '../products';
 
 
 const MyRoutes: React.FC = () => {
@@ -42,7 +41,7 @@ const MyRoutes: React.FC = () => {
       <Route path='/productos' element={
         <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS, UserRole.LOGISTICA]}>
           <MainLayout>
-            <Products />
+            <CategoryPage />
           </MainLayout>
         </ProtectedRoute>
       } />

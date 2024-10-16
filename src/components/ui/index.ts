@@ -7,6 +7,8 @@ import ActionButtons from "./ActionButtons";
 import TextInput from './inputs/TextInput';
 import Card from './Card';
 import Button from './Button';
+import LoadingComponent from './LoadingComponent';
+import DialogMessage from './dialog/DialogMessage';
 
 export {
   Accordion,
@@ -16,5 +18,7 @@ export {
   ActionButtons,
   TextInput,
   Card,
-  Button
+  Button,
+  LoadingComponent,
+  DialogMessage
 };

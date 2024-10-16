@@ -3,7 +3,9 @@ export interface ErrorResponse {
     message: any;
     response? : {
         status?: number;
-        message?: string;
+        data?: {
+            message?: string;
+        }
     }
 }
 

@@ -4,7 +4,7 @@ import { GiDeadWood } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
 interface ErrorComponentProps {
-    codeError: string;
+    codeError: number;
     textError: string;
 }
 

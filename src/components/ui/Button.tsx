@@ -9,6 +9,7 @@ interface ButtonProps {
     onClick?: () => void;
     children: React.ReactNode;
     className?: string;
+    type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
     onClick,
     children,
     className = '',
+    type
 }) => {
     const baseClasses = 'py-1.5 px-4 rounded-default flex items-center justify-center';
 
@@ -39,6 +41,7 @@ const Button: React.FC<ButtonProps> = ({
             className={`${combinedClasses} ${isLoading ? 'cursor-wait' : ''}`}
             onClick={onClick}
             disabled={disabled || isLoading}
+            type={type}
         >
             {isLoading ? (
                 <>
