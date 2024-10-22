@@ -1,83 +1,89 @@
 import { useState } from "react";
 import useCategory from "./hooks/useCategory";
-import { ActionButtons, Card, DialogMessage, ErrorComponent, LoadingComponent, SimpleTable } from "../../components/ui";
+import {
+    ActionButtons,
+    Card,
+    DialogDelete,
+    ErrorComponent,
+    LoadingComponent,
+    SimpleTable
+} from "../../components/ui";
 import React from "react";
 import CategoryForm from "./components/CategoryForm";
 import { columns } from "./settings/categoryDataTable";
 import { Category } from "../../types";
 
-const CategoryPage = () => {
-    const {
-        categories,
-        errorCategories,
-        loadingCategories,
-        deleteCategory,
-        errorCategory
-    } = useCategory();
+const CategoryPage: React.FC = () => {
+    const { categories, errorCategories, loadingCategories, deleteCategory, errorCategory } = useCategory();
 
     // Estados
-    const [formIsOpen, setFormIsOpen] = useState<boolean>(false); // Estado del formulario
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null); // Estado para almacenar una categoría seleccionada
-    const [messageIsOpen, setMessageIsOpen] = useState<boolean>(false); // Estado del mensaje
+    const [formIsOpen, setFormIsOpen] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+    const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
-    // Función para manejar el estado del mensaje
-    const handleOpenMessage = (): void => {
-        setMessageIsOpen(!messageIsOpen);
-    }
+    // Funciones de manejo de formularios y diálogos
+    const toggleForm = () => setFormIsOpen(prev => !prev);
+    const toggleDeleteDialog = () => setDeleteIsOpen(prev => !prev);
 
-    // Función para manejar el estado del formulario
-    const handleOpenForm = (): void => {
-        setFormIsOpen(!formIsOpen);
-    }
+    const handleCreate = () => {
+        setSelectedCategory(null);
+        toggleForm();
+    };
 
-        // Función del botón de crear categoría
-        const handleCreate = (): void => {
-            setSelectedCategory(null);
-            setFormIsOpen(!formIsOpen);
+    const handleDelete = () => {
+        if (selectedCategory) {
+            deleteCategory(selectedCategory.id);
+            toggleDeleteDialog();
         }
+    };
 
-    // Botones de la tabla de categorías
-    const renderActionButtons = (row: Category): JSX.Element => (
+    const renderActionButtons = (row: Category) => (
         <ActionButtons
             editAction={() => {
                 setSelectedCategory(row);
-                setFormIsOpen(true);
+                toggleForm();
             }}
             deleteAction={() => {
-                deleteCategory(row.id);
-                handleOpenMessage();
+                setSelectedCategory(row);
+                toggleDeleteDialog();
             }}
         />
     );
 
-    // Contenido de la pagina
     const renderContent = () => {
         if (loadingCategories) {
             return (
                 <div className="h-full w-full flex items-center justify-center">
-                    <LoadingComponent name={"categorías"} />
+                    <LoadingComponent name="categorías" />
                 </div>
             );
         }
 
         if (errorCategories) {
             return (
-                <div className="flex h-full items-center justify-center">
+                <div className="h-full w-full flex items-center justify-center">
                     <ErrorComponent codeError={errorCategories.statusCode} textError={errorCategories.message} />
                 </div>
             );
         }
 
         return (
-            <Card className="h-full w-full flex overflow-auto justify-center items-center">
-                <DialogMessage onClose={handleOpenMessage} isOpen={messageIsOpen} message={errorCategory?.message || "Categoría eliminada"} codeError={errorCategory?.statusCode}/>
+            <Card className="h-full w-full flex flex-col items-center justify-center overflow-auto">
+                <DialogDelete
+                    nameItem={selectedCategory?.name || ""}
+                    isOpen={deleteIsOpen}
+                    onClose={toggleDeleteDialog}
+                    handleDelete={handleDelete}
+                    message={errorCategory?.message || "Categoría eliminada"}
+                    codeError={errorCategory?.statusCode}
+                />
                 <CategoryForm
                     isOpen={formIsOpen}
-                    onClose={handleOpenForm}
+                    onClose={toggleForm}
                     dataUpdate={selectedCategory}
                 />
                 <SimpleTable
-                    nameTable={"Categorías"}
+                    nameTable="Categorías"
                     data={categories}
                     renderActionButtons={renderActionButtons}
                     columns={columns}

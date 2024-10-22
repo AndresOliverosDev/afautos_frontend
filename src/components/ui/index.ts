@@ -9,6 +9,7 @@ import Card from './Card';
 import Button from './Button';
 import LoadingComponent from './LoadingComponent';
 import DialogMessage from './dialog/DialogMessage';
+import DialogDelete from './dialog/DialogDelete';
 
 export {
   Accordion,
@@ -20,5 +21,6 @@ export {
   Card,
   Button,
   LoadingComponent,
-  DialogMessage
+  DialogMessage,
+  DialogDelete
 };

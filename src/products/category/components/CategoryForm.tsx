@@ -110,7 +110,6 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ isOpen, onClose, dataUpdate
                 </DialogPanel>
             </Dialog>
             )}
-            )
         </>
     );
     
