@@ -1,24 +1,15 @@
 import React from 'react';
 import { Button, Dialog, DialogPanel } from "@tremor/react";
-
-// Define los tipos para los datos del producto
-type ProductData = {
-    category: string;
-    brand: string;
-    quantity: number;
-    image: string;
-    name: string;
-    desc: string;
-    price: number;
-};
+import { Product } from '../../../types';
 
 interface CardDetailsProductProps {
     isOpen: boolean;
     handleClose: () => void;
-    data: ProductData | null; // Permitir que data sea null
+    data: Product | null;
+    handleUpdate: () => void;
 }
 
-const CardDetailsProduct: React.FC<CardDetailsProductProps> = ({ isOpen, handleClose, data }) => {
+const ProductCardDetail: React.FC<CardDetailsProductProps> = ({ isOpen, handleClose, data, handleUpdate }) => {
     const { category, brand, quantity, image, name, desc, price } = data || {}; // Desestructuración con fallback
 
     const details = data ? [
@@ -76,7 +67,8 @@ const CardDetailsProduct: React.FC<CardDetailsProductProps> = ({ isOpen, handleC
                                     <Button className="w-32 h-8" onClick={handleClose}>
                                         Cerrar
                                     </Button>
-                                    <Button variant="secondary" className="w-32 h-8">
+                                    <Button variant="secondary"
+                                        onClick={handleUpdate} className="w-32 h-8" >
                                         Editar
                                     </Button>
                                 </div>
@@ -89,4 +81,4 @@ const CardDetailsProduct: React.FC<CardDetailsProductProps> = ({ isOpen, handleC
     );
 };
 
-export default CardDetailsProduct;
+export default ProductCardDetail;

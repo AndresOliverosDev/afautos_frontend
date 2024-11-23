@@ -1,7 +1,6 @@
-
-import { Sidebar } from '../components/sidebar';
 import { ReactNode } from 'react';
 import React from 'react';
+import Sidebar from '../components/sidebar/Sidebar';
 
 interface MainLayoutProps {
     children: ReactNode; // Especificar que children puede ser cualquier nodo de React

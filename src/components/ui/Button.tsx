@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
     className = '',
     type
 }) => {
-    const baseClasses = 'py-1.5 px-4 rounded-default flex items-center justify-center';
+    const baseClasses = 'py-1 px-6 rounded-default flex items-center justify-center hover:opacity-80';
 
     const variantClasses = {
         primary: 'bg-light-brand dark:bg-dark-brand dark:text-dark-content text-light-content-inverted',
@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
         destructive: 'bg-red-600 text-white border-red-600',
     }[variant];
 
-    const disabledClasses = disabled ? 'opacity-30 cursor-not-allowed' : '';
+    const disabledClasses = disabled ? 'opacity-30 hover:opacity-40 cursor-not-allowed' : '';
 
     const combinedClasses = `${baseClasses} ${variantClasses} ${disabledClasses} ${className}`;    
 

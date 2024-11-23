@@ -33,3 +33,13 @@ export const addProd = async (product: ProductCreate) => {
         throw handledError;
     }
 }
+
+export const updateProductAPI = async (product: ProductCreate, productId: number) => {
+    try {
+        const response = await apiClient.put(`${URL_API}/updateProduct/${productId}`, product)
+        return response.data;
+    } catch (error) {
+        const handledError = handleError(error as ErrorResponse)
+        throw handledError;
+    }
+}

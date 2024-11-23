@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useCategory from "./hooks/useCategory";
 import {
     ActionButtons,
     Card,
@@ -9,92 +8,95 @@ import {
     SimpleTable
 } from "../../components/ui";
 import React from "react";
-import CategoryForm from "./components/CategoryForm";
-import { columns } from "./settings/categoryDataTable";
-import { Category } from "../../types";
+import { columns } from "./settings/saleDataTable";
+import { Sale } from '../../types/transactions/sale';
+import useSale from "./hooks/useSale";
+import SaleForm from "./components/SaleForm";
 
-const CategoryPage: React.FC = () => {
-    const { categories, errorCategories, loadingCategories, deleteCategory, errorCategory, getAllCategories } = useCategory();
+const SalePage: React.FC = () => {
 
     // Estados
     const [formIsOpen, setFormIsOpen] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+    const [selectedSale, setSelectedSales] = useState<Sale | null>(null);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
     // Funciones de manejo de formularios y diálogos
     const toggleForm = () => setFormIsOpen(prev => !prev);
     const toggleDeleteDialog = () => setDeleteIsOpen(prev => !prev);
+    // Custom hook de las ventas
+    const { sales, deleteSale, loadingSale, loadingSales, errorSales, errorSale, getAllSales } = useSale();
 
     const handleCreate = () => {
-        setSelectedCategory(null);
+        setSelectedSales(null);
         toggleForm();
     };
 
     const handleDelete = () => {
-        if (selectedCategory) {
-            deleteCategory(selectedCategory.id);
+        if (selectedSale) {
+            deleteSale(selectedSale.id);
             toggleDeleteDialog();
         }
     };
 
-    const renderActionButtons = (row: Category) => (
+    const renderActionButtons = (row: Sale) => (
         <ActionButtons
             editAction={() => {
-                setSelectedCategory(row);
+                setSelectedSales(row);
                 toggleForm();
             }}
             deleteAction={() => {
-                setSelectedCategory(row);
+                setSelectedSales(row);
                 toggleDeleteDialog();
             }}
         />
     );
 
     const renderContent = () => {
-        if (loadingCategories) {
+        if (loadingSales) {
             return (
                 <div className="h-full w-full flex items-center justify-center">
-                    <LoadingComponent name="categorías" />
+                    <LoadingComponent name="Marcas" />
                 </div>
             );
         }
 
-        if (errorCategories) {
+        if (errorSales) {
             return (
                 <div className="h-full w-full flex items-center justify-center">
-                    <ErrorComponent codeError={errorCategories.statusCode} textError={errorCategories.message} />
+                    <ErrorComponent codeError={errorSales.statusCode} textError={errorSales.message} />
                 </div>
             );
         }
 
         return (
-            <div className="h-full w-full flex flex-col items-center justify-center overflow-auto">
+            <Card className="px-0 py-2">
                 <DialogDelete
-                    nameItem={selectedCategory?.name || ""}
+                    nameItem={selectedSale?.id || ""}
+                    nameModule="venta"
                     isOpen={deleteIsOpen}
                     onClose={toggleDeleteDialog}
                     handleDelete={handleDelete}
-                    message={errorCategory?.message || "Categoría eliminada"}
-                    codeError={errorCategory?.statusCode}
-                />
-                <CategoryForm
-                    isOpen={formIsOpen}
-                    onClose={toggleForm}
-                    dataUpdate={selectedCategory}
+                    message={errorSale?.message || "Marca eliminada"}
+                    codeError={errorSale?.statusCode}
                 />
                 <SimpleTable
-                    nameTable="Categorías"
-                    data={categories}
+                    nameTable="Marcas"
+                    data={sales}
                     renderActionButtons={renderActionButtons}
                     columns={columns}
                     handleCreate={handleCreate}
-                    reloadTable={getAllCategories}
+                    reloadTable={ getAllSales }
                 />
-            </div>
+                <SaleForm
+                    isOpen={formIsOpen}
+                    onClose={toggleForm}
+                    dataUpdate={selectedSale}
+                    />
+            </Card>
         );
     };
 
     return <>{renderContent()}</>;
 };
 
-export default CategoryPage;
+export default SalePage;

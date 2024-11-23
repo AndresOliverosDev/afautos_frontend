@@ -10,6 +10,8 @@ import Button from './Button';
 import LoadingComponent from './LoadingComponent';
 import DialogMessage from './dialog/DialogMessage';
 import DialogDelete from './dialog/DialogDelete';
+import SearchSelect from './SearchSelect';
+import TabNavigator from "./TapNavigator";
 
 export {
   Accordion,
@@ -22,5 +24,7 @@ export {
   Button,
   LoadingComponent,
   DialogMessage,
-  DialogDelete
+  DialogDelete,
+  SearchSelect,
+  TabNavigator
 };

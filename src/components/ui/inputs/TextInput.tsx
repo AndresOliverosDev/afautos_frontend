@@ -33,7 +33,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({ error, errorMe
                 )}
                 <input
                     ref={ref}
-                    className={`bg-transparent px-2 py-1.5 rounded-default w-full placeholder:text-gray-500 border ${focus ? styleFocus : error ? styleError : styleDefault} ${className}`}
+                    className={`bg-transparent px-4 py-1 rounded-default w-full placeholder:text-gray-500 border ${focus ? styleFocus : error ? styleError : styleDefault} ${className}`}
                     {...props}
                     onBlur={handleFocus}
                     onFocus={handleFocus}

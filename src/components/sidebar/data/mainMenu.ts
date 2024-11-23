@@ -20,14 +20,6 @@ export const mainMenu = [
                 "name": 'Informes',
                 "link": '/productos/informes'
             },
-            {
-                "name": 'Categorias',
-                'link': '/categorias'
-            },
-            {
-                "name": 'Marcas',
-                'link': '/marcas'
-            }
         ]
     },
     {

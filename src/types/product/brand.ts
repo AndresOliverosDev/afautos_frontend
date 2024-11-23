@@ -1,4 +1,8 @@
 export interface Brand {
-    id: integer;
+    id: number;
+    name: string;
+}
+
+export interface BrandCreate {
     name: string;
 }

@@ -8,18 +8,16 @@ import { Login } from '../pages/auth/login';
 import MainLayout from '../layout/MainLayout';
 import Home from '../pages/home/Home';
 import { Customer } from '../pages/customers';
-import { Products } from '../pages/orders';
 import Orders from '../pages/orders/Orders';
-import Sales from '../pages/sales/Sales';
+import Sales from '../transactions/sales/SalePage';
 import { NotFoundPage, Unauthorized } from '../pages/errors';
-import { CategoryPage } from '../products';
+import ProductsPage from '../products/ProductsPage';
 
 
 const MyRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/login" element={<SingleLayout><Login /></SingleLayout>} />
-
       <Route path='/inicio' element={
         <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS, UserRole.LOGISTICA]}>
           <MainLayout>
@@ -41,7 +39,7 @@ const MyRoutes: React.FC = () => {
       <Route path='/productos' element={
         <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS, UserRole.LOGISTICA]}>
           <MainLayout>
-            <CategoryPage />
+            <ProductsPage />
           </MainLayout>
         </ProtectedRoute>
       } />
@@ -50,22 +48,6 @@ const MyRoutes: React.FC = () => {
         <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS]}>
           <MainLayout>
             <ReportsProducts />
-          </MainLayout>
-        </ProtectedRoute>
-      } />
-
-      <Route path='/categorias' element={
-        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-          <MainLayout>
-            <CategoryPage />
-          </MainLayout>
-        </ProtectedRoute>
-      } />
-
-      <Route path='/marcas' element={
-        <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-          <MainLayout>
-            <CategoryPage />
           </MainLayout>
         </ProtectedRoute>
       } />

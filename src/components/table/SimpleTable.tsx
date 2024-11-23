@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { RiAddLargeFill, RiAddLine, RiArrowDownSLine, RiLoader4Fill, RiLoopRightLine } from "react-icons/ri"; // Icono
+import { RiAddLargeFill, RiAddLine, RiArrowDownSLine, RiLoader4Fill, RiLoopRightLine, RiSearch2Line } from "react-icons/ri"; // Icono
 import { Button, TextInput } from "../ui";
 
 interface Column<TData> {
@@ -54,28 +54,27 @@ const SimpleTable = <TData extends Record<string, any>>({
     <div className="flex flex-col gap-2 h-full overflow-auto w-full">
       <div className="flex flex-col gap-2 overflow-auto w-full">
         <div className="flex items-center px-6 pt-4">
-          {/* Titulo de la tabla */}
-          <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold">{nameTable}</h1>
-          </div>
           {/* Contenedor para el input y el botón */}
-          <div className="flex-grow flex items-center justify-end gap-10">
-            <div className="flex justify-end w-full max-w-xs">
-              <TextInput
-                className="max-w-xs"
-                type="text"
-                placeholder="Buscar..."
-                value={globalFilter}
-                onChange={(e) => setGlobalFilter(e.target.value)}
-              />
+          <div className="flex gap-2 justify-end items-center w-full max-w-xs">
+            <div className="p-1.5 border rounded-default border-light-border dark:border-dark-border">
+              <RiSearch2Line className="h-5 w-5" />
             </div>
+            <TextInput
+              className="max-w-xs"
+              type="text"
+              placeholder="Buscar..."
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+            />
+          </div>
+          <div className="flex-grow flex items-center justify-end gap-10">
             <div className="flex gap-4">
               {
                 reloadTable &&
                 <Button
-                variant="ghost"
+                  variant="ghost"
                   onClick={reloadTable}
-                  className="px-7"
+                  className="px-7 border dark:border-dark-border border-light-border hover:border-none"
                 >
                   <RiLoopRightLine />
                 </Button>
@@ -85,7 +84,7 @@ const SimpleTable = <TData extends Record<string, any>>({
                 handleCreate &&
                 <Button
                   onClick={handleCreate}
-                  className="px-7"
+                  className="px-7 gap-2"
                 >
                   <RiAddLine className="mr-1" /> Crear {nameTable.slice(0, -1)}
                 </Button>
@@ -97,7 +96,7 @@ const SimpleTable = <TData extends Record<string, any>>({
       </div>
 
       {/* Cuerpo de la tabla */}
-      <div className=" rounded w-full overflow-auto whitespace-nowrap">
+      <div className="w-full overflow-auto whitespace-nowrap">
         <table className="min-w-full table-auto w-full caption-bottom">
           <thead className="bg-sky-50 dark:bg-dark-card-muted">
             <tr>

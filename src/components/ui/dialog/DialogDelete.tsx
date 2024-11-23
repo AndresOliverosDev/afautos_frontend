@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import DialogMessage from "./DialogMessage";
 
 interface DialogDeleteProps {
-  nameItem: string;
+  nameItem: string | number;
   isOpen: boolean;
   onClose: () => void;
   handleDelete: () => void;
   message: string;
   codeError?: number;
+  nameModule?: string; 
 }
 
 const DialogDelete: React.FC<DialogDeleteProps> = ({
@@ -18,6 +19,7 @@ const DialogDelete: React.FC<DialogDeleteProps> = ({
   handleDelete,
   message,
   codeError,
+  nameModule
 }) => {
   const [confirmedDelete, setConfirmedDelete] = useState<boolean>(false);
 
@@ -38,7 +40,7 @@ const DialogDelete: React.FC<DialogDeleteProps> = ({
             Confirmar Eliminación
           </h3>
           <p className="text-center mb-4 leading-6 text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-            ¿Estás seguro de eliminar la categoría "{nameItem}"?
+            ¿Estás seguro de eliminar la {nameModule || "categoría"} "{nameItem}"?
           </p>
           <div className="flex justify-center gap-6">
             <Button onClick={onClose} variant="secondary">

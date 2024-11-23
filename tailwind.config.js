@@ -49,7 +49,7 @@ export default {
             emphasis: colors.gray[700],
           },
           border: {
-            DEFAULT: "#e7e5e4"
+            DEFAULT: colors.gray[200],
           },
           brand: {
             DEFAULT: "#3b82f6"
@@ -75,7 +75,7 @@ export default {
             emphasis: colors.gray[300],
           },
           border: {
-            DEFAULT: "#1e293b"
+            DEFAULT: colors.gray[800],
           },
           brand: {
             DEFAULT: "#1d4ed8",
@@ -182,6 +182,7 @@ export default {
         'tremor-full': '9999px',
         'small': '0.375rem',
         'default': '0.5rem',
+        'large': '0.9rem',
         'full': '9999px',
       },
       fontSize: {

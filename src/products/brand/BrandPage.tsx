@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useCategory from "./hooks/useCategory";
 import {
     ActionButtons,
     Card,
@@ -9,16 +8,25 @@ import {
     SimpleTable
 } from "../../components/ui";
 import React from "react";
-import CategoryForm from "./components/CategoryForm";
-import { columns } from "./settings/categoryDataTable";
-import { Category } from "../../types";
+import { columns } from "./settings/brandDataTable";
+import useBrand from "./hooks/useBrand";
+import { Brand } from "../../types";
+import BrandForm from "./components/BrandForm";
 
-const CategoryPage: React.FC = () => {
-    const { categories, errorCategories, loadingCategories, deleteCategory, errorCategory, getAllCategories } = useCategory();
+const BrandPage: React.FC = () => {
+    const {
+        brands,
+        errorBrands,
+        loadingBrands,
+        getAllBrands,
+        deleteBrand,
+        loadingBrand,
+        errorBrand
+    } = useBrand();
 
     // Estados
     const [formIsOpen, setFormIsOpen] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+    const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
     // Funciones de manejo de formularios y diálogos
@@ -26,43 +34,43 @@ const CategoryPage: React.FC = () => {
     const toggleDeleteDialog = () => setDeleteIsOpen(prev => !prev);
 
     const handleCreate = () => {
-        setSelectedCategory(null);
+        setSelectedBrand(null);
         toggleForm();
     };
 
     const handleDelete = () => {
-        if (selectedCategory) {
-            deleteCategory(selectedCategory.id);
+        if (selectedBrand) {
+            deleteBrand(selectedBrand.id);
             toggleDeleteDialog();
         }
     };
 
-    const renderActionButtons = (row: Category) => (
+    const renderActionButtons = (row: Brand) => (
         <ActionButtons
             editAction={() => {
-                setSelectedCategory(row);
+                setSelectedBrand(row);
                 toggleForm();
             }}
             deleteAction={() => {
-                setSelectedCategory(row);
+                setSelectedBrand(row);
                 toggleDeleteDialog();
             }}
         />
     );
 
     const renderContent = () => {
-        if (loadingCategories) {
+        if (loadingBrands) {
             return (
                 <div className="h-full w-full flex items-center justify-center">
-                    <LoadingComponent name="categorías" />
+                    <LoadingComponent name="Marcas" />
                 </div>
             );
         }
 
-        if (errorCategories) {
+        if (errorBrands) {
             return (
                 <div className="h-full w-full flex items-center justify-center">
-                    <ErrorComponent codeError={errorCategories.statusCode} textError={errorCategories.message} />
+                    <ErrorComponent codeError={errorBrands.statusCode} textError={errorBrands.message} />
                 </div>
             );
         }
@@ -70,25 +78,25 @@ const CategoryPage: React.FC = () => {
         return (
             <div className="h-full w-full flex flex-col items-center justify-center overflow-auto">
                 <DialogDelete
-                    nameItem={selectedCategory?.name || ""}
+                    nameItem={selectedBrand?.name || ""}
                     isOpen={deleteIsOpen}
                     onClose={toggleDeleteDialog}
                     handleDelete={handleDelete}
-                    message={errorCategory?.message || "Categoría eliminada"}
-                    codeError={errorCategory?.statusCode}
+                    message={errorBrand?.message || "Marca eliminada"}
+                    codeError={errorBrand?.statusCode}
                 />
-                <CategoryForm
+                <BrandForm
                     isOpen={formIsOpen}
                     onClose={toggleForm}
-                    dataUpdate={selectedCategory}
+                    dataUpdate={selectedBrand}
                 />
                 <SimpleTable
-                    nameTable="Categorías"
-                    data={categories}
+                    nameTable="Marcas"
+                    data={brands}
                     renderActionButtons={renderActionButtons}
                     columns={columns}
                     handleCreate={handleCreate}
-                    reloadTable={getAllCategories}
+                    reloadTable={getAllBrands }
                 />
             </div>
         );
@@ -97,4 +105,4 @@ const CategoryPage: React.FC = () => {
     return <>{renderContent()}</>;
 };
 
-export default CategoryPage;
+export default BrandPage;

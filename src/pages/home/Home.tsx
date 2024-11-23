@@ -3,7 +3,7 @@ import { RiStore3Line, RiFireLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import {useState} from 'react';
 import React from 'react';
-import { ProductsAdd } from '../products';
+import ProductForm from '../../products/product/components/ProductForm';
 
 const Home = () => {
 
@@ -84,7 +84,7 @@ const Home = () => {
             </Card>
         </Link>
     )}
-    <ProductsAdd isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
+    <ProductForm isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)}/>
 </section>
     );
 }
