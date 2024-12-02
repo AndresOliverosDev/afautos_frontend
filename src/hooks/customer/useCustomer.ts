@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getActiveCustomers } from "../../services/customers/customerAPI";
+import { getActiveCustomersAPI } from "../../services/customers/customerAPI";
 import { Customer, ErrorResult } from "../../types";
 
 const useCustomer = () => {
@@ -13,7 +13,7 @@ const useCustomer = () => {
         const customerFetch = async (): Promise<void> => {
             setLoading(true); // Iniciar la carga
             try {
-                const data: Customer[] = await getActiveCustomers();
+                const data: Customer[] = await getActiveCustomersAPI();
                 setCustomers(data);
             } catch (error) {
                 setError(error as ErrorResult);

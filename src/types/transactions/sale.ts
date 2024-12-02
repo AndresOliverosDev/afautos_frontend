@@ -1,17 +1,22 @@
-export interface Sale {
-    id: number;
-    saleDate: string;
-    payMethod: string;
-    totalPrice: string;
-    address: string;
-    customer: string;
+export interface SaleDetailCreateDTO {
+    productId: number;
+    quantity: number;
 }
 
-export interface SaleCreate {
+export interface SaleCreateDTO {
+    sale: {
+        payMethod: string;
+        customer: string;
+        address: string;
+    };
+    saleDetail: SaleDetailCreateDTO[];
+}
+
+export interface Sale {
     id: number;
-    saleDate: string;
     payMethod: string;
-    totalPrice: string;
-    address: string;
     customer: string;
+    address: string;
+    total_price: number;
+    saleDate: Date;
 }

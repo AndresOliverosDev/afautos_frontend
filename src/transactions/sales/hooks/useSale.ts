@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { ErrorResult, Sale, SaleCreate } from "../../../types";
-import { createSaleAPI, getAllSalesAPI, deleteSaleAPI, updateSaleAPI } from "../../../services/sale/saleService";
+import { ErrorResult, Sale, SaleCreateDTO } from "../../../types";
+import { createSaleAPI, getAllSalesAPI, deleteSaleAPI, updateSaleAPI, getSalesByCustomerAPI } from "../../../services/sale/saleService";
 
 // Props de useSale
 interface UseSaleProps {
     sales: Sale[];
+    selectedSales: Sale[]
     errorSales: ErrorResult | null;
     loadingSales: boolean;
     errorSale: ErrorResult | null;
     loadingSale: boolean;
     getAllSales: () => Promise<void>;
-    createSale: (Sale: SaleCreate) => Promise<void>;
+    createSale: (Sale: SaleCreateDTO) => Promise<void>;
     deleteSale: (id: number) => Promise<void>;
-    updateSale: (Sale: SaleCreate, SaleId: number) => Promise<void>;
-    
+    updateSale: (Sale: SaleCreateDTO, SaleId: number) => Promise<void>;
+    getSalesByCustomer: (id: string) => Promise<void>;    
 }
 
 const useSale = (): UseSaleProps => {
@@ -24,6 +25,7 @@ const useSale = (): UseSaleProps => {
     const [loadingSales, setLoadingSales] = useState<boolean>(true); // Estado de carga de datos
     const [errorSale, setErrorSale] = useState<ErrorResult | null>(null); // Error de la petición
     const [loadingSale, setLoadingSale] = useState<boolean>(false); // Estado de la petición
+    const [selectedSales, setSelectedSales] = useState<Sale[] | []>([])
 
     // Obtener el listado de pedidos
     const getAllSales = async (): Promise<void> => {
@@ -32,6 +34,7 @@ const useSale = (): UseSaleProps => {
         try {
             const data: Sale[] = await getAllSalesAPI(); 
             setSales(data);
+            console.log(data);
         } catch (error) {
             setErrorSales((error as ErrorResult));
         } finally {
@@ -44,7 +47,7 @@ const useSale = (): UseSaleProps => {
     }, []);
 
     // Crear una nueva venta
-    const createSale = async (sale: SaleCreate): Promise<void> => {
+    const createSale = async (sale: SaleCreateDTO): Promise<void> => {
         setErrorSale(null);
         setLoadingSale(true);
         try {
@@ -74,11 +77,11 @@ const useSale = (): UseSaleProps => {
     };
 
     // Actualizar una categoría
-    const updateSale = async (sale: SaleCreate, saleId: number): Promise<void> => {
+    const updateSale = async (sale: SaleCreateDTO, saleId: number): Promise<void> => {
         try {
             const SaleUpdated: Sale = await updateSaleAPI(sale, saleId);
             setSales(prevData =>
-                prevData.map(item => item.id === sale.id ? SaleUpdated : item)
+                prevData.map(item => item.id === saleId ? SaleUpdated : item)
             );
             setErrorSale(null);
         } catch (error) {
@@ -87,6 +90,20 @@ const useSale = (): UseSaleProps => {
             setLoadingSale(false);
         }
     };
+
+    const getSalesByCustomer = async (id: string): Promise<void> => {
+        try {
+            const response: Sale[] = await getSalesByCustomerAPI(id);
+            setSelectedSales(response)
+            console.log(response)
+            setErrorSale(null);
+        } catch (error) {
+            setErrorSale((error as ErrorResult));
+        } finally {
+            setLoadingSale(false);
+        }
+    };
+
 
     return {
         sales,
@@ -97,7 +114,9 @@ const useSale = (): UseSaleProps => {
         updateSale,
         errorSales,
         getAllSales,
-        loadingSales
+        loadingSales,
+        getSalesByCustomer,
+        selectedSales
     };
 };
 

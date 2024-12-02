@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Dialog, DialogPanel, NumberInput, SearchSelect, SearchSelectItem, Textarea } from "@tremor/react";
+import React, { useState } from "react";
+import { TextInput, Button, DialogMessage, SearchSelect } from "../../../components/ui";
 import { useForm } from "react-hook-form";
-import { Button, DialogMessage, TextInput } from "../../../components/ui";
-import { Sale, SaleCreate } from '../../../types/transactions/sale';
+import { Sale, SaleCreateDTO, SaleDetailCreateDTO } from '../../../types/transactions/sale';
 import useSale from "../hooks/useSale";
 import ProductItem from "./ProductItem";
-import { Product } from "../../../types";
+import AddProductsCart, { ProductWithQuantity } from "./AddProductsCart";
+import { Dialog, DialogPanel } from "@tremor/react";
+import useCustomer from "../../../users/customers/hooks/useCustomer";
 
 interface SaleFormProps {
     isOpen: boolean;
@@ -15,27 +16,62 @@ interface SaleFormProps {
 
 const SaleForm: React.FC<SaleFormProps> = ({ isOpen, onClose, dataUpdate }) => {
     const [messageIsOpen, setMessageIsOpen] = useState<boolean>(false);
-    const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<SaleCreate>();
-    // Custom hook de las ventas
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+    const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm<SaleCreateDTO>();
+    const [selectedProducts, setSelectedProducts] = useState<ProductWithQuantity[]>([]);
+    const [selectedCustomer, setSelectedCustomer] = useState<string>('');
     const { errorSale, loadingSale, createSale, updateSale } = useSale();
+    const { customers, errorCustomers, loadingCustomers } = useCustomer();
 
-    // useEffect(() => {
-    //     if (dataUpdate) {
-    //         reset({
-    //             name: dataUpdate.name,
-    //         });
-    //     } else {
-    //         reset({
-    //             name: "",
-    //         });
-    //     }
-    // }, [dataUpdate]);
+    const handleCloseModal = () => {
+        setModalIsOpen(!modalIsOpen);
+    };
 
-    const onSubmit = async (sale: SaleCreate) => {
+    const handleAddProducts = (products: ProductWithQuantity[]): void => {
+        setSelectedProducts((prevState) => {
+            const updatedProducts = [...prevState];
+
+            products.forEach((newProduct) => {
+                const existingProduct = updatedProducts.find((product) => product.id === newProduct.id);
+                if (existingProduct) {
+                    existingProduct.quantityCart += newProduct.quantityCart;
+                } else {
+                    updatedProducts.push(newProduct);
+                }
+            });
+
+            return updatedProducts;
+        });
+    };
+
+    const handleQuantityChange = (productId: number, quantity: number): void => {
+        setSelectedProducts((prevState) =>
+            prevState.map((product) =>
+                product.id === productId ? { ...product, quantityCart: quantity } : product
+            )
+        );
+    };
+
+    const onSubmit = async (saleData: SaleCreateDTO) => {
+        // Asegúrate de que los detalles de la venta estén correctamente formateados
+        const saleDetails: SaleDetailCreateDTO[] = selectedProducts.map((product) => ({
+            productId: product.id,
+            quantity: product.quantityCart,
+        }));
+
+        const salePayload: SaleCreateDTO = {
+            sale: {
+                payMethod: saleData.sale.payMethod,
+                customer: saleData.sale.customer,
+                address: saleData.sale.address,
+            },
+            saleDetail: saleDetails,
+        };
+
         if (dataUpdate) {
-            await updateSale(sale, dataUpdate.id);
+            await updateSale(salePayload, dataUpdate.id);
         } else {
-            await createSale(sale);
+            await createSale(salePayload);
         }
 
         if (!errorSale?.message) {
@@ -47,48 +83,14 @@ const SaleForm: React.FC<SaleFormProps> = ({ isOpen, onClose, dataUpdate }) => {
         }
     };
 
-    const handleOpenMessage = (): void => {
-        setMessageIsOpen((prevState) => !prevState);
-    };
-
-    const selectedProducts: Product[] = [
-        {
-            id: 8,
-            name: "Pantalla LCD 27'",
-            desc: "Product test",
-            quantity: 12,
-            price: 1200000,
-            image: "https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            category: "1",
-            brand: "1"
-        },
-        {
-            id: 9,
-            name: "Teclado mecánico",
-            desc: "b",
-            quantity: 100,
-            price: 150000,
-            image: "https://images.pexels.com/photos/952594/pexels-photo-952594.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            category: "1",
-            brand: "1"
-        }
-    ];
-
-
     const renderContent = () => (
         <>
             {messageIsOpen ? (
                 <DialogMessage
-                    onClose={handleOpenMessage}
-                    isOpen={messageIsOpen}
+                    onClose={handleCloseModal}
+                    isOpen={modalIsOpen}
                     codeError={errorSale?.statusCode}
-                    message={
-                        errorSale?.message
-                            ? errorSale?.message
-                            : dataUpdate
-                                ? "La venta se actualizó exitosamente"
-                                : "La venta se creó exitosamente"
-                    }
+                    message={errorSale?.message || (dataUpdate ? "Venta actualizada" : "Venta creada")}
                 />
             ) : (
                 <Dialog open={isOpen} onClose={onClose}>
@@ -96,53 +98,72 @@ const SaleForm: React.FC<SaleFormProps> = ({ isOpen, onClose, dataUpdate }) => {
                         <p className="text-xl border-b-4 border-tremor-brand pb-2">
                             {dataUpdate ? "ACTUALIZAR VENTA" : "CREAR VENTA"}
                         </p>
-                        <form className="flex gap-4 w-full" onSubmit={handleSubmit(onSubmit)}>
-                            <div className="flex flex-col gap-2 w-[40%]">
-                                <TextInput
-                                    label="Ciente"
-                                    placeholder="Seleccionar un cliente"
-                                    id="customer"
-                                    error={errors.customer}
-                                    errorMessage={errors.customer?.message}
-                                    {
-                                    ...register("customer", {
-                                        required: "¡Este campo es requerido!",
-                                        maxLength: { value: 30, message: "¡La longitud máxima es de 30 caracteres!" },
-                                    })}
+                        <div className="flex gap-4 w-full flex-col md:flex-row">
+                            <form className="flex flex-col gap-2 w-full md:w-[40%]" onSubmit={handleSubmit(onSubmit)}>
+                                <SearchSelect
+                                    data={customers || []}
+                                    labelKey="name"
+                                    idKey="id"
+                                    loadingData={loadingCustomers}
+                                    label="Seleccionar cliente"
+                                    onValueChange={(customer: { id: string; }) => setValue("sale.customer", customer.id)} // Notificar el cambio
                                 />
+
                                 <TextInput
                                     label="Método de pago"
                                     placeholder="Métodos de pago"
                                     id="payMethod"
-                                    error={errors.payMethod}
-                                    errorMessage={errors.payMethod?.message}
-                                    {
-                                    ...register("payMethod", {
+                                    error={errors.sale?.payMethod}
+                                    errorMessage={errors.sale?.payMethod?.message}
+                                    {...register("sale.payMethod", {
                                         required: "¡Este campo es requerido!",
-                                        maxLength: { value: 30, message: "¡La longitud máxima es de 30 caracteres!" },
                                     })}
                                 />
                                 <TextInput
                                     label="Dirección"
                                     placeholder="Dirección de envió"
                                     id="address"
-                                    error={errors.address}
-                                    errorMessage={errors.address?.message}
-                                    {
-                                    ...register("payMethod", {
+                                    error={errors.sale?.address}
+                                    errorMessage={errors.sale?.address?.message}
+                                    {...register("sale.address", {
                                         required: "¡Este campo es requerido!",
                                         maxLength: { value: 30, message: "¡La longitud máxima es de 30 caracteres!" },
                                     })}
                                 />
+                                <Button type="submit" isLoading={loadingSale}>
+                                    {dataUpdate ? "Actualizar venta" : "Crear venta"}
+                                </Button>
+                            </form>
+                            <div className="flex flex-col justify-center items-center rounded-default gap-2 w-full md:w-[60%] mt-2 p-2 border border-dark-border">
+                                <p className="font-bold text-lg">Productos seleccionados</p>
+                                {selectedProducts.length > 0 ? (
+                                    <div className="max-h-[400px] overflow-y-auto w-full ">
+                                        <ProductItem
+                                            products={selectedProducts}
+                                            handleQuantityChange={handleQuantityChange}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div>No hay productos seleccionados.</div>
+                                )}
+                                <div className="pt-5 w-full">
+                                    <Button
+                                        className="ml-auto mr-4"
+                                        onClick={handleCloseModal}
+                                        type="button"
+                                    >
+                                        Agregar productos
+                                    </Button>
+                                </div>
                             </div>
-                            <div className="flex flex-col rounded-default gap-2 w-[60%] mt-2 p-2 border border-dark-border">
-                                    <ProductItem products={selectedProducts} />
-                            </div>
-                        </form>
-                        <Button type="submit" variant="primary" isLoading={loadingSale}>
-                            {dataUpdate ? "Actualizar marca" : "Crear marca"}
-                        </Button>
+                        </div>
                     </DialogPanel>
+                    <AddProductsCart
+                        isOpen={modalIsOpen}
+                        onClose={handleCloseModal}
+                        onAddSelected={handleAddProducts}
+                        selectedProductsAfter={selectedProducts}
+                    />
                 </Dialog>
             )}
         </>

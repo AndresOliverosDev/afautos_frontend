@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 interface SearchSelectProps<T> {
   data: T[];
@@ -8,6 +9,7 @@ interface SearchSelectProps<T> {
   onValueChange?: (item: T) => void;
   label?: string;
   loadingData?: boolean;
+  value?: any;
 }
 
 const SearchSelect = <T,>({
@@ -22,67 +24,76 @@ const SearchSelect = <T,>({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedItem, setSelectedItem] = useState<T | null>(defaultValue);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Filtrar elementos según la consulta de búsqueda
   const filteredItems = data.filter((item) =>
     item[labelKey]?.toString().toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleToggleSelect = () => {
     setIsOpen((prev) => !prev);
-    if (!isOpen) {
-      setSearchQuery(""); // Reiniciar búsqueda al abrir
-    }
+    if (!isOpen) setSearchQuery(""); // Reiniciar búsqueda al abrir
   };
 
   const handleSelectItem = (item: T) => {
     setSelectedItem(item);
     setIsOpen(false);
-    if (onValueChange) {
-      onValueChange(item);
-    }
+    if (onValueChange) onValueChange(item); // Notificar al padre
   };
 
-  const selectedItemName = selectedItem ? selectedItem[labelKey]?.toString() : "Select an option";
+  const selectedItemName = selectedItem ? selectedItem[labelKey]?.toString() : "";
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="relative w-full">
-      {label && <label className="block mb-2 text-sm font-medium text-gray-700">{label}</label>}
+    <div ref={dropdownRef} className="relative w-full">
+      {label && <label className="block mb-2 text-default font-medium text-gray-700">{label}</label>}
       <div className="flex flex-col">
         <div
           onClick={handleToggleSelect}
-          className="flex items-center justify-between p-2 border border-gray-300 rounded-md cursor-pointer bg-white dark:bg-gray-800 shadow-sm"
+          className="flex items-center justify-between px-2 border border-light-border dark:border-dark-border rounded-md cursor-pointer bg-transparent shadow-sm"
         >
           <input
             type="text"
-            value={searchQuery}
+            value={isOpen ? searchQuery : selectedItemName}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search..."
-            className="flex-grow p-2 bg-transparent border-none focus:outline-none focus:ring focus:ring-blue-300"
+            className="flex-grow p-2 bg-transparent border-none focus:outline-none"
+            readOnly={!isOpen}
           />
-          <span className="material-icons ml-2">arrow_drop_down</span>
+          <RiArrowDownSLine className="w-6 h-6" />
         </div>
         {isOpen && (
-          <div className="absolute left-0 z-10 mt-1 w-full max-h-60 overflow-y-auto bg-white dark:bg-gray-800 border border-gray-300 rounded-md shadow-lg">
-            <div className="max-h-60 overflow-y-auto">
-              {loadingData ? (
-                <div className="p-2 text-center">Loading...</div>
-              ) : (
-                filteredItems.length > 0 ? (
-                  filteredItems.map((item) => (
-                    <div
-                      key={item[idKey]?.toString()}
-                      onClick={() => handleSelectItem(item)}
-                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-                    >
-                      {item[labelKey]?.toString()}
-                    </div>
-                  ))
-                ) : (
-                  <div className="p-2 text-center text-gray-500">No results found</div>
-                )
-              )}
-            </div>
+          <div
+            className="absolute left-0 z-10 mt-1 w-full max-h-60 overflow-y-auto bg-light-card dark:bg-dark-card opacity-95 border border-light-content-subtle dark:border-dark-content-subtle rounded-md shadow-lg"
+            style={{ top: "100%" }}
+          >
+            {loadingData ? (
+              <div className="p-2 text-center">Loading...</div>
+            ) : filteredItems.length > 0 ? (
+              filteredItems.map((item) => (
+                <div
+                  key={item[idKey]?.toString()}
+                  onClick={() => handleSelectItem(item)}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  {item[labelKey]?.toString()}
+                </div>
+              ))
+            ) : (
+              <div className="p-2 text-center text-gray-500">No results found</div>
+            )}
           </div>
         )}
       </div>

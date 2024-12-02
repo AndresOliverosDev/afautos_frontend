@@ -12,6 +12,7 @@ import Orders from '../pages/orders/Orders';
 import Sales from '../transactions/sales/SalePage';
 import { NotFoundPage, Unauthorized } from '../pages/errors';
 import ProductsPage from '../products/ProductsPage';
+import CustomerPage from '../users/customers/CustomerPage';
 
 
 const MyRoutes: React.FC = () => {
@@ -30,7 +31,7 @@ const MyRoutes: React.FC = () => {
       <Route path='/clientes' element={
         <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS]}>
           <MainLayout>
-            <Customer />
+            <CustomerPage />
           </MainLayout>
         </ProtectedRoute>
       } />
@@ -65,15 +66,6 @@ const MyRoutes: React.FC = () => {
         <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS]}>
           <MainLayout>
             <Orders />
-          </MainLayout>
-        </ProtectedRoute>
-      } />
-
-      {/* Customers Reports */}
-      <Route path='/clientes/informes' element={
-        <ProtectedRoute allowedRoles={[UserRole.ADMIN, UserRole.VENTAS]}>
-          <MainLayout>
-            <ReportsCustomers />
           </MainLayout>
         </ProtectedRoute>
       } />

@@ -12,6 +12,7 @@ import DialogMessage from './dialog/DialogMessage';
 import DialogDelete from './dialog/DialogDelete';
 import SearchSelect from './SearchSelect';
 import TabNavigator from "./TapNavigator";
+import NumberInput from "./NumberInput";
 
 export {
   Accordion,
@@ -26,5 +27,6 @@ export {
   DialogMessage,
   DialogDelete,
   SearchSelect,
-  TabNavigator
+  TabNavigator,
+  NumberInput
 };

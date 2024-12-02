@@ -1,43 +1,55 @@
 import React from "react";
-import { Product } from "../../../types";
+import { Button, NumberInput } from "../../../components/ui";
+import { RiAddLine, RiSubtractLine } from "react-icons/ri";
+import { ProductWithQuantity } from "./AddProductsCart";
 
 interface ProductItemProps {
-    products: Product[];
+    products: ProductWithQuantity[]; // Incluye la propiedad quantity
+    handleQuantityChange: (productId: number, quantity: number) => void;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ products }) => {
+const ProductItem: React.FC<ProductItemProps> = ({ products, handleQuantityChange }) => {
     return (
-        <>
-            <div className="flex flex-col gap-1">
-                {products && products.length > 0 ? (
-                    products.map((product) => (
-                        <div
-                            key={product.id}
-                            className="flex items-center gap-3 rounded-full p-0.5 border dark:border-dark-border border-light-border"
-                        >
-                            <img
-                                className="h-10 w-10 rounded-full"
-                                src={product.image}
-                                alt={product.name}
-                            />
-                            <div className="flex items-center">
-                                <p className="w-72 border-l pl-3 border-light-border dark:border-dark-border">
-                                    {product.name}
-                                </p>
-                                <p className="w-32 border-l pl-3 border-light-border dark:border-dark-border">
-                                    {product.quantity}
-                                </p>
-                                <p className="w-32 border-l pl-3 border-light-border dark:border-dark-border">
-                                    ${product.price.toLocaleString()}
-                                </p>
-                            </div>
+        <div className="flex flex-col gap-3">
+            {products && products.length > 0 ? (
+                products.map((product) => (
+                    <div
+                        key={product.id}
+                        className="flex items-center gap-3 rounded-default border dark:border-dark-border border-light-border px-3 py-1"
+                    >
+                        <img
+                            className="h-10 w-10 rounded-full ml-2 mr-4"
+                            src={product.image}
+                            alt={product.name}
+                        />
+                        <div className="mr-8">
+                            <p className="font-bold">{product.name}</p>
+                            <p className="text-sm text-gray-600">${product.price.toLocaleString()}</p>
                         </div>
-                    ))
-                ) : (
-                    <p>No products available.</p>
-                )}
-            </div>
-        </>
+                        <div className="mr-8">
+                            <p className="font-bold">Marca {product.brand}</p>
+                            <p className="text-sm text-gray-600">Categoria{product.category}</p>
+                        </div>
+                        <div className="flex flex-1 flex-col pr-1">
+                            <p className="font-bold">Precio total</p>
+                            <p className="text-lg text-gray-600">${(product.price * product.quantityCart).toLocaleString()}</p>
+                        </div>
+                        <div className="flex gap-1 items-center pr-1">
+                            <NumberInput
+                                min={1}
+                                max={product.quantity}
+                                value={product.quantityCart}
+                                onChange={(newQuantity) =>
+                                    handleQuantityChange(product.id, newQuantity)
+                                }
+                            />
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <p className="text-gray-500">No products available.</p>
+            )}
+        </div>
     );
 };
 

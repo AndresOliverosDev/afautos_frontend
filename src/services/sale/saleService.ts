@@ -1,11 +1,11 @@
 import { ErrorResponse } from "../../types";
-import { Sale, SaleCreate } from "../../types/transactions/sale";
+import { Sale, SaleCreateDTO } from "../../types/transactions/sale";
 import apiClient from "../apiClient";
 import { handleError } from "../handleError";
 
 const URL_API = "/sale";
 
-export const getSalesByCustomer = async (customerID: string): Promise<Sale[]> => {
+export const getSalesByCustomerAPI = async (customerID: string): Promise<Sale[]> => {
     try {
         const response = await apiClient.get(`${URL_API}/getSalesByCustomer/${customerID}`);
         return response.data;
@@ -25,7 +25,7 @@ export const getAllSalesAPI = async (): Promise<Sale[]> => {
     }
 }
 
-export const createSaleAPI = async (sale: SaleCreate): Promise<Sale> => {
+export const createSaleAPI = async (sale: SaleCreateDTO): Promise<Sale> => {
     try {
         const response = await apiClient.post(`${URL_API}/createSale`, sale);
         return response.data;
@@ -45,7 +45,7 @@ export const deleteSaleAPI = async (saleId: number): Promise<Sale> => {
     }
 }
 
-export const updateSaleAPI = async (sale: SaleCreate, saleId: number) => {
+export const updateSaleAPI = async (sale: SaleCreateDTO, saleId: number) => {
     try {
         const response = await apiClient.put(`${URL_API}/updateSale/${saleId}`, sale);
         return response.data;
